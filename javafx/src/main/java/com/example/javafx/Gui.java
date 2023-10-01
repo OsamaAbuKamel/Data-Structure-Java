@@ -45,8 +45,10 @@ public class Gui extends Application {
         box2.getChildren().addAll(tableView);
         tableView.getColumns().addAll(colName, colGen, colFreq);
         box.getChildren().addAll(box1, box2);
-        Scene scene = new Scene(box, 800, 600);
+        Scene scene = new Scene(box);
+        primaryStage.setMaximized(true);
         primaryStage.setScene(scene);
+//        primaryStage.setFullScreen(true);
         primaryStage.show();
     }
     
@@ -54,7 +56,7 @@ public class Gui extends Application {
         button.setOnAction(e -> {
             File file = chooser.showOpenDialog(primaryStage);
             String fileName = file.getAbsolutePath();
-            readFile(fileName);
+//            readFile(fileName);
             for (int i = 0; i < list.size(); i++) {
                 tableView.getItems().add(list.getIndex(i));
             }
@@ -64,18 +66,22 @@ public class Gui extends Application {
             textArea.clear();
         });
         btnHFreq.setOnAction(e -> {
-            textArea.setText(highestFreq());
+//            textArea.setText(highestFreq());
         });
     }
     
     public void style() {
-        box1.setPrefSize(400, 600);
-        box2.setPrefSize(400, 600);
+//        box1.setPrefSize(400, 600);
+//        box2.setPrefSize(400, 600);
         textArea.setMaxSize(200, 60);
-        tableView.setPrefSize(400, 600);
+//        tableView.setPrefSize(400, 600);
         colName.prefWidthProperty().bind(tableView.widthProperty().divide(3));
         colGen.prefWidthProperty().bind(tableView.widthProperty().divide(3));
         colFreq.prefWidthProperty().bind(tableView.widthProperty().divide(3));
+        box2.prefWidthProperty().bind(box.widthProperty().divide(2));
+        box1.prefWidthProperty().bind(box.widthProperty().divide(2));
+        tableView.prefWidthProperty().bind(box2.widthProperty().divide(2));
+        tableView.prefHeightProperty().bind(box.heightProperty());
         textArea.setEditable(false);
         button.setPrefSize(200, 60);
         btnClear.setPrefSize(200, 60);
@@ -88,35 +94,35 @@ public class Gui extends Application {
         tableView.setStyle(" -fx-text-fill: white;-fx-font-size: 16px;");
     }
     
-    public void readFile(String fileName) {
-        try (Scanner scanner = new Scanner(new File(fileName))) {
-            String line;
-            while (scanner.hasNextLine()) {
-                line = scanner.nextLine();
-                String[] parts = line.split(",");
-                list.add(new USAName(parts[0], parts[1].charAt(0), Integer.parseInt(parts[2])));
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public String highestFreq() {
-        int hFreq = 0;
-        String name = null;
-        for (int i = 0; i < list.size(); i++) {
-            USAName usaName = list.getIndex(i);
-            if (usaName.getFreq() > hFreq) {
-                hFreq = usaName.getFreq();
-                name = usaName.getName();
-            }
-        }
-        if (name != null) {
-            return "Name :" + name + ", Freq : " + hFreq;
-        } else {
-            return "No names found in the list.";
-        }
-    }
+//    public void readFile(String fileName) {
+//        try (Scanner scanner = new Scanner(new File(fileName))) {
+//            String line;
+//            while (scanner.hasNextLine()) {
+//                line = scanner.nextLine();
+//                String[] parts = line.split(",");
+//                list.add(new USAName(parts[0], parts[1].charAt(0), Integer.parseInt(parts[2])));
+//            }
+//        } catch (FileNotFoundException e) {
+//            System.out.println(e.getMessage());
+//        }
+//    }
+
+//    public String highestFreq() {
+//        int hFreq = 0;
+//        String name = null;
+//        for (int i = 0; i < list.size(); i++) {
+//            USAName usaName = list.getIndex(i);
+//            if (usaName.getFreq() > hFreq) {
+//                hFreq = usaName.getFreq();
+//                name = usaName.getName();
+//            }
+//        }
+//        if (name != null) {
+//            return "Name :" + name + ", Freq : " + hFreq;
+//        } else {
+//            return "No names found in the list.";
+//        }
+//    }
     
     public static void main(String[] args) {
         launch();

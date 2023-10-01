@@ -19,9 +19,10 @@ public class MyList<T extends Comparable<T>> implements ListInterface<T> {
         if (count < list.length) {
             list[count] = data;
             count++;
-        } else
-            System.out.println("List is full");
-    }
+        } else{
+            System.out.println("List Is Full");
+    }}
+    
     
     @Override
     public void remove(T data) {
@@ -43,18 +44,32 @@ public class MyList<T extends Comparable<T>> implements ListInterface<T> {
         return -1;
     }
     
+    public void clear() {
+        list = (T[]) new Comparable[list.length];
+    }
+    
     @Override
     public T getIndex(int index) {
         return list[index];
     }
+    
     public int size() {
         return count;
     }
+    
     @Override
     public void printList() {
         //print list
         for (int i = 0; i < count; i++) {
             System.out.println(list[i]);
         }
+    }
+    
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < count; i++)
+            s += list[i] + "\t\n";
+        return s;
     }
 }

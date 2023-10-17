@@ -1,0 +1,13 @@
+
+Q
+java:S3740#"/Provide the parametrized type for this generic.(¹»Éİşÿÿÿÿ8ºåŒî³1
+j
+java:S1192|"HDefine a constant instead of duplicating this literal "Warning" 3 times.(Á¼¹úÿÿÿÿ8½åŒî³1
+a
+java:S1192i"FDefine a constant instead of duplicating this literal "Error" 6 times.(ôE8½åŒî³1
+o
+java:S3776d"RRefactor this method to reduce its Cognitive Complexity from 22 to the 15 allowed.(¤«²½8ÿåŒî³1
+g
+java:S2147"ECombine this catch with the one at line 123, which has the same body.(«ÇÕúÿÿÿÿ8…æŒî³1
+R
+java:S1128"5Remove this unused import 'javafx.scene.paint.Color'.(Ïî£à8»»™î³1

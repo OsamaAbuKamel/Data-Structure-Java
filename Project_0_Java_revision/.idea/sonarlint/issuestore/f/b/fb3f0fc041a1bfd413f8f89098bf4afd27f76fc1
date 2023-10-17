@@ -1,8 +1,0 @@
-
-L
-java:S1066M"/Merge this if statement with the enclosing one.(—„ç‘8‹ Ë±1
-8
-java:S1643|"Use a StringBuilder instead.(ù¬ûw8‹ Ë±1
-r	java:S116"WRename this field "INITIAL_SIZE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åÂÛy8 Ë±1
-=
-java:S1170"!Make this final field static too.(åÂÛy8 Ë±1

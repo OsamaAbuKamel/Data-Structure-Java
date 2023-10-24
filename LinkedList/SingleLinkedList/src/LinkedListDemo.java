@@ -6,7 +6,7 @@ public class LinkedListDemo {
         list.insertSorted(7);
         MyLinkedList<Integer> list1 = new MyLinkedList<>();
         
-        list1.insertSorted(4);
+        list1.insertSorted(6);
         list1.insertSorted(2);
         list1.insertSorted(1);;
         System.out.println( list.mergeSorted(list,list1));

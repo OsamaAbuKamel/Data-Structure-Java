@@ -6,8 +6,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class CountryList {
-    private MyList<Country> list;
-    
+   private MyList<Country> list;
     public CountryList() {
         // Create a new MyList object and assign it to the list variable
         this.list = new MyList<>();

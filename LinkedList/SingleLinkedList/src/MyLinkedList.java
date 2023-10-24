@@ -1,0 +1,197 @@
+import java.util.Iterator;
+
+public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
+    // Head node of the linked list
+    private Node<T> head;
+
+    // Constructor: Initializes the head node of the linked list
+    public MyLinkedList() {
+        // Create a new head node with null data
+        this.head = new Node<T>(null);
+    }
+
+    // Inserts a new node at the beginning of the linked list
+    public void insertAtHead(T data) {
+        Node<T> newNode = new Node(data); // Create a new node with the given data
+        newNode.next = this.head.next; // Point the new node to the current first node
+        this.head.next = newNode; // Point the head to the new node
+    }
+
+    // Inserts a new node at the end of the linked list
+    public void insertAtEnd(T data) {
+        Node<T> newNode = new Node(data); // Create a new node with the given data
+        Node<T> curr = this.head.next; // Start at the first node
+        Node prev;
+        // Traverse the list until the end
+        for (prev = this.head; curr != null; curr = curr.next) {
+            prev = curr; // Keep track of the previous node
+        }
+        prev.next = newNode; // Insert the new node at the end
+    }
+
+    // Inserts a new node in a sorted linked list
+    public void insertSorted(T data) {
+        Node<T> newNode = new Node(data); // Create a new node with the given data
+        Node<T> curr = this.head.next; // Start at the first node
+        Node prev;
+        // Traverse the list until we find the correct position to insert
+        for (prev = this.head; curr != null && data.compareTo(curr.data) > 0; curr = curr.next) {
+            prev = curr; // Keep track of the previous node
+        }
+        newNode.next = curr; // Point the new node to the current node
+        prev.next = newNode; // Point the previous node to the new node
+    }
+
+    // Deletes the last node from the linked list
+    public void deleteEnd(T data) {
+        Node<T> curr = this.head.next; // Start at the first node
+        // Traverse the list until the end
+        for (Node<T> prev = this.head; curr.next != null; curr = curr.next) {
+            // Keep moving to the next node
+        }
+        curr.next = null; // Remove the reference to the last node
+    }
+
+    // Deletes a specific node from a sorted linked list
+    public void deleteSorted(T data) {
+        Node<T> curr = this.head.next; // Start at the first node
+        Node prev;
+        // Traverse the list until we find the node to delete
+        for (prev = this.head; curr != null && data.compareTo(curr.data) > 0; curr = curr.next) {
+            prev = curr; // Keep track of the previous node
+        }
+        // If we found the node and it matches the data, remove it
+        if (curr != null && curr.data.equals(data)) {
+            prev.next = curr.next; // Point the previous node to the next node, effectively removing the current
+                                   // node
+        }
+    }
+
+    // Searches for a specific node in the linked list
+    public boolean search(T data) {
+        // Start at the first node
+        for (Node<T> curr = this.head.next; curr != null; curr = curr.next) {
+            // If the data of the current node matches the data we're looking for, return
+            // true
+            if (curr.getData() == data) {
+                return true;
+            }
+        }
+        // If we've gone through the whole list and haven't found the data, return false
+        return false;
+    }
+
+    // Traverses the linked list and prints each node's data
+    public void traversList() {
+        // Start at the first node
+        for (Node<T> curr = this.head.next; curr != null; curr = curr.next) {
+            // Print the data of the current node
+            System.out.println(curr.data);
+        }
+    }
+
+    // Reverses the linked list
+    public void reverse() {
+        Node<T> curr = this.head.next; // Start at the first node
+        Node<T> prev = null; // Initialize previous node to null
+        // Traverse the list
+        for (Node<T> next = null; curr != null; curr = next) {
+            next = curr.next; // Store the next node
+            curr.next = prev; // Reverse the link
+            prev = curr; // Move the prev pointer one step ahead
+        }
+        this.head.next = prev; // After the loop, prev will be pointing to the new head of the reversed list
+    }
+
+    // Merges two sorted linked lists into a new sorted linked list
+    public MyLinkedList<T> mergeSorted(MyLinkedList<T> list1, MyLinkedList<T> list2) {
+        MyLinkedList<T> mergedList = new MyLinkedList<>(); // Create a new linked list to hold the merged result
+        Node<T> current1 = list1.head.getNext(); // Start at the first node of list1, skipping the dummy head node
+        Node<T> current2 = list2.head.getNext(); // Start at the first node of list2, skipping the dummy head node
+        Node<T> current = mergedList.head; // Start at the head of the merged list
+        // Merge the nodes from list1 and list2 in sorted order
+        while (current1 != null && current2 != null) {
+            if (current1.getData().compareTo(current2.getData()) < 0) {
+                current.setNext(new Node<>(current1.getData())); // Add the smaller node to the merged list
+                current1 = current1.getNext(); // Move to the next node in list1
+            } else {
+                current.setNext(new Node<>(current2.getData())); // Add the smaller node to the merged list
+                current2 = current2.getNext(); // Move to the next node in list2
+            }
+            current = current.getNext(); // Move to the next node in the merged list
+        }
+        // If there are remaining nodes in list1, add them to the merged list
+        while (current1 != null) {
+            current.setNext(new Node<>(current1.getData()));
+            current1 = current1.getNext();
+            current = current.getNext();
+        }
+        // If there are remaining nodes in list2, add them to the merged list
+        while (current2 != null) {
+            current.setNext(new Node<>(current2.getData()));
+            current2 = current2.getNext();
+            current = current.getNext();
+        }
+        return mergedList; // Return the merged list
+    }
+
+    // Returns the length of the linked list
+    public int length() {
+        int length = 0; // Initialize length to 0
+        // Traverse the list
+        for (Node<T> curr = this.head.next; curr != null; curr = curr.next) {
+            ++length; // Increment length for each node
+        }
+        return length; // Return the length
+    }
+
+    // Checks if the linked list is empty
+    public boolean isEmpty() {
+        // The list is empty if the head node doesn't point to any other node
+        return this.head.next == null;
+    }
+
+    // Clears the linked list
+    public void clear() {
+        // Remove all nodes by setting the head node's next pointer to null
+        this.head.next = null;
+    }
+
+    // Returns a string representation of the linked list
+    public String toString() {
+        String s = " "; // Initialize the string
+        // Traverse the list
+        for (Node<T> curr = this.head.next; curr != null; curr = curr.next) {
+            // Add each node's data to the string
+            s = s + String.valueOf(curr.data) + " ";
+        }
+        return s; // Return the string
+    }
+
+    // Returns an iterator over the elements in this list in proper sequence
+    @Override
+    public Iterator<T> iterator() {
+        // Create a new instance of the LinkedListIterator inner class
+        return new LinkedListIterator();
+    }
+
+    // Inner class to define the iterator
+    private class LinkedListIterator implements Iterator<T> {
+        private Node<T> curr = head.next; // Start at the first node
+        // Checks if there is a next element in the list
+
+        @Override
+        public boolean hasNext() {
+            // There is a next element if the current node is not null
+            return curr != null;
+        }
+
+        // Returns the next element in the list
+        @Override
+        public T next() {
+            T data = curr.data; // Store the data of the current node
+            curr = curr.next; // Move to the next node
+            return data; // Return the stored data
+        }
+    }
+}

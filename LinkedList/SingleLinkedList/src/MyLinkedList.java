@@ -66,8 +66,17 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
                                    // node
         }
     }
-
-    // Searches for a specific node in the linked list
+    public T deleteAtHead() {
+        if (isEmpty())
+            return null;
+        T data = (T) head.next.data;
+        head.next = head.next.next;
+        return data;
+    
+    
+    }
+        
+        // Searches for a specific node in the linked list
     public boolean search(T data) {
         // Start at the first node
         for (Node<T> curr = this.head.next; curr != null; curr = curr.next) {
@@ -102,39 +111,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
         }
         this.head.next = prev; // After the loop, prev will be pointing to the new head of the reversed list
     }
-
-    // Merges two sorted linked lists into a new sorted linked list
-    public MyLinkedList<T> mergeSorted(MyLinkedList<T> list1, MyLinkedList<T> list2) {
-        MyLinkedList<T> mergedList = new MyLinkedList<>(); // Create a new linked list to hold the merged result
-        Node<T> current1 = list1.head.getNext(); // Start at the first node of list1, skipping the dummy head node
-        Node<T> current2 = list2.head.getNext(); // Start at the first node of list2, skipping the dummy head node
-        Node<T> current = mergedList.head; // Start at the head of the merged list
-        // Merge the nodes from list1 and list2 in sorted order
-        while (current1 != null && current2 != null) {
-            if (current1.getData().compareTo(current2.getData()) < 0) {
-                current.setNext(new Node<>(current1.getData())); // Add the smaller node to the merged list
-                current1 = current1.getNext(); // Move to the next node in list1
-            } else {
-                current.setNext(new Node<>(current2.getData())); // Add the smaller node to the merged list
-                current2 = current2.getNext(); // Move to the next node in list2
-            }
-            current = current.getNext(); // Move to the next node in the merged list
-        }
-        // If there are remaining nodes in list1, add them to the merged list
-        while (current1 != null) {
-            current.setNext(new Node<>(current1.getData()));
-            current1 = current1.getNext();
-            current = current.getNext();
-        }
-        // If there are remaining nodes in list2, add them to the merged list
-        while (current2 != null) {
-            current.setNext(new Node<>(current2.getData()));
-            current2 = current2.getNext();
-            current = current.getNext();
-        }
-        return mergedList; // Return the merged list
-    }
-
+    
     // Returns the length of the linked list
     public int length() {
         int length = 0; // Initialize length to 0
@@ -167,7 +144,11 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
         }
         return s; // Return the string
     }
-
+    
+    public Node<T> getHead() {
+        return head;
+    }
+    
     // Returns an iterator over the elements in this list in proper sequence
     @Override
     public Iterator<T> iterator() {

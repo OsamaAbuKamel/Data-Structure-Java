@@ -1,28 +1,28 @@
 
 Q
-java:S3740"/Provide the parametrized type for this generic.(äıúüÿÿÿÿ8»×Ú¶1
+java:S3740"/Provide the parametrized type for this generic.(äıúüÿÿÿÿ8ŸÌÃø¸1
 Q
-java:S3740"/Provide the parametrized type for this generic.(äıúüÿÿÿÿ8»×Ú¶1
+java:S3740"/Provide the parametrized type for this generic.(äıúüÿÿÿÿ8ŸÌÃø¸1
 Q
-java:S3740"/Provide the parametrized type for this generic.(Ö‰·¶ÿÿÿÿÿ8»×Ú¶1
+java:S3740"/Provide the parametrized type for this generic.(Ö‰·¶ÿÿÿÿÿ8ŸÌÃø¸1
 Q
-java:S3740""/Provide the parametrized type for this generic.(äıúüÿÿÿÿ8»×Ú¶1
+java:S3740$"/Provide the parametrized type for this generic.(Ö‰·¶ÿÿÿÿÿ8 ÌÃø¸1
 Q
-java:S3740$"/Provide the parametrized type for this generic.(Ö‰·¶ÿÿÿÿÿ8¼×Ú¶1
-Q
-java:S3740:"/Provide the parametrized type for this generic.(Ö‰·¶ÿÿÿÿÿ8¼×Ú¶1
+java:S3740:"/Provide the parametrized type for this generic.(Ö‰·¶ÿÿÿÿÿ8 ÌÃø¸1
 v
 java:S2293
-"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÀÆŸŠ8¼×Ú¶1
-y	java:S127l"XRefactor the code in order to not assign to this loop counter from within the loop body.(¹³Ãóÿÿÿÿÿ8¼×Ú¶1
+"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÀÆŸŠ8 ÌÃø¸1
+{
+java:S2293""YReplace the type specification in this constructor call with the diamond operator ("<>").(Ñö«’øÿÿÿÿ8šºÄø¸1
+y	java:S127l"XRefactor the code in order to not assign to this loop counter from within the loop body.(¹³Ãóÿÿÿÿÿ8¡ÌÃø¸1
 :
-java:S1643"Use a StringBuilder instead.(Â„¼î8½×Ú¶1
+java:S1643"Use a StringBuilder instead.(Â„¼î8¡ÌÃø¸1
 Z
-java:S18541"8Remove this useless assignment to local variable "prev".(ëŞêåşÿÿÿÿ8Û×Ú¶1
+java:S18541"8Remove this useless assignment to local variable "prev".(ëŞêåşÿÿÿÿ8ÈÌÃø¸1
 H
-java:S1172."+Remove this unused method parameter "data".(¦¤Äñ8Û×Ú¶1
+java:S1172."+Remove this unused method parameter "data".(¦¤Äñ8ÉÌÃø¸1
 K
-java:S14811")Remove this unused "prev" local variable.(ëŞêåşÿÿÿÿ8Ü×Ú¶1
-L	java:S106b"+Replace this use of System.out by a logger.(ı¡³Áúÿÿÿÿ8İ×Ú¶1
+java:S14811")Remove this unused "prev" local variable.(ëŞêåşÿÿÿÿ8ÉÌÃø¸1
+L	java:S106b"+Replace this use of System.out by a logger.(ı¡³Áúÿÿÿÿ8ÎÌÃø¸1
 l
-java:S2272¬"NAdd a "NoSuchElementException" for iteration beyond the end of the collection.(ÓÔç8ã×Ú¶1
+java:S2272¬"NAdd a "NoSuchElementException" for iteration beyond the end of the collection.(ÓÔç8ÔÌÃø¸1

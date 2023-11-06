@@ -8,78 +8,189 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
         head = new DNode<>(null);
     }
 
-    public void insertAtHead(T data) {
+    public void addFirst(T data) {
         // Create a new node with the provided data
         DNode<T> newNode = new DNode<>(data);
         // Check if the list is empty
         if (isEmpty()) {
-            // If the list is empty, set the new node as the first node
+            // If the list is empty, set the new node as the next node after the head
+            // and set the previous node of the new node as the head
             head.next = newNode;
+            newNode.prev = head;
         } else {
-            // If the list is not empty, insert the new node at the beginning
-            // Set the next of the new node to the current first node
+            // If the list is not empty, set the next node of the new node as the current
+            // first node
+            // and set the previous node of the new node as the head
             newNode.next = head.next;
-            // Set the previous of the current first node to the new node
-            head.prev = newNode;
-            // Set the new node as the first node
+            newNode.prev = head;
+            // Set the previous node of the current first node as the new node
+            // and set the next node of the head as the new node
+            head.next.prev = newNode;
             head.next = newNode;
         }
     }
 
-    public void insertAtLast(T data) {
-        // Create a new node with the provided data
+    public void addLast(T data) {
+        // Create a new node with the given data
         DNode<T> newNode = new DNode<>(data);
         // Check if the list is empty
         if (isEmpty()) {
-            // If the list is empty, set the new node as the first node
-            head = newNode;
+            // If the list is empty, add the new node after the head
+            head.next = newNode;
+            // Set the new node's prev reference to the head
+            newNode.prev = head;
         } else {
-            // Start from the first node
-            DNode<T> last = head;
-            // Traverse the list until the end
+            // If the list is not empty, find the last node
+            DNode<T> last = head.next;
             while (last.next != null) {
                 last = last.next;
             }
-            // Now, 'last' is the last node in the list
-            // Add the new node at the end of the list
+            // Add the new node after the last node
             last.next = newNode;
+            // Set the new node's prev reference to the last node
             newNode.prev = last;
         }
     }
 
-    // Delete the node at the head of the doubly linked list
-    public T deleteAtHead() {
+    public void addSorted(T data) {
+        // Create a new node with the given data
+        DNode<T> newNode = new DNode<>(data);
+        DNode<T> curr = head.next;
+        // Traverse the list to find the correct position to insert the new node
+        // The correct position is the first position where the data of the current node
+        // is greater than the data of the new node
+        while (curr != null && curr.data.compareTo(data) < 0) {
+            curr = curr.next;
+        }
+        // If the correct position is found, insert the new node before the current node
+        if (curr != null) {
+            newNode.next = curr;
+            newNode.prev = curr.prev;
+            curr.prev.next = newNode;
+            curr.prev = newNode;
+        } else {
+            // If no such position is found (which means the new node is the largest), add
+            // the new node at the end of the list
+            addLast(data);
+        }
+    }
+
+    public T removeFirst() {
         // Check if the list is empty
         if (isEmpty()) {
-            // If empty, return null
+            // If the list is empty, return null
             return null;
         } else {
-            // Store the data from the current head
+            // If the list is not empty, store the data of the first node
             T data = head.next.data;
-            // Update the head to point to the next node
+            // Update the head's next reference to skip the first node
             head.next = head.next.next;
-            // Check if new head is not null
+            // If the new first node exists, update its prev reference to point to the head
             if (head.next != null) {
-                // If not null, set the new head's prev pointer to null
-                head.prev = head;
+                head.next.prev = head;
             }
-            // Return the data from the deleted node
+            // Return the data of the removed node
             return data;
         }
     }
-        public T deleteAtLast() {
-            if (isEmpty()) {
-                return null;
-            } else {
-                T data = head.next.data;
-                DNode<T> curr= head.next;
-                while (curr!=null) {
-                    curr=curr.next;
-                }
-                curr=null;
-                return data;    
+
+    public T removeLast() {
+        // Check if the list is empty
+        if (isEmpty()) {
+            // If the list is empty, return null
+            return null;
+        } else {
+            // If the list is not empty, start from the first node
+            DNode<T> last = head.next;
+            // Traverse the list to find the last node
+            while (last.next != null) {
+                last = last.next;
+            }
+            // Store the data of the last node
+            T data = last.data;
+            // Remove the last node by setting the next reference of the second-last node to
+            // null
+            last.prev.next = null;
+            // Clear the prev reference of the last node
+            last.prev = null;
+            // Return the data of the removed node
+            return data;
+        }
+    }
+
+    // This method searches for a specific data element in the doubly linked list.
+    public T search(T data) {
+        // Start from the first node
+        for (DNode<T> curr = head.next; curr != null; curr = curr.next) {
+            // If the data of the current node equals the searched data
+            if (curr.data.equals(data)) {
+                // Return the data
+                return data;
             }
         }
+        // If the data is not found, return null
+        return null;
+    }
+
+    public void sort() {
+        // Create a new empty list
+        DLinkedList<T> sortedList = new DLinkedList<>();
+
+        // Start from the first node
+        DNode<T> current = head.next;
+        while (current != null) {
+            // Store the next node
+            DNode<T> temp = current.next;
+
+            // Remove the current node from the list
+            current.prev.next = temp;
+            if (temp != null) {
+                temp.prev = current.prev;
+            }
+
+            // Add the current node to the sorted list
+            sortedList.addSorted(current.data);
+
+            // Move to the next node
+            current = temp;
+        }
+
+        // Replace the original list with the sorted list
+        head = sortedList.head;
+    }
+
+    /**
+     * This method sorts the doubly linked list in ascending order.
+     */
+    public void insertionSort() {
+        // Start from the first node
+        DNode<T> current = head.next;
+        while (current != null) {
+            // Store the next node
+            DNode<T> temp = current.next;
+            // Store the previous node
+            DNode<T> prev = current.prev;
+            // Remove the current node from the list
+            prev.next = temp;
+            if (temp != null) {
+                temp.prev = prev;
+            }
+            // Find the correct position for the current node
+            DNode<T> pos = head;
+            while (pos.next != null && pos.next.data.compareTo(current.data) < 0) {
+                pos = pos.next;
+            }
+            // Insert the current node after the found position
+            current.next = pos.next;
+            pos.next = current;
+            current.prev = pos;
+            if (current.next != null) {
+                current.next.prev = current;
+            }
+            // Move to the next node
+            current = temp;
+        }
+    }
 
     // Method to check if the list is empty
     public boolean isEmpty() {
@@ -132,7 +243,7 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
         return s;
     }
 
-   @Override
+    @Override
     public Iterator<T> iterator() {
         // Create a new iterator for the Double Linked List
         return new DLinkedListIterator();
@@ -149,7 +260,8 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
             return curr != null;
         }
 
-        // Return the data of the current node and update the current node to the next node
+        // Return the data of the current node and update the current node to the next
+        // node
         @Override
         public T next() {
             T data = curr.data;

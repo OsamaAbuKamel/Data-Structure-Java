@@ -31,7 +31,7 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
 
     // Inserts a new node in a sorted linked list
     public void insertSorted(T data) {
-        Node<T> newNode = new Node(data); // Create a new node with the given data
+        Node<T> newNode = new Node<T>(data); // Create a new node with the given data
         Node<T> curr = this.head.next; // Start at the first node
         Node prev;
         // Traverse the list until we find the correct position to insert

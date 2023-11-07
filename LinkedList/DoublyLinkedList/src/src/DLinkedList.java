@@ -1,3 +1,5 @@
+package src;
+
 import java.util.Iterator;
 
 public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
@@ -118,6 +120,31 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
         }
     }
 
+    public T removeSorted(T data) {
+        // Initialize the current node as the head node's next node
+        DNode<T> curr = head.next;
+        // If the linked list is empty, return null
+        if (isEmpty()) {
+            return null;
+        } else {
+            // Iterate through the linked list until the current node is null or the data in
+            // the current node is greater than the given data
+            while (curr != null && curr.data.compareTo(data) == 0) {
+                curr = curr.next;
+            }
+            // If the current node is not null and the data in the current node is equal to
+            // the given data
+            if (curr != null && curr.data.equals(data)) {
+                  curr.prev.next = curr.next;
+                    if (curr.next != null) {
+                        curr.next.prev = curr.prev;
+                    }
+            }
+            // Return the data in the current node
+            return curr.data;
+        }
+    }
+
     // This method searches for a specific data element in the doubly linked list.
     public T search(T data) {
         // Start from the first node
@@ -135,26 +162,21 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
     public void sort() {
         // Create a new empty list
         DLinkedList<T> sortedList = new DLinkedList<>();
-
         // Start from the first node
         DNode<T> current = head.next;
         while (current != null) {
             // Store the next node
             DNode<T> temp = current.next;
-
             // Remove the current node from the list
             current.prev.next = temp;
             if (temp != null) {
                 temp.prev = current.prev;
             }
-
             // Add the current node to the sorted list
             sortedList.addSorted(current.data);
-
             // Move to the next node
             current = temp;
         }
-
         // Replace the original list with the sorted list
         head = sortedList.head;
     }
@@ -163,13 +185,12 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
      * This method sorts the doubly linked list in ascending order.
      */
     public void insertionSort() {
-        // Start from the first node
         DNode<T> current = head.next;
+        DNode<T> prev = null;
         while (current != null) {
-            // Store the next node
             DNode<T> temp = current.next;
-            // Store the previous node
-            DNode<T> prev = current.prev;
+            // Cache the previous node of the current node
+            prev = current.prev;
             // Remove the current node from the list
             prev.next = temp;
             if (temp != null) {
@@ -190,6 +211,31 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
             // Move to the next node
             current = temp;
         }
+    }
+
+    /**
+     * Reverses the linked list.
+     */
+    public void reverse() {
+        // Initialize the current node as the head node's next node
+        DNode<T> current = head.next;
+        // Initialize the previous node as null
+        DNode<T> prev = null;
+        // Initialize the next node as the current node's next node
+        DNode<T> next = null;
+        // Iterate through the linked list until the current node is null
+        while (current != null) {
+            // Store the next node in a temporary variable
+            next = current.next;
+            // Update the current node's next pointer to point to the previous node
+            current.next = prev;
+            // Update the previous node to be the current node
+            prev = current;
+            // Update the current node to be the next node
+            current = next;
+        }
+        // Update the head node's next pointer to point to the previous node
+        head.next = prev;
     }
 
     // Method to check if the list is empty

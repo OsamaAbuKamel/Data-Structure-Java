@@ -1,3 +1,7 @@
+package src;
+
+import ProblemSolving.RemoveDuplicates;
+
 public class DoublyLinkedListDemo {
     public static void main(String[] args) {
         DLinkedList<Integer> list = new DLinkedList<>();
@@ -6,16 +10,18 @@ public class DoublyLinkedListDemo {
         list.addFirst(1);
         list.addFirst(9);
         list.addFirst(2);
-        list.addLast(77);
-        list.addLast(0);
-        // list.addSorted(5);
-        // list.addSorted(7);
-        // list.addSorted(1);
-        // list.addSorted(9);
-        // list.addSorted(2);
+        list.addFirst(2);
+        list.addSorted(4);
+        list.addSorted(7);
+        list.addSorted(2);
+        list.addLast(9);
+        list.addLast(2);
+        list.sort();
+
         System.out.println(list);
         System.out.println("-----------Sort------------");
-        list.sort();
+        // list.removeDuplicates();
+        RemoveDuplicates.removeDuplicates(list);
         System.out.println(list);
     }
 }

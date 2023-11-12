@@ -11,13 +11,11 @@ public class DoublyLinkedListDemo {
         list.addFirst(9);
         list.addFirst(2);
         list.addFirst(2);
-        list.addSorted(4);
-        list.addSorted(7);
-        list.addSorted(2);
+        // list.addSorted(4);
+        // list.addSorted(7);
         list.addLast(9);
         list.addLast(2);
-        list.sort();
-
+        // list.sort();
         System.out.println(list);
         System.out.println("-----------Sort------------");
         // list.removeDuplicates();

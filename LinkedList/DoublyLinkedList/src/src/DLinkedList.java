@@ -237,6 +237,7 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
         // Update the head node's next pointer to point to the previous node
         head.next = prev;
     }
+    
 
     // Method to check if the list is empty
     public boolean isEmpty() {

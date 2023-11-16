@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
+public class MyLinkedList<T extends Comparable<T>> implements Iterable<T>,Comparable<MyLinkedList<T>> {
     // Head node of the linked list
     private Node<T> head;
 
@@ -144,7 +144,30 @@ public class MyLinkedList<T extends Comparable<T>> implements Iterable<T> {
         }
         return s; // Return the string
     }
-    
+    @Override
+    public int compareTo(MyLinkedList<T> other) {
+        Node<T> node1 = this.head;
+        Node<T> node2 = other.head;
+
+        while (node1 != null && node2 != null) {
+            int comparison = node1.data.compareTo(node2.data);
+            if (comparison != 0) {
+                // As soon as we find a pair of elements that differ, we return the result of their comparison
+                return comparison;
+            }
+            node1 = node1.next;
+            node2 = node2.next;
+        }
+
+        // If we've gone through the whole list and all elements are equal, then the shorter list is considered "less than" the longer one
+        if (node1 != null) {
+            return 1; // this list is longer, so it's considered "greater"
+        } else if (node2 != null) {
+            return -1; // other list is longer, so it's considered "greater"
+        } else {
+            return 0; // both lists are the same length and all elements are equal, so the lists are considered "equal"
+        }
+    }
     public Node<T> getHead() {
         return head;
     }

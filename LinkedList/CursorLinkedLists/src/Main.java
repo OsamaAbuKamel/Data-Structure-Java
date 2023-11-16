@@ -24,6 +24,8 @@ public class Main {
 
         // Print lists
         list.traversList(head2);
+        CursorLinkedList<Integer> list2 = new CursorLinkedList<>(11);
+        list2.insertAtHead(4, head2);
 
 
 

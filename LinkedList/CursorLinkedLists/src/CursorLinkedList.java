@@ -105,4 +105,14 @@ public class CursorLinkedList<T extends Comparable<T>> {
         }
         System.out.println("null");
     }
+    public int getLength(int headIndex) {
+        int length = 0;
+        int currentIndex = headIndex;
+        while (!isNodeNull(currentIndex) && !isEmpty(currentIndex)) {
+            length++;
+            currentIndex = nodeArray[currentIndex].next;
+        }
+        return length;
+    }
+    
 }

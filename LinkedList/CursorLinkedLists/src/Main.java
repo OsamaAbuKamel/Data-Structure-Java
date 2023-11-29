@@ -14,6 +14,7 @@ public class Main {
 
         // Print list
         list.traversList(head1);
+        System.out.println(list.getLength(head1));
 
         // Create another list
         int head2 = list.createList();
@@ -26,7 +27,6 @@ public class Main {
         list.traversList(head2);
         CursorLinkedList<Integer> list2 = new CursorLinkedList<>(11);
         list2.insertAtHead(4, head2);
-
 
 
     }

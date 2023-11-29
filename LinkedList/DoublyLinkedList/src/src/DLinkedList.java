@@ -135,10 +135,10 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
             // If the current node is not null and the data in the current node is equal to
             // the given data
             if (curr != null && curr.data.equals(data)) {
-                  curr.prev.next = curr.next;
-                    if (curr.next != null) {
-                        curr.next.prev = curr.prev;
-                    }
+                curr.prev.next = curr.next;
+                if (curr.next != null) {
+                    curr.next.prev = curr.prev;
+                }
             }
             // Return the data in the current node
             return curr.data;
@@ -157,6 +157,31 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
         }
         // If the data is not found, return null
         return null;
+    }
+
+    /**
+     * Reverses the linked list.
+     */
+    public void reverse() {
+        // Initialize the current node as the head node's next node
+        DNode<T> current = head.next;
+        // Initialize the previous node as null
+        DNode<T> prev = null;
+        // Initialize the next node as the current node's next node
+        DNode<T> next = null;
+        // Iterate through the linked list until the current node is null
+        while (current != null) {
+            // Store the next node in a temporary variable
+            next = current.next;
+            // Update the current node's next pointer to point to the previous node
+            current.next = prev;
+            // Update the previous node to be the current node
+            prev = current;
+            // Update the current node to be the next node
+            current = next;
+        }
+        // Update the head node's next pointer to point to the previous node
+        head.next = prev;
     }
 
     public void sort() {
@@ -213,32 +238,6 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
         }
     }
 
-    /**
-     * Reverses the linked list.
-     */
-    public void reverse() {
-        // Initialize the current node as the head node's next node
-        DNode<T> current = head.next;
-        // Initialize the previous node as null
-        DNode<T> prev = null;
-        // Initialize the next node as the current node's next node
-        DNode<T> next = null;
-        // Iterate through the linked list until the current node is null
-        while (current != null) {
-            // Store the next node in a temporary variable
-            next = current.next;
-            // Update the current node's next pointer to point to the previous node
-            current.next = prev;
-            // Update the previous node to be the current node
-            prev = current;
-            // Update the current node to be the next node
-            current = next;
-        }
-        // Update the head node's next pointer to point to the previous node
-        head.next = prev;
-    }
-    
-
     // Method to check if the list is empty
     public boolean isEmpty() {
         // The list is empty if the 'next' reference of the head node is null
@@ -280,7 +279,8 @@ public class DLinkedList<T extends Comparable<T>> implements Iterable<T> {
         // Start from the first node in the list
         DNode<T> curr = head.next;
         // Iterate over each node in the list
-        for (int i = 0; i < length(); i++) {
+        int lolo = length();
+        for (int i = 0; i < lolo; i++) {
             // Append the data of the current node to the result string
             s = s + String.valueOf(curr.data) + " ";
             // Move to the next node

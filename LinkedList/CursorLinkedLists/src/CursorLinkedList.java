@@ -1,3 +1,4 @@
+
 public class CursorLinkedList<T extends Comparable<T>> {
     // Array of nodes
     private Node<T>[] nodeArray;
@@ -14,10 +15,10 @@ public class CursorLinkedList<T extends Comparable<T>> {
     private void initialize() {
         for (int i = 0; i < nodeArray.length - 1; i++) {
             // Set the next index of each node to i+1
-            nodeArray[i] = new Node<>(null, i + 1);
+            nodeArray[i] = new Node<T>(null, i + 1);
         }
         // Set the last node's next index to 0
-        nodeArray[nodeArray.length - 1] = new Node<>(null, 0);
+        nodeArray[nodeArray.length - 1] = new Node<T>(null, 0);
     }
 
     // Allocates a free node from the node array
@@ -96,15 +97,100 @@ public class CursorLinkedList<T extends Comparable<T>> {
             throw new OutOfMemoryError("No free nodeArray available");
         }
     }
-
-    public void traversList(int l) {
-        System.out.print("list_" + l + "-->");
-        while (!isNodeNull(l) && !isEmpty(l)) {
-            l = nodeArray[l].next;
-            System.out.print(nodeArray[l] + "-->");
+    
+    public void insertAtTail(T data, int headNodeIndex) {
+        
+        // Check if head node is null
+        if(isNodeNull(headNodeIndex)) {
+            return;
         }
-        System.out.println("null");
+        
+        // Get index of tail node
+        int tailNodeIndex = getTail(headNodeIndex);
+        
+        // Allocate new tail node
+        int newNodeIndex = allocateNode();
+        if(newNodeIndex == 0) {
+            throw new OutOfMemoryError("No free nodes");
+        }
+        
+        // Update next pointer of current tail to new tail
+        nodeArray[tailNodeIndex].next = newNodeIndex;
+        
+        // Initialize new tail node
+        nodeArray[newNodeIndex] = new Node<T>(data, 0);
     }
+    
+    private int getTail(int headNodeIndex) {
+        
+        int current = headNodeIndex;
+        
+        while(!isLast(current)) {
+            current = nodeArray[current].next;
+        }
+        
+        return current;
+    }
+
+//    public void traversList(int l) {
+//        System.out.print("list_" + l + "-->");
+//        while (!isNodeNull(l) && !isEmpty(l)) {
+//            l = nodeArray[l].next;
+//            System.out.print(nodeArray[l] + "-->");
+//        }
+//        System.out.println("null");
+//    }
+public void traverseList(int nodeIndex) {
+    
+    if(nodeIndex < 0 || nodeIndex >= nodeArray.length) {
+        return;
+    }
+    // print current node
+    System.out.print(nodeArray[nodeIndex]);
+    
+    int next = nodeArray[nodeIndex].next;
+    
+    if(next > 0 && next < nodeArray.length) {
+        // recurse if valid next node
+        System.out.print(" --> ");
+        traverseList(next);
+    } else {
+        // end recursion if next node is invalid
+        System.out.print(" --> null");
+    }
+}
+    
+    public int lengthRecursive(int nodeIndex) {
+        // Base case: if the current node is empty (nodeIndex == 0), return 0
+        if (isEmpty(nodeIndex)) {
+            return 0;
+        }
+        
+        // Recursive case: move to the next node and add 1 to the length
+        return 1 + lengthRecursive(nodeArray[nodeIndex].next);
+    }
+    
+    // Wrapper method
+   
+    public void deleteFirst(int headNodeIndex) {
+        // Check if list is empty
+        if(isNodeNull(headNodeIndex)) {
+            return;
+        }
+        // Get index of first node
+        int firstNodeIndex = headNodeIndex;
+        // Get index of second node
+        int secondNodeIndex = nodeArray[firstNodeIndex].next;
+        // Update head pointer to second node
+        headNodeIndex = secondNodeIndex;
+        // Free first node
+        free(firstNodeIndex);
+        // Check if list is now empty
+        if(isNodeNull(headNodeIndex)) {
+            headNodeIndex = 0; // Set head pointer to null
+        }
+    }
+    
     public int getLength(int headIndex) {
         int length = 0;
         int currentIndex = headIndex;
@@ -114,5 +200,33 @@ public class CursorLinkedList<T extends Comparable<T>> {
         }
         return length;
     }
-    
+
+    public int find(T data, int l) {
+        while (!isNodeNull(l) && !isEmpty(l)) {
+            l = nodeArray[l].next;
+            if (nodeArray[l].data.equals(data))
+                return l;
+        }
+        return -1; // not found
+    }
+
+    public int findPrevious(T data, int l) {
+        while (!isNodeNull(l) && !isEmpty(l)) {
+            if (nodeArray[nodeArray[l].next].data.equals(data))
+                return l;
+            l = nodeArray[l].next;
+        }
+        return -1; // not found
+    }
+
+    public Node delete(T data, int l) {
+        int p = findPrevious(data, l);
+        if (p != -1) {
+            int c = nodeArray[p].next;
+            Node temp = nodeArray[c];
+            nodeArray[p].next = temp.next;
+            free(c);
+        }
+        return null;
+    }
 }

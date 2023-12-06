@@ -1,7 +1,5 @@
 
-M
-src/DoublyLinkedListDemo.java,c\c\ccacb706ae7ff83d5ce5cb24c7cb1aeab92163d4
->
-src/DNode.java,0\5\05a1385201e4f9dcc0cea830bfe8bc6390f9df76
-J
-src/ProblemSolving/kk.java,f\6\f6a0ad74596c3ea03f62e92d45a2348c9066d434
+I
+src/src/CDlinkedList.java,2\2\224826dbc68037217667169df044292854e612cf
+Q
+!src/src/DoublyLinkedListDemo.java,3\0\306a8d1415355779c90ce819f035c13db66b7cbf

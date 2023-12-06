@@ -291,7 +291,7 @@ public class CDlinkedList<T extends Comparable<T>> implements Iterable<T> {
 
         @Override
         public boolean hasNext() {
-            return curr != head;
+            return curr.next!= head;
         }
 
         @Override

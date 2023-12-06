@@ -8,13 +8,18 @@ public class Main {
         int head1 = list.createList();
 
         // Insert nodes
-        list.insertAtTail(5, head1);
-        list.insertAtTail(4, head1);
-        list.insertAtTail(3, head1);
+        list.insertAtSorted(5, head1);
+        list.insertAtSorted(7, head1);
+        list.insertAtSorted(3, head1);
+        list.insertAtSorted(6, head1);
+        list.insertAtSorted(2, head1);
 
         // Print list
-        list.traverseList(head1);
-        System.out.println(list.lengthRecursive(head1));
+        list.traversList(head1);
+        // System.out.println(list.lengthRecursive(head1));
+        System.out.println();
+        list.delete(3, head1);
+        list.traversList(head1);
 //        list.delete(5,head1);
 //        list.traverseList(head1);
 //        System.out.println(list.getLength(head1));

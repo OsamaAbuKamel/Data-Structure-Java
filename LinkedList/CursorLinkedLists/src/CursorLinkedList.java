@@ -1,4 +1,3 @@
-
 public class CursorLinkedList<T extends Comparable<T>> {
     // Array of nodes
     private Node<T>[] nodeArray;
@@ -97,84 +96,99 @@ public class CursorLinkedList<T extends Comparable<T>> {
             throw new OutOfMemoryError("No free nodeArray available");
         }
     }
-    
+
     public void insertAtTail(T data, int headNodeIndex) {
-        
         // Check if head node is null
-        if(isNodeNull(headNodeIndex)) {
+        if (isNodeNull(headNodeIndex)) {
             return;
         }
-        
         // Get index of tail node
         int tailNodeIndex = getTail(headNodeIndex);
-        
         // Allocate new tail node
         int newNodeIndex = allocateNode();
-        if(newNodeIndex == 0) {
+        if (newNodeIndex == 0) {
             throw new OutOfMemoryError("No free nodes");
         }
-        
         // Update next pointer of current tail to new tail
         nodeArray[tailNodeIndex].next = newNodeIndex;
-        
         // Initialize new tail node
         nodeArray[newNodeIndex] = new Node<T>(data, 0);
     }
-    
+
     private int getTail(int headNodeIndex) {
-        
+        // Initialize the current node to the head node index
         int current = headNodeIndex;
-        
-        while(!isLast(current)) {
+        // Loop until the current node is the last node in the list
+        while (!isLast(current)) {
+            // Set the current node to the next node in the list
             current = nodeArray[current].next;
         }
-        
+        // Return the index of the current node
         return current;
     }
 
-//    public void traversList(int l) {
-//        System.out.print("list_" + l + "-->");
-//        while (!isNodeNull(l) && !isEmpty(l)) {
-//            l = nodeArray[l].next;
-//            System.out.print(nodeArray[l] + "-->");
-//        }
-//        System.out.println("null");
-//    }
-public void traverseList(int nodeIndex) {
-    
-    if(nodeIndex < 0 || nodeIndex >= nodeArray.length) {
-        return;
+    public void insertAtSorted(T data, int headNodeIndex) {
+        // Check if head node is null
+        if (isNodeNull(headNodeIndex)) {
+            return;
+        }
+        // Find the predecessor node for the insertion
+        int predecessorIndex = findPredecessor(data, headNodeIndex);
+        // Allocate a new node
+        int newNodeIndex = allocateNode();
+        if (newNodeIndex == 0) {
+            throw new OutOfMemoryError("No free nodes");
+        }
+        // Create a new node with the given data and the next index of the predecessor
+        // node
+        nodeArray[newNodeIndex] = new Node<>(data, nodeArray[predecessorIndex].next);
+        // Set the next index of the predecessor node to the index of the new node
+        nodeArray[predecessorIndex].next = newNodeIndex;
     }
-    // print current node
-    System.out.print(nodeArray[nodeIndex]);
-    
-    int next = nodeArray[nodeIndex].next;
-    
-    if(next > 0 && next < nodeArray.length) {
-        // recurse if valid next node
-        System.out.print(" --> ");
-        traverseList(next);
-    } else {
-        // end recursion if next node is invalid
-        System.out.print(" --> null");
+
+    private int findPredecessor(T data, int headNodeIndex) {
+        // Initialize predecessor index to head node index
+        int predecessorIndex = headNodeIndex;
+        // Initialize current index to head node index
+        int current = nodeArray[headNodeIndex].next;
+        // Loop until current index is not null and data is less than current node data
+        while (current != 0 && data.compareTo(nodeArray[current].data) > 0) {
+            // Update predecessor index to current index
+            predecessorIndex = current;
+            // Update current index to next index of current node
+            current = nodeArray[current].next;
+        }
+        // Return predecessor index
+        return predecessorIndex;
     }
-}
-    
+
+    // public method to traverse a list
+    public void traversList(int l) {
+        // print the list number
+        System.out.print("list_" + l + "-->");
+        // while the node is not null and the list is not empty
+        while (!isNodeNull(l) && !isEmpty(l)) {
+            // set the list to the next node
+            l = nodeArray[l].next;
+            // print the node
+            System.out.print(nodeArray[l] + "-->");
+        }
+        // print null
+        System.out.println("null");
+    }
+
     public int lengthRecursive(int nodeIndex) {
         // Base case: if the current node is empty (nodeIndex == 0), return 0
         if (isEmpty(nodeIndex)) {
             return 0;
         }
-        
         // Recursive case: move to the next node and add 1 to the length
         return 1 + lengthRecursive(nodeArray[nodeIndex].next);
     }
-    
-    // Wrapper method
-   
+
     public void deleteFirst(int headNodeIndex) {
         // Check if list is empty
-        if(isNodeNull(headNodeIndex)) {
+        if (isNodeNull(headNodeIndex)) {
             return;
         }
         // Get index of first node
@@ -186,47 +200,74 @@ public void traverseList(int nodeIndex) {
         // Free first node
         free(firstNodeIndex);
         // Check if list is now empty
-        if(isNodeNull(headNodeIndex)) {
+        if (isNodeNull(headNodeIndex)) {
             headNodeIndex = 0; // Set head pointer to null
         }
     }
-    
+
+    // This method returns the length of a linked list starting from a given head
+    // index
     public int getLength(int headIndex) {
+        // Initialize the length to 0
         int length = 0;
+        // Set the current index to the given head index
         int currentIndex = headIndex;
+        // Loop until the node at the current index is null or the list is empty
         while (!isNodeNull(currentIndex) && !isEmpty(currentIndex)) {
+            // Increment the length
             length++;
+            // Set the current index to the next node
             currentIndex = nodeArray[currentIndex].next;
         }
+        // Return the length
         return length;
     }
 
     public int find(T data, int l) {
+        // Check if the node is not null and not empty
         while (!isNodeNull(l) && !isEmpty(l)) {
+            // Set the next node to the current node
             l = nodeArray[l].next;
+            // Check if the data is equal to the data passed in
             if (nodeArray[l].data.equals(data))
                 return l;
         }
-        return -1; // not found
+        // Return -1 if the data is not found
+        return -1;
     }
 
+    // public method to find the previous node of a given data element
     public int findPrevious(T data, int l) {
+        // while loop to iterate through the linked list
         while (!isNodeNull(l) && !isEmpty(l)) {
+            // if the data element of the node is equal to the given data element
             if (nodeArray[nodeArray[l].next].data.equals(data))
+                // return the index of the node
                 return l;
+            // move to the next node
             l = nodeArray[l].next;
         }
-        return -1; // not found
+        // return -1 if the node is not found
+        return -1;
     }
 
-    public Node delete(T data, int l) {
+    // This method deletes a node from the linked list
+    public Node<T> delete(T data, int l) {
+        // Find the previous node of the node to be deleted
         int p = findPrevious(data, l);
+        // If the node exists
         if (p != -1) {
+            // Store the next node of the node to be deleted
             int c = nodeArray[p].next;
-            Node temp = nodeArray[c];
+            // Store the node in the next position
+            Node<T> temp = nodeArray[c];
+            // Set the next node of the node to be deleted to the next node of the stored
+            // node
             nodeArray[p].next = temp.next;
+            // Free the memory of the node to be deleted
             free(c);
         }
+        // Return null if the node to be deleted does not exist
         return null;
     }
 }

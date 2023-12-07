@@ -270,4 +270,24 @@ public class CursorLinkedList<T extends Comparable<T>> {
         // Return null if the node to be deleted does not exist
         return null;
     }
+    public T get(int index, int l) {
+        // Check if the node is not null and not empty
+        while (!isNodeNull(l) && !isEmpty(l)) {
+            // Set the next node to the current node
+            l = nodeArray[l].next;
+            // Check if the data is equal to the data passed in
+            if (index == 0)
+                return nodeArray[l].data;
+            // Decrement the index
+            index--;
+        }
+        // Return null if the data is not found
+        return null;
+    }
+    public boolean isPalindrome(int l){
+        while (!isNodeNull(l)&& !isEmpty(l)) {
+        
+        }
+    }
+
 }

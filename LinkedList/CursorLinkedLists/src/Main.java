@@ -13,13 +13,17 @@ public class Main {
         list.insertAtSorted(3, head1);
         list.insertAtSorted(6, head1);
         list.insertAtSorted(2, head1);
+        for (int i = 0; i < list.getLength(head1); i++) {
+            System.out.println(list.get(i,head1));
+            
+        }
 
-        // Print list
-        list.traversList(head1);
-        // System.out.println(list.lengthRecursive(head1));
-        System.out.println();
-        list.delete(3, head1);
-        list.traversList(head1);
+        // // Print list
+        // list.traversList(head1);
+        // // System.out.println(list.lengthRecursive(head1));
+        // System.out.println();
+        // list.delete(3, head1);
+        // list.traversList(head1);
 //        list.delete(5,head1);
 //        list.traverseList(head1);
 //        System.out.println(list.getLength(head1));

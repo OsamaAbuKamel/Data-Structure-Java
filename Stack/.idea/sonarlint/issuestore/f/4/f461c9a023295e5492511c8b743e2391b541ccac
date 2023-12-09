@@ -1,15 +1,5 @@
 
-]
-java:S3973"GUse indentation to denote the code conditionally executed by this "if".(˜ ¬¸
-b
-java:S3973#"GUse indentation to denote the code conditionally executed by this "if".(ˆÁƒøÿÿÿÿ
-b
-java:S3973*"GUse indentation to denote the code conditionally executed by this "if".(ˆÁƒøÿÿÿÿ
-¢
-java:S2681"†This line will not be executed conditionally; only the first line of this 2-line block will be. The rest will execute unconditionally.(æ¶›õÿÿÿÿÿ
-
-java:S2681%"†This line will not be executed conditionally; only the first line of this 2-line block will be. The rest will execute unconditionally.(˜ÂàÃ
-¢
-java:S2681,"†This line will not be executed conditionally; only the first line of this 2-line block will be. The rest will execute unconditionally.(÷ÍÓüøÿÿÿÿ
-E
-java:S1197"*Move the array designators [] to the type.(ß­ÿ¿ûÿÿÿÿ
+>
+java:S1643V"Use a StringBuilder instead.(‹Á¸òûÿÿÿÿ8–Û¼óÄ1
+L
+java:S1197"*Move the array designators [] to the type.(½½€ıúÿÿÿÿ8ŠÜ¼óÄ1

@@ -1,3 +1,4 @@
+package stack;
 public class StackDemo {
     public static void main(String[] args) {
         DStack<Integer> stack = new DStack<>();

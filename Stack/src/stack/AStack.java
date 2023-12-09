@@ -1,3 +1,4 @@
+package stack;
 import java.util.Iterator;
 
 public class AStack<T extends Comparable<T>> implements StackADT<T> {

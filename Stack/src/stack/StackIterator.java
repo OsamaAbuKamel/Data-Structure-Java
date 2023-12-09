@@ -1,3 +1,4 @@
+package stack;
 import java.util.Iterator;
 
 public class StackIterator<T> implements Iterator<T> {

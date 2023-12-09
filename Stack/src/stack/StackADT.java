@@ -1,3 +1,4 @@
+package stack;
 public interface StackADT<T extends Comparable<T>> extends Iterable<T> {
     void push(T data);
     T pop();

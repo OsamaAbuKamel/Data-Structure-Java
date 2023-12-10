@@ -31,7 +31,7 @@ public class InfixPostfix {
         }
     }
 
-   public static String infixToPostfix(String exp) {
+    public static String infixToPostfix(String exp) {
         //Create a stack to store the parentheses
         LStack<Character> stack = new LStack<>();
         //Create a string builder to store the postfix expression

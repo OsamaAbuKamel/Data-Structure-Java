@@ -1,10 +1,13 @@
 package stack;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Stack;
 
 public class LStack<T extends Comparable<T>> implements StackADT<T> {
     // reference to the top node of the stack
     private Node<T> top;
+    Stack <T> stack = new Stack<>();
 
     @Override
     public void push(T data) {
@@ -61,6 +64,40 @@ public class LStack<T extends Comparable<T>> implements StackADT<T> {
     public boolean isEmpty() {
         // Check if the top element of the stack is null
         return top == null;
+    }
+
+   public T contains(T data) {
+        //Loop through the list to check if the data is present
+        Node<T> curr = top;
+        while (curr != null) {
+            //If the data is present, return the data
+            if (curr.getData().compareTo(data) == 0) {
+                return curr.getData();
+            }
+            //Otherwise, move to the next node
+            curr = curr.getNext();
+        }
+        //If the data is not present, return null
+        return null;
+    }
+
+    public T get(int index) {
+        // Get the node at the top of the stack
+        Node<T> curr = top;
+        // Initialize counter to 0
+        int i = 0;
+        // Loop until the node is null
+        while (curr != null) {
+            // If the index matches the counter, return the data
+            if (i == index) {
+                return curr.getData();
+            }
+            // Otherwise, increment the counter and move to the next node
+            curr = curr.getNext();
+            i++;
+        }
+        // If the index is out of bounds, return null
+        return null;
     }
 
     @Override

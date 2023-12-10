@@ -1,3 +1,4 @@
+package list;
 public class CursorLinkedList<T extends Comparable<T>> {
     // Array of nodes
     private Node<T>[] nodeArray;
@@ -98,35 +99,19 @@ public class CursorLinkedList<T extends Comparable<T>> {
     }
 
     public void insertAtTail(T data, int headNodeIndex) {
-        // Check if head node is null
-        if (isNodeNull(headNodeIndex)) {
-            return;
+        int currentIndex = headNodeIndex;
+        while (nodeArray[currentIndex].next != 0) {
+            currentIndex = nodeArray[currentIndex].next;
         }
-        // Get index of tail node
-        int tailNodeIndex = getTail(headNodeIndex);
-        // Allocate new tail node
         int newNodeIndex = allocateNode();
-        if (newNodeIndex == 0) {
-            throw new OutOfMemoryError("No free nodes");
+        if (newNodeIndex != 0) {
+            nodeArray[newNodeIndex] = new Node<>(data, 0);
+            nodeArray[currentIndex].next = newNodeIndex;
+        } else {
+            throw new OutOfMemoryError("No free nodeArray available");
         }
-        // Update next pointer of current tail to new tail
-        nodeArray[tailNodeIndex].next = newNodeIndex;
-        // Initialize new tail node
-        nodeArray[newNodeIndex] = new Node<T>(data, 0);
     }
-
-    private int getTail(int headNodeIndex) {
-        // Initialize the current node to the head node index
-        int current = headNodeIndex;
-        // Loop until the current node is the last node in the list
-        while (!isLast(current)) {
-            // Set the current node to the next node in the list
-            current = nodeArray[current].next;
-        }
-        // Return the index of the current node
-        return current;
-    }
-
+    
     public void insertAtSorted(T data, int headNodeIndex) {
         // Check if head node is null
         if (isNodeNull(headNodeIndex)) {
@@ -270,8 +255,9 @@ public class CursorLinkedList<T extends Comparable<T>> {
         // Return null if the node to be deleted does not exist
         return null;
     }
+
     public T get(int index, int l) {
-        // Check if the node is not null and not empty
+        // Check if the node is not null and or empty
         while (!isNodeNull(l) && !isEmpty(l)) {
             // Set the next node to the current node
             l = nodeArray[l].next;
@@ -284,10 +270,57 @@ public class CursorLinkedList<T extends Comparable<T>> {
         // Return null if the data is not found
         return null;
     }
-    public boolean isPalindrome(int l){
-        while (!isNodeNull(l)&& !isEmpty(l)) {
-        
-        }
+
+    public Node<T>[] getNodeArray() {
+        return this.nodeArray;
     }
 
+    public boolean isPalindrome(int headNodeIndex) {
+        if (isEmpty(headNodeIndex)) {
+            return true;
+        }
+    
+        int slow = headNodeIndex;
+        int fast = headNodeIndex;
+    
+        while (nodeArray[fast].next != 0 && nodeArray[nodeArray[fast].next].next != 0) {
+            slow = nodeArray[slow].next;
+            fast = nodeArray[nodeArray[fast].next].next;
+        }
+    
+        int prev = 0;
+        int current = nodeArray[slow].next;
+        while (current != 0) {
+            int next = nodeArray[current].next;
+            nodeArray[current].next = prev;
+            prev = current;
+            current = next;
+        }
+    
+        int firstHalf = headNodeIndex;
+        int secondHalf = prev;
+        while (secondHalf != 0) {
+            Object firstData = nodeArray[firstHalf].data;
+            Object secondData = nodeArray[secondHalf].data;
+    
+            if (firstData == null && secondData == null) {
+                // Both are null, continue to the next iteration
+            } else if (firstData == null || !firstData.equals(secondData)) {
+                return false;
+            }
+    
+            firstHalf = nodeArray[firstHalf].next;
+            secondHalf = nodeArray[secondHalf].next;
+        }
+    
+        return true;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
 }

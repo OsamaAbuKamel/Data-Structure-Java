@@ -1,3 +1,4 @@
+package list;
 
 public class Node<T extends Comparable<T>> {
     // Data stored in the node

@@ -4,7 +4,7 @@ import stack.LStack;
 
 public class InfixPostfix {
     public static void main(String[] args) {
-        String infixExpression = "A+B*(C^D-E)";
+        String infixExpression = "( 2 - 3 + 4 ) * ( 5 + 6 * 7 )";
         String postfixExpression = infixToPostfix(infixExpression);
         System.out.println("Infix expression: " + infixExpression);
         System.out.println("Postfix expression: " + postfixExpression);

@@ -66,21 +66,6 @@ public class LStack<T extends Comparable<T>> implements StackADT<T> {
         return top == null;
     }
 
-   public T contains(T data) {
-        //Loop through the list to check if the data is present
-        Node<T> curr = top;
-        while (curr != null) {
-            //If the data is present, return the data
-            if (curr.getData().compareTo(data) == 0) {
-                return curr.getData();
-            }
-            //Otherwise, move to the next node
-            curr = curr.getNext();
-        }
-        //If the data is not present, return null
-        return null;
-    }
-
     public T get(int index) {
         // Get the node at the top of the stack
         Node<T> curr = top;

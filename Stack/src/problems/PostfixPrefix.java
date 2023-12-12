@@ -19,7 +19,7 @@ public class PostfixPrefix {
         // Loop through each character in the expression
         for (char c : exp.toCharArray()) {
             // Check if the character is a letter or number
-            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
+            if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '(' || c == ')') {
                 // If it is, push it to the stack
                 stack.push(Character.toString(c));
             } else {

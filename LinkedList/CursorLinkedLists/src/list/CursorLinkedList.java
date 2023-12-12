@@ -1,4 +1,5 @@
 package list;
+
 public class CursorLinkedList<T extends Comparable<T>> {
     // Array of nodes
     private Node<T>[] nodeArray;
@@ -111,7 +112,7 @@ public class CursorLinkedList<T extends Comparable<T>> {
             throw new OutOfMemoryError("No free nodeArray available");
         }
     }
-    
+
     public void insertAtSorted(T data, int headNodeIndex) {
         // Check if head node is null
         if (isNodeNull(headNodeIndex)) {
@@ -274,53 +275,4 @@ public class CursorLinkedList<T extends Comparable<T>> {
     public Node<T>[] getNodeArray() {
         return this.nodeArray;
     }
-
-    public boolean isPalindrome(int headNodeIndex) {
-        if (isEmpty(headNodeIndex)) {
-            return true;
-        }
-    
-        int slow = headNodeIndex;
-        int fast = headNodeIndex;
-    
-        while (nodeArray[fast].next != 0 && nodeArray[nodeArray[fast].next].next != 0) {
-            slow = nodeArray[slow].next;
-            fast = nodeArray[nodeArray[fast].next].next;
-        }
-    
-        int prev = 0;
-        int current = nodeArray[slow].next;
-        while (current != 0) {
-            int next = nodeArray[current].next;
-            nodeArray[current].next = prev;
-            prev = current;
-            current = next;
-        }
-    
-        int firstHalf = headNodeIndex;
-        int secondHalf = prev;
-        while (secondHalf != 0) {
-            Object firstData = nodeArray[firstHalf].data;
-            Object secondData = nodeArray[secondHalf].data;
-    
-            if (firstData == null && secondData == null) {
-                // Both are null, continue to the next iteration
-            } else if (firstData == null || !firstData.equals(secondData)) {
-                return false;
-            }
-    
-            firstHalf = nodeArray[firstHalf].next;
-            secondHalf = nodeArray[secondHalf].next;
-        }
-    
-        return true;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
 }

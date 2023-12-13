@@ -41,31 +41,4 @@ public static void sort(LStack<Integer> stack){
             stack.push(temp.pop());
         }
     }
-    public static void sortRecursion(LStack<Integer> stack){
-        //Check if the stack is empty
-        if (stack.isEmpty()) {
-            return;
-        }
-        //Pop the top element
-        int top = stack.pop();
-        //Sort the stack
-        sort(stack);
-        //Insert the top element into the sorted stack
-        insert(stack,top);
-    }
-    //Insert the top element into the sorted stack
-    private static void insert(LStack<Integer> stack, int element) {
-        //Check if the stack is empty
-        if (stack.isEmpty()) {
-            stack.push(element);
-            return;
-        }
-        //Pop the top element
-        int top = stack.pop();
-        //Insert the top element into the sorted stack
-        insert(stack, element);
-        //Push the top element back onto the stack
-        stack.push(top);
-    }
-
 }

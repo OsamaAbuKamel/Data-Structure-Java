@@ -1,0 +1,5 @@
+
+u	java:S127’"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ö¢Ã8Ì˜ŸêÅ1
+:
+java:S1643¸"Use a StringBuilder instead.(€†²Ø8Ï˜ŸêÅ1
+M	java:S106°"+Replace this use of System.out by a logger.(¨óŒ¾ûÿÿÿÿ8™ŸêÅ1

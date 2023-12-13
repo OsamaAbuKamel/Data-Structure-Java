@@ -69,4 +69,19 @@ public class InfixPostfix {
         //Return the postfix expression
         return postfix.toString();
     }
+    public static int calc(int operand1, int operand2, char operator){
+        switch (operator){
+            case '+':
+                return operand1 + operand2;
+            case '-':
+                return operand1 - operand2;
+            case '*':
+                return operand1 * operand2;
+            case '/':
+                return operand1 / operand2;
+            default:
+                return 0;
+        }
+    }
+
 }

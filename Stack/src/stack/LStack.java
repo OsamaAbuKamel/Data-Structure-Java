@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
 
-public class LStack<T extends Comparable<T>> implements StackADT<T> {
+public class LStack<T> implements Stackable<T> {
     // reference to the top node of the stack
     private Node<T> top;
     Stack <T> stack = new Stack<>();
@@ -39,7 +39,6 @@ public class LStack<T extends Comparable<T>> implements StackADT<T> {
         return top.getData();
     }
 
-    @Override
     public int length() {
         // Initialize count to keep track of the number of elements
         int count = 0;
@@ -65,45 +64,14 @@ public class LStack<T extends Comparable<T>> implements StackADT<T> {
         // Check if the top element of the stack is null
         return top == null;
     }
-
-    public T get(int index) {
-        // Get the node at the top of the stack
-        Node<T> curr = top;
-        // Initialize counter to 0
-        int i = 0;
-        // Loop until the node is null
-        while (curr != null) {
-            // If the index matches the counter, return the data
-            if (i == index) {
-                return curr.getData();
-            }
-            // Otherwise, increment the counter and move to the next node
-            curr = curr.getNext();
-            i++;
-        }
-        // If the index is out of bounds, return null
-        return null;
-    }
-
-    @Override
-    public String toString() {
-        String s = "";
-        // Loop through the list and add each element to the string
-        Node<T> current = top;
-        while (current != null) {
-            s += current.getData() + " ";
-            current = current.getNext();
-        }
-        return s;
-    }
-
+    
     @Override
     public Iterator<T> iterator() {
         // Return a new StackIterator object with the top element of this Stack
         return new StackIterator<>(top);
     }
 
-    private static class StackIterator<T extends Comparable<T>> implements Iterator<T> {
+    private static class StackIterator<T> implements Iterator<T> {
         private Node<T> current;
 
         public StackIterator(Node<T> top) {

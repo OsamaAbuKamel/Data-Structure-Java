@@ -1,7 +1,7 @@
 package stack;
 import java.util.Iterator;
 
-public class AStack<T extends Comparable<T>> implements StackADT<T> {
+public class AStack<T> implements Stackable<T> {
     private static final int DEFAULT_SIZE = 10;
     // Array to store the data
     private T data[];
@@ -21,7 +21,7 @@ public class AStack<T extends Comparable<T>> implements StackADT<T> {
         // Set the top of the stack to 0
         top = 0;
         // Create an array of Comparable objects with the given size
-        data = (T[]) new Comparable[size];
+        data = (T[]) new Object[size];
     }
 
     @Override
@@ -60,7 +60,6 @@ public class AStack<T extends Comparable<T>> implements StackADT<T> {
         return data[top - 1];
     }
 
-    @Override
     public int length() {
         // Returns the length of the top stack element
         return top;

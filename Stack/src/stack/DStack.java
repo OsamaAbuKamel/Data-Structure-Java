@@ -1,7 +1,7 @@
 package stack;
 import java.util.Iterator;
 
-public class DStack<T extends Comparable<T>> implements StackADT<T> {
+public class DStack<T> implements Stackable<T> {
     // Array to store stack data
     private T[] data;
     // Number of elements in the stack
@@ -17,7 +17,7 @@ public class DStack<T extends Comparable<T>> implements StackADT<T> {
         // Set initial capacity
         this.capacity = initialCapacity;
         // Allocate array with initial capacity
-        this.data = (T[]) new Comparable[capacity];
+        this.data = (T[]) new Object[capacity];
         // Initialize size to 0
         this.size = 0;
     }
@@ -84,7 +84,6 @@ public class DStack<T extends Comparable<T>> implements StackADT<T> {
         return data[size - 1];
     }
 
-    @Override
     public int length() {
         // return the size of the array
         return size;

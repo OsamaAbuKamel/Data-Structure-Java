@@ -1,0 +1,75 @@
+
+b
+java:S1192"GDefine a constant instead of duplicating this literal "</242>" 3 times.(ÍÒö‘øÿÿÿÿ
+a
+java:S1192"KDefine a constant instead of duplicating this literal "</postfix>" 3 times.(ÖªòÔ
+b
+java:S1192"LDefine a constant instead of duplicating this literal "</equation>" 3 times.(ÖªòÔ
+e
+java:S1192"JDefine a constant instead of duplicating this literal "<postfix>" 3 times.(°ĞòÖøÿÿÿÿ
+d
+java:S1192"IDefine a constant instead of duplicating this literal "</infix>" 3 times.(ÍÒö‘øÿÿÿÿ
+f
+java:S1192"KDefine a constant instead of duplicating this literal "<equation>" 3 times.(°ĞòÖøÿÿÿÿ
+c
+java:S1192"HDefine a constant instead of duplicating this literal "<infix>" 3 times.(Úë¹¾üÿÿÿÿ
+f
+java:S1192"KDefine a constant instead of duplicating this literal "</section>" 3 times.(ÍÒö‘øÿÿÿÿ
+e
+java:S1192"JDefine a constant instead of duplicating this literal "<section>" 3 times.(Úë¹¾üÿÿÿÿ
+a
+java:S1192"FDefine a constant instead of duplicating this literal "<242>" 3 times.(Úë¹¾üÿÿÿÿ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(Úë¹¾üÿÿÿÿ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(Úë¹¾üÿÿÿÿ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(Úë¹¾üÿÿÿÿ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(°ĞòÖøÿÿÿÿ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(°ĞòÖøÿÿÿÿ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(ÍÒö‘øÿÿÿÿ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(ÍÒö‘øÿÿÿÿ
+R
+java:S4973"<Strings and Boxed types should be compared using "equals()".(ÖªòÔ
+R
+java:S4973"<Strings and Boxed types should be compared using "equals()".(ÖªòÔ
+R
+java:S4973'"<Strings and Boxed types should be compared using "equals()".(ö¸íŞ
+R
+java:S4973'"<Strings and Boxed types should be compared using "equals()".(ö¸íŞ
+R
+java:S4973("<Strings and Boxed types should be compared using "equals()".(Õ“ó
+R
+java:S4973("<Strings and Boxed types should be compared using "equals()".(Õ“ó
+W
+java:S4973)"<Strings and Boxed types should be compared using "equals()".(¸üï§ÿÿÿÿÿ
+W
+java:S4973)"<Strings and Boxed types should be compared using "equals()".(¸üï§ÿÿÿÿÿ
+R
+java:S4973*"<Strings and Boxed types should be compared using "equals()".(‹€‹‘
+R
+java:S4973*"<Strings and Boxed types should be compared using "equals()".(‹€‹‘
+R
+java:S4973+"<Strings and Boxed types should be compared using "equals()".(ø®À
+R
+java:S4973+"<Strings and Boxed types should be compared using "equals()".(ø®À
+>	java:S108;")Either remove or fill this block of code.(”ı¾
+‚
+java:S1130J"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø
+E	java:S106N"+Replace this use of System.out by a logger.(Å­Ëİúÿÿÿÿ
+E	java:S106O"+Replace this use of System.out by a logger.(ÕÇÕûÿÿÿÿ
+E	java:S106P"+Replace this use of System.out by a logger.(•±¯œúÿÿÿÿ
+I
+java:S1128"3Remove this unused import 'java.io.BufferedReader'.(€é²Å
+U
+java:S1128":Remove this unused import 'java.io.FileNotFoundException'.(·î™ùÿÿÿÿ
+J
+java:S1128"/Remove this unused import 'java.io.FileReader'.(Â¡¢äşÿÿÿÿ
+F
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
+F
+java:S1128	"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ

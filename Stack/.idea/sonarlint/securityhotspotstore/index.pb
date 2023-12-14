@@ -1,6 +1,4 @@
 
-F
-src/stack/CAStack.java,5\f\5ff6add431554355b445673a60818636f2b2a4da
 H
 src/stack/StackDemo.java,1\6\1612d426f84e83bfe2c0b92075b76f5253d8d65b
 K
@@ -9,8 +7,6 @@ V
 &src/problems/BalanceOfParenthesis.java,6\6\66c2cbcf30b8353956b45779e93646b1f31aa28e
 E
 src/stack/AStack.java,6\d\6d0584b7871c944d1a045b81d15ce2b2118002b6
-G
-src/stack/StackADT.java,7\f\7f2d08810e1e1937814228c6e8bdaea15ced1d51
 E
 src/stack/DStack.java,a\7\a7dae2b16f3ce348fb2ba83e53c12bb9580f5113
 E
@@ -19,14 +15,10 @@ C
 src/stack/Node.java,3\9\3967c3c917ce15f6a76474eff886e2260561b631
 L
 src/stack/StackIterator.java,a\c\acfdffe692265aaec45baa8c9ef4fee5da103854
-@
-src/stack/f.java,1\1\113c3fa9aad2f2abd516a100fd571f4238628858
 J
 src/stack/SLinkedList.java,9\f\9f46370d940c7184c9522199617b71958470d606
 F
 src/stack/SLStack.java,4\1\41f2349efd2a5f5ca3c7edb2215a7adcd96d8726
-A
-src/stack/fd.java,8\5\85447f45960ebb4e62e1b06e47a879075ea3591c
 E
 src/stack/CStack.java,7\b\7b0806a6f825a4ed848a2aaccb6a32ff89cd818d
 O

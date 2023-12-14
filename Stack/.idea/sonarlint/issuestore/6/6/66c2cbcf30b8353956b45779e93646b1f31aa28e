@@ -1,20 +1,8 @@
 
-g	java:S112&"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8êô¶ìÅ1
-v
-java:S1192:"YDefine a constant instead of duplicating this literal "
-Unbalanced Parentheses!" 3 times.(¼¼ËÉ8ëô¶ìÅ1
-Q
-java:S1066E"/Merge this if statement with the enclosing one.(İ‚•²ûÿÿÿÿ8ëô¶ìÅ1
+g	java:S112#"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8êô¶ìÅ1
 c
 java:S1075
 "ARefactor your code to get this URI from a customizable parameter.(§éÈœøÿÿÿÿ8‡ö¶ìÅ1
-L	java:S106"+Replace this use of System.out by a logger.(•¹¦½ùÿÿÿÿ8öì·ìÅ1
-L	java:S106"+Replace this use of System.out by a logger.(Êô²ºúÿÿÿÿ8öì·ìÅ1
-t
-java:S3776+"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(§û»¹üÿÿÿÿ8ïì·ìÅ1
-A
-java:S1659."$Declare "length" on a separate line.(çš·İ8ñì·ìÅ1
-G	java:S106:"+Replace this use of System.out by a logger.(¼¼ËÉ8öì·ìÅ1
-G	java:S106@"+Replace this use of System.out by a logger.(¼¼ËÉ8–×ÈìÅ1
-G	java:S106F"+Replace this use of System.out by a logger.(¼¼ËÉ8’ÚìÅ1
-L	java:S106M"+Replace this use of System.out by a logger.(¯şËúÿÿÿÿ8’ÚìÅ1
+L	java:S106"+Replace this use of System.out by a logger.(•¹¦½ùÿÿÿÿ8öì·ìÅ1
+L	java:S106"+Replace this use of System.out by a logger.(Êô²ºúÿÿÿÿ8öì·ìÅ1
+L	java:S106"+Replace this use of System.out by a logger.(¿â±®úÿÿÿÿ8Ì™¹Æ1

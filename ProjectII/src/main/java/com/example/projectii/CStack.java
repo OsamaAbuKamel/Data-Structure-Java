@@ -8,7 +8,7 @@ public class CStack<T extends Comparable<T>> {
     }
 
     public void push(T data, int top) {
-        list.insertAtHead(data, top);
+        list.insertFirst(data, top);
     }
 
     public T pop(int top) {
@@ -38,25 +38,32 @@ public class CStack<T extends Comparable<T>> {
     }
 
     public static void main(String[] args) {
-        CStack<Integer> stack = new CStack<Integer>(5);
+        CStack<Integer> stack = new CStack<Integer>(52);
         int head = stack.getList().createList();
+        int head1 = stack.getList().createList();
         stack.push(1, head);
         stack.push(2, head);
         stack.push(3, head);
+        stack.push(34, head);
+        stack.push(35, head);
+        while (!stack.isEmpty(head)) {
+            System.out.println(stack.pop(head));
 
-        System.out.println(stack.pop(head));
-        // System.out.println(stack.peek());
-        System.out.println(stack.isEmpty(head));
+            // }
+            // Stack<Integer> stack = new Stack<>();
+            // stack.push(1);
+            // stack.push(2);
+            // stack.push(3);
+            // while (!stack.isEmpty()) {
+            // System.out.println(stack.pop()); {
 
-        System.out.println(stack.pop(head));
-        System.out.println(stack.pop(head));
-        System.out.println(stack.pop(
-                head));
-        // System.out.println(stack.pop());
-        // System.out.println(stack.pop());
-        // System.out.println(stack.pop());
-        // System.out.println(stack.pop());
-        // System.out.println(stack.pop());
+            // }
+            // System.out.println(stack.pop());
+            // System.out.println(stack.pop());
+            // System.out.println(stack.pop());
+            // System.out.println(stack.pop());
+            // System.out.println(stack.pop());
 
+        }
     }
 }

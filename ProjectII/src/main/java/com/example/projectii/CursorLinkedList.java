@@ -72,7 +72,28 @@ public class CursorLinkedList<T extends Comparable<T>> {
             return nodeArray[nodeArray[l].next].data;
         return null;
     }
-
+    public void insertFirst(T data, int list) {
+        
+        // Check if list is valid
+        if(list < 0 || list >= nodeArray.length) {
+            throw new IllegalArgumentException("Invalid list index: " + list);
+        }
+        
+        // Allocate a new node
+        int newNode = allocateNode();
+        
+        // Set data in the new node
+        nodeArray[newNode].data = data;
+        
+        // Point the new node to the current first node
+        nodeArray[newNode].next = nodeArray[list].next;
+        
+        // Update the first pointer to point to the new node
+        nodeArray[list].next = newNode;
+        
+    }
+    
+    
     public T deleteFirst(int list) {
         if (isEmpty(list)) {
             return null;
@@ -102,28 +123,7 @@ public class CursorLinkedList<T extends Comparable<T>> {
         return currentIndex;
     }
 
-    public void insertAtHead(T data, int nodeIndex) {
-        // Check if the node at the given index is null
-        if (isNodeNull(nodeIndex)) {
-            // If the node is null, return
-            return;
-        }
-        // Allocate a new node
-        int currentIndex = allocateNode();
-        // Check if there are any free nodes available
-        if (currentIndex != 0) {
-            // Create a new node with the given data and the next index of the node at the
-            // given index
-            nodeArray[currentIndex] = new CNode<>(data, nodeArray[nodeIndex].next);
-            // Set the next index of the node at the given index to the index of the new
-            // node
-            nodeArray[nodeIndex].next = currentIndex;
-        } else {
-            // If there are no free nodes available, throw an OutOfMemoryError
-            throw new OutOfMemoryError("No free nodeArray available");
-        }
-    }
-
+    
     public void insertAtTail(T data, int headNodeIndex) {
         int currentIndex = headNodeIndex;
         while (nodeArray[currentIndex].next != 0) {
@@ -284,17 +284,11 @@ public class CursorLinkedList<T extends Comparable<T>> {
     }
 
     public static void main(String[] args) {
-        CursorLinkedList<Integer> list = new CursorLinkedList<>(7);
+        CursorLinkedList<Integer> list = new CursorLinkedList<>(10);
         int headNodeIndex = list.createList();
-
-        // Insert elements at the head of the list
-        list.insertAtHead(1, headNodeIndex);
-        list.insertAtHead(2, headNodeIndex);
-        list.insertAtHead(3, headNodeIndex);
-        list.insertAtHead(2, headNodeIndex);
-        list.insertAtHead(1, headNodeIndex);
-        list.traversList(headNodeIndex);
-        list.deleteFirst(headNodeIndex);
+        list.insertFirst(4,headNodeIndex);
+        list.insertFirst(6,headNodeIndex);
+        list.insertFirst(8,headNodeIndex);
         list.traversList(headNodeIndex);
     
     }

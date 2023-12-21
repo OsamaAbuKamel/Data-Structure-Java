@@ -2,6 +2,8 @@ package stack;
 
 import java.util.Iterator;
 
+import stack.List.CursorLinkedList;
+
 public  class CStack<T extends  Comparable<T>> implements Stackable<T> {
     CursorLinkedList<T>  list;
     int top;

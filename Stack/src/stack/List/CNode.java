@@ -1,4 +1,4 @@
-package stack;
+package stack.List;
 
 public class CNode<T extends  Comparable<T>> {
     T data;

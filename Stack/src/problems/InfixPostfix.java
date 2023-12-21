@@ -1,6 +1,6 @@
 package problems;
 
-import stack.LStack;
+import stack.List.LStack;
 
 public class InfixPostfix {
     public static void main(String[] args) {

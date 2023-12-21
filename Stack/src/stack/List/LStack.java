@@ -1,8 +1,10 @@
-package stack;
+package stack.List;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Stack;
+
+import stack.Stackable;
 
 public class LStack<T> implements Stackable<T> {
     // reference to the top node of the stack

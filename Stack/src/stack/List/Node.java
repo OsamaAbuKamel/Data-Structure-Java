@@ -1,4 +1,4 @@
-package stack;
+package stack.List;
 
 public class Node<T> {
     private T data;

@@ -1,5 +1,4 @@
-package stack;
-
+package stack.List;
 
 public class CursorLinkedList<T extends Comparable<T>> {
    // Array of nodes

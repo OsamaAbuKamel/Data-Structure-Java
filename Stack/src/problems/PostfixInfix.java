@@ -1,7 +1,8 @@
 package problems;
 
 import java.util.Scanner;
-import stack.LStack;
+
+import stack.List.LStack;
 
 public class PostfixInfix {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package stack;
+package stack.List;
 
 
 import java.util.Iterator;

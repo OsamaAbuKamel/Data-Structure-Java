@@ -3,7 +3,8 @@ package problems;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import stack.LStack;
+
+import stack.List.LStack;
 
 public class BalanceOfParenthesis {
     public static void main(String[] args) {

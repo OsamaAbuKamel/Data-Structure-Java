@@ -1,54 +1,21 @@
 
-e
-java:S6208"CMerge the previous cases into this one using comma-separated label.(×‚Á¹ûÿÿÿÿ8ÿ¯ÿÂÆ1
-e
-java:S6208"CMerge the previous cases into this one using comma-separated label.(ë¢µ™ûÿÿÿÿ8°ÿÂÆ1
-j
-java:S1192R"HDefine a constant instead of duplicating this literal "<infix>" 3 times.(ú‰ÀÔşÿÿÿÿ8„°ÿÂÆ1
-h
-java:S1192W"KDefine a constant instead of duplicating this literal "</section>" 3 times.(şèß¹8…°ÿÂÆ1
-h
-java:S1192R"FDefine a constant instead of duplicating this literal "<242>" 3 times.(ú‰ÀÔşÿÿÿÿ8…°ÿÂÆ1
 d
-java:S1192W"GDefine a constant instead of duplicating this literal "</242>" 3 times.(şèß¹8†°ÿÂÆ1
+java:S1192!"GDefine a constant instead of duplicating this literal "</242>" 3 times.(şèß¹8…°ÿÂÆ1
 i
-java:S1192X"LDefine a constant instead of duplicating this literal "</equation>" 3 times.(á›äÙ8†°ÿÂÆ1
+java:S1192""LDefine a constant instead of duplicating this literal "</equation>" 3 times.(á›äÙ8†°ÿÂÆ1
 h
-java:S1192X"KDefine a constant instead of duplicating this literal "</postfix>" 3 times.(á›äÙ8‡°ÿÂÆ1
+java:S1192""KDefine a constant instead of duplicating this literal "</postfix>" 3 times.(á›äÙ8‡°ÿÂÆ1
 g
-java:S1192S"JDefine a constant instead of duplicating this literal "<postfix>" 3 times.(¯•îå8‡°ÿÂÆ1
+java:S1192"JDefine a constant instead of duplicating this literal "<postfix>" 3 times.(¯•îå8‡°ÿÂÆ1
 f
-java:S1192W"IDefine a constant instead of duplicating this literal "</infix>" 3 times.(şèß¹8ˆ°ÿÂÆ1
+java:S1192!"IDefine a constant instead of duplicating this literal "</infix>" 3 times.(şèß¹8†°ÿÂÆ1
 h
-java:S1192S"KDefine a constant instead of duplicating this literal "<equation>" 3 times.(¯•îå8ˆ°ÿÂÆ1
+java:S1192"KDefine a constant instead of duplicating this literal "<equation>" 3 times.(¯•îå8ˆ°ÿÂÆ1
+j
+java:S1192"HDefine a constant instead of duplicating this literal "<infix>" 3 times.(ú‰ÀÔşÿÿÿÿ8„°ÿÂÆ1
+h
+java:S1192!"KDefine a constant instead of duplicating this literal "</section>" 3 times.(şèß¹8ˆ°ÿÂÆ1
 l
-java:S1192R"JDefine a constant instead of duplicating this literal "<section>" 3 times.(ú‰ÀÔşÿÿÿÿ8‰°ÿÂÆ1
->
-java:S1643)"Use a StringBuilder instead.(ßòÉÑøÿÿÿÿ8‹°ÿÂÆ1
->
-java:S1643."Use a StringBuilder instead.(”‹ôÀúÿÿÿÿ8‹°ÿÂÆ1
->
-java:S16435"Use a StringBuilder instead.(”‹ôÀúÿÿÿÿ8Œ°ÿÂÆ1
->
-java:S1643:"Use a StringBuilder instead.(”‹ôÀúÿÿÿÿ8Œ°ÿÂÆ1
-Y
-java:S4973-"<Strings and Boxed types should be compared using "equals()".(éÌ¹É8—°ÿÂÆ1
-^
-java:S4973/"<Strings and Boxed types should be compared using "equals()".(šËŸçüÿÿÿÿ8—°ÿÂÆ1
-t
-java:S3776#"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(–øÁÿÿÿÿÿ8²´ÿÂÆ1
-=
-java:S2129$" Remove this "String" constructor(ôÛÎÜ8¸´ÿÂÆ1
-ƒ
-java:S1130‰"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(œû¿Ø
-M	java:S106"+Replace this use of System.out by a logger.(¥»é¯ıÿÿÿÿ8†µÿÂÆ1
-H	java:S106"+Replace this use of System.out by a logger.(ƒ‘å8‡µÿÂÆ1
-F	java:S106’"+Replace this use of System.out by a logger.(Å­Ëİúÿÿÿÿ
-H	java:S106“"+Replace this use of System.out by a logger.(ñ”úç8‰µÿÂÆ1
-M	java:S106”"+Replace this use of System.out by a logger.(³²ó¹ûÿÿÿÿ8‰µÿÂÆ1
-H	java:S106•"+Replace this use of System.out by a logger.(ñ”úç8ŠµÿÂÆ1
-G	java:S106–"+Replace this use of System.out by a logger.(íÉ®8ŒµÿÂÆ1
-N
-java:S1128",Remove this unused import 'java.util.Stack'.(ŞÈ†üúÿÿÿÿ8–µÿÂÆ1
-L
-java:S1144"/Remove this unused private "isOperator" method.(¹ŒÍâ8˜µÿÂÆ1
+java:S1192"JDefine a constant instead of duplicating this literal "<section>" 3 times.(ú‰ÀÔşÿÿÿÿ8…°ÿÂÆ1
+h
+java:S1192"FDefine a constant instead of duplicating this literal "<242>" 3 times.(ú‰ÀÔşÿÿÿÿ8‰°ÿÂÆ1

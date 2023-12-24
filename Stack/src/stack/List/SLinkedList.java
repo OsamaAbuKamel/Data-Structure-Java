@@ -1,6 +1,5 @@
 package stack.List;
 
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -202,6 +201,9 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T> {
             currentIndex++;
         }
         throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + currentIndex);
+    }
+    public T getFront(){
+        return head.getNext().getData();
     }
     
     public Node<T> getHead() {

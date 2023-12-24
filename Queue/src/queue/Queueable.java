@@ -8,7 +8,6 @@ public interface Queueable<T> {
     T getFront();
 
     boolean isEmpty();
-    public T pop();
 
     void clear();
 }

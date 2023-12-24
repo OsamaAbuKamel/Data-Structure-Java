@@ -2,7 +2,7 @@ package queue;
 
 import queue.Stack.SLStack;
 
-public class StackQueue<T extends Comparable<T>> implements Queueable<T> {
+public class SQueue<T extends Comparable<T>> implements Queueable<T> {
     SLStack<T> stack = new SLStack<T>();
     SLStack<T> tempStack = new SLStack<T>();
 
@@ -10,17 +10,15 @@ public class StackQueue<T extends Comparable<T>> implements Queueable<T> {
     public void enqueue(T data) {
         if (stack.isEmpty()) {
             stack.push(data);
+            return; // No need for further actions if the stack was initially empty
         }
-        if (stack.isEmpty() == false) {
-            while (stack.isEmpty() == false) {
-                T element = stack.pop();
-                tempStack.push(element);
-            }
-            stack.push(data);
-            while (tempStack.isEmpty() == false) {
-                T element = tempStack.pop();
-                stack.push(element);
-            }
+        // Optimization: Use a single loop to transfer elements and enqueue data
+        while (!stack.isEmpty()) {
+            tempStack.push(stack.pop());
+        }
+        stack.push(data);
+        while (!tempStack.isEmpty()) {
+            stack.push(tempStack.pop());
         }
     }
 
@@ -37,11 +35,6 @@ public class StackQueue<T extends Comparable<T>> implements Queueable<T> {
     @Override
     public boolean isEmpty() {
         return stack.isEmpty();
-    }
-
-    @Override
-    public T pop() {
-        return stack.pop();
     }
 
     @Override

@@ -203,6 +203,9 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T> {
         }
         throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + currentIndex);
     }
+    public T getFront(){
+        return head.getNext().getData();
+    }
     
     public Node<T> getHead() {
         return this.head;

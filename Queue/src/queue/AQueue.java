@@ -53,7 +53,6 @@ public class AQueue<T> implements Queueable<T> {
         return count == 0;
     }
 
-    @Override
     public T pop() {
         if (count > 0) {
             T data = items[back];

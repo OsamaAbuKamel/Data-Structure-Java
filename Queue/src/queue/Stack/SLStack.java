@@ -18,7 +18,7 @@ public class SLStack<T extends Comparable<T>> implements Stackable<T> {
     @Override
     public T peek() {
         if (!isEmpty())
-            return list.getHead().getData();
+            return list.getFront();
         return null;
     }
 

@@ -9,11 +9,12 @@ public class LQueue<T extends Comparable<T>> implements Queueable<T> {
 
     @Override
     public void enqueue(T data) {
-        list.addAtLast(data);
+        list.addAtHead(data);
     }
+
     @Override
     public T dequeue() {
-        return list.removeFirst();
+        return list.removeLast();
     }
 
     @Override
@@ -31,8 +32,7 @@ public class LQueue<T extends Comparable<T>> implements Queueable<T> {
         list = new CDlinkedList<>();
     }
 
-    
-public static void main(String[] args) {
+    public static void main(String[] args) {
         LQueue<Integer> queue = new LQueue<>();
         queue.enqueue(1);
         queue.enqueue(2);
@@ -42,10 +42,5 @@ public static void main(String[] args) {
         while (!queue.isEmpty()) {
             System.out.println(queue.dequeue());
         }
-    }
-
-    @Override
-    public T pop() {
-        return null;
     }
 }

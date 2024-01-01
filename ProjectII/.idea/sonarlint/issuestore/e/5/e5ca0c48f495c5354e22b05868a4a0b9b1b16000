@@ -1,10 +1,5 @@
 
-t
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(è÷ãæÿÿÿÿÿ
-o
-java:S2293%"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ó†õ
-L	java:S106+"+Replace this use of System.out by a logger.(êî½İıÿÿÿÿ8±¬…È1
-E	java:S106,"+Replace this use of System.out by a logger.(°ÁëÍøÿÿÿÿ
-L	java:S106-"+Replace this use of System.out by a logger.(°ÁëÍøÿÿÿÿ8±¬…È1
-L	java:S106."+Replace this use of System.out by a logger.(°ÁëÍøÿÿÿÿ8±¬…È1
-L	java:S106/"+Replace this use of System.out by a logger.(°ÁëÍøÿÿÿÿ8‘±¬…È1
+{
+java:S2293	"YReplace the type specification in this constructor call with the diamond operator ("<>").(è÷ãæÿÿÿÿÿ8ÑƒÉÏË1
+{
+java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(è÷ãæÿÿÿÿÿ8·Ì›àË1

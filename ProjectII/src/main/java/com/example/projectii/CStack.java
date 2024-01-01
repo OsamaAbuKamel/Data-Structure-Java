@@ -1,9 +1,11 @@
 package com.example.projectii;
 
-public class CStack<T extends Comparable<T>> {
+public class CStack<T extends Comparable<T>> implements Stackable<T> {
     CursorLinkedList<T> list;
+    private int size;
 
     public CStack(int size) {
+        this.size = size;
         list = new CursorLinkedList<T>(size);
     }
 
@@ -25,26 +27,19 @@ public class CStack<T extends Comparable<T>> {
         }
     }
 
+    public void clear() {
+        list = new CursorLinkedList<T>(size);
+    }
+
     public boolean isEmpty(int top) {
         return list.isEmpty(top);
     }
 
-    public int createStack(){
+    public int createStack() {
         return list.createList();
     }
 
-    public static void main(String[] args) {
-        CStack<Integer> stack = new CStack<Integer>(52);
-        int head = stack.createStack();
-        stack.push(1, head);
-        stack.push(2, head);
-        stack.push(3, head);
-
-        System.out.println(stack.peek(head));
-        System.out.println(stack.pop(head));
-        System.out.println(stack.pop(head));
-        System.out.println(stack.pop(head));
-        System.out.println(stack.pop(head));
-
+    public T get(int top, int i) {
+        return list.get(top, i);
     }
 }

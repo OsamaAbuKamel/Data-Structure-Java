@@ -1,39 +1,71 @@
 package com.example.projectii;
 
-import java.io.IOException;
-
 public class Main {
-    static CStack<String> stack = new CStack<>(100);
+    private CStack<String> stack;
+    private Converter converter;
+    private EquationParser equationParser;
 
-    public static void main(String[] args) throws IOException {
-        Converter c = new Converter();
-        // String postfix = "2.57*";
-        // String prefix = c.postfixToPrefix(postfix, stack);
-        // System.out.println("Prefix expression: " + prefix);
-        // // evaluate prefix
-        // System.out.println("Result: " + c.evaluatePrefix(prefix, stack));
+    public Main() {
+        this.stack = new CStack<>(300);
+        this.converter = new Converter();
+        this.equationParser = new EquationParser();
+    }
 
+    public boolean isBalanced(String equation) {
+        return equationParser.isBalanced(equation, stack);
+    }
 
-        // System.out.println("=== === === === === === === === === === === === === === === === === === === === ===");
-
-        // String infixExpression = "( 15 + 3 ) * ( 4 ^ 2 )";
-        // String postfixExpression = c.infixToPostfix(infixExpression, stack);
-        // System.out.println("Infix expression: " + infixExpression);
-        // System.out.println("Postfix expression: " + postfixExpression);
-        // System.out.println(c.evaluatePostfix(postfixExpression, stack));
-        EquationParser ep = new EquationParser();
-        String file =("C:\\Users\\osama\\DataStructure\\Data-Structure-\\ProjectII\\src\\main\\resources\\com\\example\\projectii\\DS-Proj2 (1).242");
-                String s = ep.readFile(file);
-                // System.out.println(s);
-
-        System.out.println( ep.extractInfixPostFix(s,2));
-        // ep.extractEquations(file);
-        // String ss = ep.extractTag(s);
-        // // System.out.println(s);
-        // System.out.println("=== === === === === === === === === === === === === === === === === === === === ===");
-        // // System.out.println(ss);
-        // System.out.println(ep.extractEquation(s));
-        // System.out.println("=== === === === === === === === === === === === === === === === === === === === ===");
-        // System.out.println(ep.isBalanced(ss, stack));
+    public String convertEquation(String equation, int j) {
+        StringBuilder builder = new StringBuilder();
+        stack.clear();
+        for (int i = 0; i < 7; i++) {
+            if (j == 0) {
+                String s = equationParser.extract(equation, 0, stack, i);
+                if (i < 3) {
+                    if (!equationParser.isBalance(equation, stack, j, i)) {
+                        throw new IllegalArgumentException("Equation is not balanced");
+                    } else {
+                        String ss = converter.infixToPostfix(s, stack);
+                        double s2 = converter.evaluatePostfix(ss, stack);
+                        if (i == 0) {
+                            builder.append("\n").append("INFIX: ").append("\n");
+                        }
+                        builder.append(s.trim()).append("===>").append(ss).append("===>").append(s2).append("\n");
+                    }
+                } else if (i >= 3) {
+                    String ss = converter.postfixToPrefix(s, stack);
+                    double s2 = converter.evaluatePrefix(ss, stack);
+                    if (i == 3) {
+                        builder.append("\n").append("POSTFIX: ").append("\n");
+                    }
+                    builder.append(s.trim()).append("===>").append(ss).append("===>").append(s2).append("\n");
+                }
+            } else if (j == 1) {
+                String s = equationParser.extract(equation, 1, stack, i);
+                if (i < 2) {
+                    if (!equationParser.isBalance(equation, stack, j, i)) {
+                        throw new IllegalArgumentException("Equation is not balanced");
+                    } else {
+                        String ss = converter.infixToPostfix(s, stack);
+                        double s2 = converter.evaluatePostfix(ss, stack);
+                        if (i == 0) {
+                            builder.append("\n").append("INFIX: ").append("\n");
+                            if (!equationParser.isBalance(equation, stack, j, i)) {
+                                throw new IllegalArgumentException("Equation is not balanced");
+                            }
+                        }
+                        builder.append(s.trim()).append("===>").append(ss).append("===>").append(s2).append("\n");
+                    }
+                } else if (i >= 2 && i <= 3) {
+                    String ss = converter.postfixToPrefix(s, stack);
+                    double s2 = converter.evaluatePrefix(ss, stack);
+                    if (i == 2) {
+                        builder.append("\n").append("POSTFIX: ").append("\n");
+                    }
+                    builder.append(s.trim()).append("===>").append(ss).append("===>").append(s2).append("\n");
+                }
+            }
+        }
+        return builder.toString();
     }
 }

@@ -41,16 +41,14 @@ public class CursorLinkedList<T extends Comparable<T>> {
     }
 
     public T getFirst(int l) {
-    // Check if the list is empty
-    if (isEmpty(l)) {
-        throw new NoSuchElementException("List is empty");
+        // Check if the list is empty
+        if (isEmpty(l)) {
+            throw new NoSuchElementException("List is empty");
+        }
+        // Get the data from the first node
+        int firstNodeIndex = cursorArray[l].next;
+        return cursorArray[firstNodeIndex].data;
     }
-
-    // Get the data from the first node
-    int firstNodeIndex = cursorArray[l].next;
-    return cursorArray[firstNodeIndex].data;
-}
-
 
     public int createList() {
         int l = malloc();
@@ -71,10 +69,11 @@ public class CursorLinkedList<T extends Comparable<T>> {
         } else
             System.out.println("Error: Out of space!!!");
     }
+
     public T deleteAtHead(int l) {
-        if (isNull(l)||isEmpty(l)) {
+        if (isNull(l) || isEmpty(l)) {
             return null;
-        }else{
+        } else {
             int p = cursorArray[l].next;
             cursorArray[l].next = cursorArray[p].next;
             return cursorArray[p].data;
@@ -119,18 +118,25 @@ public class CursorLinkedList<T extends Comparable<T>> {
         return null;
     }
 
-    public static void main(String[] args) {
-        CursorLinkedList<Integer> list = new CursorLinkedList<>(10);
-        int l = list.createList();
-        list.insertAtHead(1, l);
-        list.insertAtHead(2, l);
-        list.insertAtHead(3, l);
-        list.traversList(l);
-        System.out.println("=================");
-        list.deleteAtHead(l);
-        list.deleteAtHead(l);
-        list.deleteAtHead(l);
-        list.deleteAtHead(l);
-        list.traversList(l);
+    public T get(int l, int index) {
+        int p = cursorArray[l].next;
+        int count = 0;
+        while (!isNull(p) || !isEmpty(p)) {
+            if (count == index) {
+                return cursorArray[p].data;
+            }
+            p = cursorArray[p].next;
+            count++;
+        }
+        return null;
+    }
+
+    public int size(int l) {
+        int count = 0;
+        while (!isNull(l) && !isEmpty(l)) {
+            l = cursorArray[l].next;
+            count++;
+        }
+        return count;
     }
 }

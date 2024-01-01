@@ -2,132 +2,119 @@ package com.example.projectii;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 public class EquationParser {
-
-    public boolean isBalanced(String exp,CStack<String> stack){
-       
-        int top = stack.createStack();
+    public boolean isBalanced(String file, CStack<String> stack) {
+        // Create a stack
+        int l = stack.createStack();
+        // Read the file
+        String exp = readFile(file);
+        StringBuilder sb = new StringBuilder();
+        boolean insideTag = false;
+        boolean isClosing = false;
         char[] chars = exp.toCharArray();
-        for (char c : chars ) {
-            if (c=='<') {
-                stack.push(String.valueOf(c),top);
-            }else if (c=='>') {
-                if (stack.isEmpty(top)) {
-                    return false;
+        for (char c : chars) {
+            // Check if the char is '<'
+            if (c == '<') {
+                insideTag = true;
+                isClosing = false;
+                // Check if the char is '>'
+            } else if (c == '>') {
+                insideTag = false;
+                // Check if the tag is not closing
+                if (!isClosing) {
+                    // Push the tag onto the stack
+                    stack.push(sb.toString(), l);
+                } else {
+                    // Check if the stack is empty or if the top of the stack is not equal to the
+                    // tag
+                    if (stack.isEmpty(l) || !stack.pop(l).equals(sb.toString())) {
+                        return false;
+                    }
                 }
-                char open = stack.pop(top).charAt(0);
-                if (!(open=='<'&& c=='>')) {
+                sb.setLength(0);
+                // Check if we are inside a tag
+            } else if (insideTag) {
+                // Check if the char is '/'
+                if (c == '/') {
+                    isClosing = true;
+                } else {
+                    sb.append(c);
+                }
+            }
+        }
+        return stack.isEmpty(l);
+    }
+
+    public boolean isBalance(String file, CStack<String> stack, int i, int j) {
+        int l = stack.createStack();
+        String exp = extract(file, i, stack, j);
+        char chars[] = exp.toCharArray();
+        for (char c : chars) {
+            if (c == '(') {
+                stack.push(String.valueOf(c), l);
+            } else if (c == ')') {
+                if (stack.isEmpty(l) || !stack.pop(l).equals("(")) {
                     return false;
                 }
             }
         }
-        return stack.isEmpty(top);
+        return stack.isEmpty(l);
     }
 
-    
-    public String extractInfixPostFix(String exp,int i) {
-        String sections = extractSections(exp, i);
+    // Method the extracts the equations
+    public String extract(String exp, int i, CStack<String> stack, int j) {
+        int l = stack.createStack();
+        // call method to extract equations
+        String s = extractEquations(exp, i, stack);
+        // Split the string by comma
+        String[] ex = s.split(",");
+        // Iterate through the string in reverse order
+        for (int k = ex.length - 1; k >= 0; k--) {
+            // Check if the string is not empty
+            if (ex[k].trim().length() > 0) {
+                stack.push(ex[k], l);
+            }
+        }
+        // Get the equation at index j from the stack
+        return stack.get(l, j);
+    }
+
+    // Method to replace the tags
+    String extractEquations(String exp, int i, CStack<String> stack) {
         StringBuilder result = new StringBuilder();
-        for (String section : sections.split("\n\n")) {
-            ArrayList<String> equations = extractInfixPostfixFromSection(section);
-            result.append("Infix Equations: ").append(equations.get(0)).append("\n");
-            result.append("Postfix Equations: ").append(equations.get(1)).append("\n\n");
+        // call method to extract section
+        String s = extractSection(exp, i, stack);
+        if (s != null) {
+            // replace all tags
+            result.append(s.replaceAll("<infix>", " ").replaceAll("</infix>", " ").replaceAll("<postfix>", " ")
+                    .replaceAll("</postfix> ", " ").replaceAll("<equation>", " ").replaceAll("</equation>", " ,"));
         }
         return result.toString();
     }
 
-    private ArrayList<String> extractInfixPostfixFromSection(String section) {
-        ArrayList<String> result = new ArrayList<>();
-        ArrayList<String> infixEquations = extractEquations(section, "<infix>", "</infix>");
-        ArrayList<String> postfixEquations = extractEquations(section, "<postfix>", "</postfix>");
-        result.add(infixEquations.get(0)); // Add the first (and possibly only) infix equation
-        result.add(postfixEquations.get(0)); // Add the first (and possibly only) postfix equation
-        return result;
-    }
-
-    private ArrayList<String> extractEquations(String section, String startTag, String endTag) {
-        ArrayList<String> equations = new ArrayList<>();
-        String escapedStartTag = startTag.replaceAll("([.*+?^=!:${}()|[\\]/\\\\])", "\\\\$1");
-        String escapedEndTag = endTag.replaceAll("([.*+?^=!:${}()|[\\]/\\\\])", "\\\\$1");
-        
-        // Use the escaped tags in the regular expression for splitting
-        String[] splitExp = section.split(escapedStartTag + "|" + escapedEndTag);
-        for (String string : splitExp) {
-            // String equation
+    // Method th extracts the section from the file
+    String extractSection(String exp, int i, CStack<String> stack) {
+        // Read the file
+        exp = readFile(exp);
+        int l = stack.createStack();
+        // Split the file into sections
+        String[] ex = exp.split("<section>|</section>");
+        // Iterate through the sections in reverse order
+        for (int j = ex.length - 1; j >= 0; j--) {
+            // If the string not empty and not equal to <242> and not equal to </242>
+            if (!ex[j].trim().isEmpty() && !ex[j].trim().equals("<242>") && !ex[j].trim().equals("</242>")) {
+                // push the section onto the stack
+                stack.push(ex[j], l);
+            }
         }
-                // int startIndex = section.indexOf(startTag);
-        // int endIndex = section.indexOf(endTag);
-        // while (startIndex != -1 && endIndex != -1) {
-        //     String equation = section.substring(startIndex + startTag.length(), endIndex);
-        //     equation = equation.replace("<equation>", "").replace("</equation>", ","); // Remove the equation tags
-        //     equations.add(equation);
-        //     startIndex = section.indexOf(startTag, endIndex + endTag.length());
-        //     endIndex = section.indexOf(endTag, startIndex + startTag.length());
-        // }
-        return equations;
+        // Get the equation at index j from the stack
+        return stack.get(l, i);
     }
-    
-    private String extractSections(String exp,int i) {
-        ArrayList<String> sections = new ArrayList<>();
-        String[] splitExp = exp.split("<section>|</section>");
-        for (int index = 1; index < splitExp.length; index++) {
-            sections.add(splitExp[index]);
-        }
-        return sections.get(i);
-    }
-    // public String extractSections(String exp,int i){
-    //     ArrayList<String> sections = new ArrayList<>();
-    //     String startTag = "<section>";
-    //     String endTag = "</section>";
-    //     int startIndex = String.valueOf(exp).indexOf(startTag);
-    //     int endIndex = String.valueOf(exp).indexOf(endTag);
-    //     while (startIndex != -1 && endIndex != -1) {
-    //         sections.add(exp.substring(startIndex + startTag.length(), endIndex));
-    //         startIndex = String.valueOf(exp).indexOf(startTag, endIndex + endTag.length());
-    //         endIndex = String.valueOf(exp).indexOf(endTag, startIndex + startTag.length());
-    //     }
-        
-    //     return sections.get(i);
-        // String startTag = "<section>";
-        // String endTag = "</section>";
-        // int startIndex = String.valueOf(exp).indexOf(startTag);
-        // int endIndex = String.valueOf(exp).indexOf(endTag);
-        //     if (startIndex != -1 && endIndex != -1) {
-        //     // return exp.substring(startIndex + startTag.length(), endIndex);
-        // }
-        // String startTag1 = "<infix>";
-        // String endTag1 = "</infix>";
-        // startIndex = String.valueOf(exp).indexOf(startTag1);
-        // endIndex = String.valueOf(exp).indexOf(endTag1);
-        //     if (startIndex != -1 && endIndex != -1) {
-        //     // return exp.substring(startIndex + startTag1.length(), endIndex);
-        // }
-        // String startTag2 = "<postfix>";
-        // String endTag2 = "</postfix>";
-        // startIndex = String.valueOf(exp).indexOf(startTag2);
-        // endIndex = String.valueOf(exp).indexOf(endTag2);
-        //     if (startIndex != -1 && endIndex != -1) {
-        //     // return exp.substring(startIndex + startTag2.length(), endIndex);
-        // }
-        // String startTag3 = "<equation>";
-        // String endTag3 = "</equation>";
-        // startIndex = String.valueOf(exp).indexOf(startTag3);
-        // endIndex = String.valueOf(exp).indexOf(endTag3);
-        //     if (startIndex != -1 && endIndex != -1) {
-        //     // return exp.substring(startIndex + startTag3.length(), endIndex);
-        // }
 
-        
-        // return null;
-    // }
-
-    public String readFile(String filePath) {
+    // Method to extract the file content from a file
+    private String readFile(String filePath) {
         StringBuilder result = new StringBuilder();
         try (Scanner scanner = new Scanner(new File(filePath))) {
             while (scanner.hasNextLine()) {
@@ -139,34 +126,4 @@ public class EquationParser {
         }
         return result.toString();
     }
-
-    public String extractTag(String input) {
-        StringBuilder sb = new StringBuilder();
-        String[] words = input.split(" ");
-        for (String s : words) {
-            if (s.contains("<242>")) {
-                sb.append("<242>" + " ");
-            } else if (s.contains("</242>")) {
-                sb.append("</242>" + " ");
-            } else if (s.contains("<section>")) {
-                sb.append("<section>" + " ");
-            } else if (s.contains("</section>")) {
-                sb.append("</section>" + " ");
-            } else if (s.contains("<infix>")) {
-                sb.append("<infix>" + " ");
-            } else if (s.contains("</infix>")) {
-                sb.append("</infix>" + " ");
-            } else if (s.contains("<equation>")) {
-                sb.append("<equation>" + " ");
-            } else if (s.contains("</equation>")) {
-                sb.append("</equation>" + " ");
-            } else if (s.contains("<postfix>")) {
-                sb.append("<postfix>" + " ");
-            } else if (s.contains("</postfix>")) {
-                sb.append("</postfix>" + " ");
-            }
-        }
-        return sb.toString();
-    }
-
 }

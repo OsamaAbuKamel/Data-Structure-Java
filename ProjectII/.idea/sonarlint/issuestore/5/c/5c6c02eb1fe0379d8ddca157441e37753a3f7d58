@@ -1,21 +1,19 @@
 
-d
-java:S1192!"GDefine a constant instead of duplicating this literal "</242>" 3 times.(şèß¹8…°ÿÂÆ1
-i
-java:S1192""LDefine a constant instead of duplicating this literal "</equation>" 3 times.(á›äÙ8†°ÿÂÆ1
-h
-java:S1192""KDefine a constant instead of duplicating this literal "</postfix>" 3 times.(á›äÙ8‡°ÿÂÆ1
-g
-java:S1192"JDefine a constant instead of duplicating this literal "<postfix>" 3 times.(¯•îå8‡°ÿÂÆ1
-f
-java:S1192!"IDefine a constant instead of duplicating this literal "</infix>" 3 times.(şèß¹8†°ÿÂÆ1
-h
-java:S1192"KDefine a constant instead of duplicating this literal "<equation>" 3 times.(¯•îå8ˆ°ÿÂÆ1
+Q
+java:S1066:"/Merge this if statement with the enclosing one.(àüˆúÿÿÿÿ8ÑÊßË1
+n
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ù„ë;8ÒÑÊßË1
+L
+java:S11975"*Move the array designators [] to the type.(³ÌÊùÿÿÿÿ8ÛÑÊßË1
+e
+java:S5361U"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8âÑÊßË1
+e
+java:S5361U"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8âÑÊßË1
+e
+java:S5361U"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8ãÑÊßË1
 j
-java:S1192"HDefine a constant instead of duplicating this literal "<infix>" 3 times.(ú‰ÀÔşÿÿÿÿ8„°ÿÂÆ1
-h
-java:S1192!"KDefine a constant instead of duplicating this literal "</section>" 3 times.(şèß¹8ˆ°ÿÂÆ1
-l
-java:S1192"JDefine a constant instead of duplicating this literal "<section>" 3 times.(ú‰ÀÔşÿÿÿÿ8…°ÿÂÆ1
-h
-java:S1192"FDefine a constant instead of duplicating this literal "<242>" 3 times.(ú‰ÀÔşÿÿÿÿ8‰°ÿÂÆ1
+java:S5361T"HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8ãÑÊßË1
+j
+java:S5361T"HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8äÑÊßË1
+j
+java:S5361T"HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8äÑÊßË1

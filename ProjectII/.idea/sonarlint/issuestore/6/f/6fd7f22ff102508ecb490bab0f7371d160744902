@@ -1,17 +1,22 @@
 
-X
-java:S6208"CMerge the previous cases into this one using comma-separated label.(ª€´
-Y
-java:S6208
-"CMerge the previous cases into this one using comma-separated label.(‰‰Ê
-Y
-java:S6208"CMerge the previous cases into this one using comma-separated label.(ÄÎÒ
+_
+java:S6208"CMerge the previous cases into this one using comma-separated label.(ª€´8ÍïÃ¨Í1
 `
-java:S6208."CMerge the previous cases into this one using comma-separated label.(‰‰Ê8‹Ì›àË1
-<	java:S131""Add a default case to this switch.(Ô´ØÕıÿÿÿÿ
-m
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 23 to the 15 allowed.(‰Æ°°øÿÿÿÿ
-C	java:S131'""Add a default case to this switch.(Ô´ØÕıÿÿÿÿ8™Ì›àË1
-h	java:S128d"LEnd this switch case with an unconditional break, return or throw statement.(ÄÎÒ8 Ì›àË1
+java:S6208"CMerge the previous cases into this one using comma-separated label.(‰‰Ê8ÎïÃ¨Í1
+`
+java:S6208"CMerge the previous cases into this one using comma-separated label.(ÄÎÒ8ÎïÃ¨Í1
+`
+java:S62087"CMerge the previous cases into this one using comma-separated label.(‰‰Ê8ÎïÃ¨Í1
+o
+java:S1192W"RDefine a constant instead of duplicating this literal "Equation is empty" 3 times.(Œ‡ñµ8ÎïÃ¨Í1
+C	java:S131""Add a default case to this switch.(Ô´ØÕıÿÿÿÿ8ïòÃ¨Í1
+t
+java:S3776""RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(‰Æ°°øÿÿÿÿ8ğòÃ¨Í1
+C	java:S131/""Add a default case to this switch.(Ô´ØÕıÿÿÿÿ8¡óÃ¨Í1
+t
+java:S3776\"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(±ªÊÕûÿÿÿÿ8¡Şì¨Î1
+h	java:S128|"LEnd this switch case with an unconditional break, return or throw statement.(ÄÎÒ8©óÃ¨Í1
 >
-java:S1116V"Remove this empty statement.(Åñ­õşÿÿÿÿ8 Ì›àË1
+java:S1116m"Remove this empty statement.(Åñ­õşÿÿÿÿ8©óÃ¨Í1
+p
+java:S3776¥"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(–æú8¸Şì¨Î1

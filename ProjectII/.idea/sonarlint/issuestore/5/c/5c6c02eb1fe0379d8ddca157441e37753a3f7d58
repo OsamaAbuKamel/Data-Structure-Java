@@ -1,19 +1,19 @@
 
 Q
-java:S1066:"/Merge this if statement with the enclosing one.(àüˆúÿÿÿÿ8ÑÊßË1
+java:S1066:"/Merge this if statement with the enclosing one.(àüˆúÿÿÿÿ8¬¢Â¦Í1
 n
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ù„ë;8ÒÑÊßË1
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(ù„ë;8À¢Â¦Í1
 L
-java:S11975"*Move the array designators [] to the type.(³ÌÊùÿÿÿÿ8ÛÑÊßË1
+java:S11975"*Move the array designators [] to the type.(³ÌÊùÿÿÿÿ8Â¢Â¦Í1
 e
-java:S5361U"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8âÑÊßË1
+java:S5361\"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8Ä¢Â¦Í1
 e
-java:S5361U"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8âÑÊßË1
+java:S5361\"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8Ä¢Â¦Í1
 e
-java:S5361U"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8ãÑÊßË1
+java:S5361\"HReplace this call to "replaceAll()" by a call to the "replace()" method.(¶êïÀ8Ä¢Â¦Í1
 j
-java:S5361T"HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8ãÑÊßË1
+java:S5361["HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8Ä¢Â¦Í1
 j
-java:S5361T"HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8äÑÊßË1
+java:S5361["HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8Ä¢Â¦Í1
 j
-java:S5361T"HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8äÑÊßË1
+java:S5361["HReplace this call to "replaceAll()" by a call to the "replace()" method.(àá§Æÿÿÿÿÿ8Ä¢Â¦Í1

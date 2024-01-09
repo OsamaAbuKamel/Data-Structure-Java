@@ -107,7 +107,7 @@ public class HelloApplication extends Application {
         });
         btnNext.setOnAction(e -> {
             try {
-                if (count < 1) {
+                if (count < 3) {
                     count++;
                     information(fileName);
                 }
@@ -119,7 +119,7 @@ public class HelloApplication extends Application {
 
     private void information(String file) {
         area.setText(main.convertEquation(file, count));
-        btnNext.setDisable(count >= 1);
+        btnNext.setDisable(count >= 3);
         btnPrev.setDisable(count <= 0);
     }
 

@@ -116,7 +116,7 @@ public class Converter {
                             break;
                         case "/":
                             // if the num1 is 0, then throw an exception
-                            if (num1 == 0)
+                            if (num1 != 0)
                                 result = num2 / num1;
                             else
                                 throw new IllegalArgumentException("Cannot divide by zero");

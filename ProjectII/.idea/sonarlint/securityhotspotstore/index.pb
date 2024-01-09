@@ -1,6 +1,4 @@
 
-h
-8src/main/resources/com/example/projectii/hello-view.fxml,6\1\61d94d5978531d030bdb2761e19b3176b54a53cc
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 i

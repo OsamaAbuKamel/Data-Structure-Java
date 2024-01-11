@@ -1,12 +1,12 @@
 
-b
-java:S2259®"DA "NullPointerException" could be thrown; "parent" is nullable here.(øØ‚ˆ8Ûğ–ÅÏ1
-g
-java:S2259£"DA "NullPointerException" could be thrown; "parent" is nullable here.(½ëú¸ûÿÿÿÿ8æğ–ÅÏ1
-e
-java:S2259â"BA "NullPointerException" could be thrown; "node" is nullable here.(ç‘›·şÿÿÿÿ8Öğ–ÅÏ1
 a
 java:S2259™"DA "NullPointerException" could be thrown; "parent" is nullable here.(à®n8êğ–ÅÏ1
+g
+java:S2259£"DA "NullPointerException" could be thrown; "parent" is nullable here.(½ëú¸ûÿÿÿÿ8æğ–ÅÏ1
+b
+java:S2259®"DA "NullPointerException" could be thrown; "parent" is nullable here.(øØ‚ˆ8Ûğ–ÅÏ1
+e
+java:S2259â"BA "NullPointerException" could be thrown; "node" is nullable here.(ç‘›·şÿÿÿÿ8Öğ–ÅÏ1
 g
 java:S2259"DA "NullPointerException" could be thrown; "parent" is nullable here.(¦åšÖùÿÿÿÿ8àğ–ÅÏ1
 M	java:S106"+Replace this use of System.out by a logger.(ÏœÑ«ıÿÿÿÿ8Šñ–ÅÏ1

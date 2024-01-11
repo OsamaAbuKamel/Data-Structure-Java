@@ -1,9 +1,10 @@
-public class BST<T extends Comparable<T>> {
-    private TNode<T> root;
+package src;
 
-    public T search(T data) {
-        return search(data, root);
-    }
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class BST<T extends Comparable<T>> implements Iterable<T> {
+    private TNode<T> root;
 
     public void add(T data) {
         if (isEmpty()) {
@@ -60,6 +61,30 @@ public class BST<T extends Comparable<T>> {
         }
     }
 
+    public T search(T data) {
+        // start from root node
+        TNode<T> curr = root;
+        // loop until data is found or node is null
+        while (curr != null && !curr.data.equals(data)) {
+            // if data is less than current node data
+            if (data.compareTo(curr.data) < 0) {
+                // move to left
+                curr = curr.left;
+                // if data is greater than current node data
+            } else if (data.compareTo(curr.data) > 0)
+                // move to right
+                curr = curr.right;
+        }
+        // if data is not found
+        if (curr == null)
+            // return null
+            return null;
+        // if data is found
+        else
+            // return data
+            return curr.data;
+    }
+
     public boolean isComplete() {
         if (root == null) {
             return true;
@@ -69,7 +94,34 @@ public class BST<T extends Comparable<T>> {
         return isComplete(root, index, nodeCount);
     }
 
-    private boolean isComplete(TNode<T> node, int index, int nodeCount) {
+    public T get(int index) {
+        return get(root, index);
+    }
+
+    protected T get(TNode<T> curr2, int index) {
+        // Create a new ArrayList to store the values
+        ArrayList<T> list = new ArrayList<>();
+        // Call the inOrder method to add the values to the ArrayList
+        inOrder(curr2, list);
+        // Return the value at the specified index
+        return list.get(index);
+    }
+
+    private void inOrder(TNode<T> curr2, ArrayList<T> list) {
+        // Check if the current node is null
+        if (curr2 == null) {
+            // Return if it is
+            return;
+        }
+        // Recursively call the inOrder method on the left child
+        inOrder(curr2.left, list);
+        // Add the current node's data to the list
+        list.add(curr2.data);
+        // Recursively call the inOrder method on the right child
+        inOrder(curr2.right, list);
+    }
+
+    protected boolean isComplete(TNode<T> node, int index, int nodeCount) {
         if (node == null) {
             return true;
         }
@@ -81,17 +133,21 @@ public class BST<T extends Comparable<T>> {
         return isLeftComplete && isRightComplete;
     }
 
-    private boolean isFull(TNode<T> node) {
+    protected boolean isFull(TNode<T> node) {
+        // Check if the node is null
         if (node == null)
             return true;
+        // Check if the node has no children
         if (node.left == null && node.right == null)
             return true;
+        // Check if the node has both children
         if (node.left != null && node.right != null)
             return (isFull(node.left) && isFull(node.right));
+        // Return false if the node has only one child
         return false;
     }
 
-    private void traverseLevelOrder(TNode<T> root2, int level) {
+    protected void traverseLevelOrder(TNode<T> root2, int level) {
         // Check if the root node is null
         if (root2 == null) {
             return;
@@ -108,7 +164,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     // Method to return the largest node in the tree
-    public T largest(TNode<T> node) {
+    protected T largest(TNode<T> node) {
         // If the node is null, return null
         if (node == null)
             return null;
@@ -121,7 +177,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     // Method to return the smallest node in the tree
-    public T smallest(TNode<T> node) {
+    protected T smallest(TNode<T> node) {
         // Check if the node is null
         if (node == null)
             // Return null if the node is null
@@ -136,7 +192,7 @@ public class BST<T extends Comparable<T>> {
     }
 
     // Method to return the height of the tree
-    public int height(TNode<T> node) {
+    protected int height(TNode<T> node) {
         // Check if the node is null
         if (node == null)
             return 0;
@@ -160,7 +216,7 @@ public class BST<T extends Comparable<T>> {
         return (left > right) ? (left + 1) : (right + 1);
     }
 
-    private void traverseInPre(TNode<T> node) {
+    protected void traverseInPre(TNode<T> node) {
         if (node != null) {
             if (node.left != null)
                 traverseInPre(node.left);
@@ -170,7 +226,7 @@ public class BST<T extends Comparable<T>> {
         System.out.print(node.data + " ");
     }
 
-    private void traverseInPost(TNode<T> node) {
+    protected void traverseInPost(TNode<T> node) {
         if (node != null) {
             System.out.print(node.data + " ");
             if (node.left != null)
@@ -181,7 +237,11 @@ public class BST<T extends Comparable<T>> {
     }
 
     public T remove(T data) {
-        TNode<T> curr = root;
+        return remove(root, data);
+    }
+
+    protected T remove(TNode<T> node, T data) {
+        TNode<T> curr = node;
         TNode<T> parent = null;
         boolean isLeftChild = false;
         if (isEmpty()) {
@@ -262,77 +322,93 @@ public class BST<T extends Comparable<T>> {
         return successor;
     }
 
-    private T search(T data, TNode<T> node) {
-        if (node != null) {
-            int comp = node.data.compareTo(data);
-            if (comp == 0) {
-                return node.data;
-            } else if (comp > 0 && node.hasLeft()) {
-                search(data, node.left);
-            } else if (comp < 0 && node.hasRight()) {
-                search(data, node.right);
-            }
-        }
-        return null;
-    }
-
-    private void add(T data, TNode<T> node) {
+    protected void add(T data, TNode<T> node) {
+        // Check if the data is greater than or equal to the node data
         if (data.compareTo(node.data) >= 0) {
+            // If the node has no right child, create a new node with the data
             if (!node.hasRight()) {
                 node.right = new TNode<>(data);
             } else
+                // Otherwise, call the add method recursively with the data and the right child
                 add(data, node.right);
+        // If the data is less than the node data
         } else if (!node.hasLeft()) {
+            // Create a new node with the data
             node.left = new TNode<>(data);
         } else
+            // Otherwise, call the add method recursively with the data and the left child
             add(data, node.left);
     }
 
-    private int size(TNode<T> node) {
+    protected int size(TNode<T> node) {
+        // Check if the node is null
         if (node == null)
+            // Return 0 if the node is null
             return 0;
+        // Check if the node is a leaf
         if (node.isLeaf())
+            // Return 1 if the node is a leaf
             return 1;
+        // Return the size of the left and right subtrees
         return 1 + size(node.left) + size(node.right);
     }
 
-    private int countParent(TNode<T> node) {
+    protected int countParent(TNode<T> node) {
+        // Check if the node is null or a leaf
         if (node == null || node.isLeaf())
+            // Return 0 if the node is null or a leaf
             return 0;
+        // Return 1 plus the number of parent nodes on the left and right subtrees
         return 1 + countParent(node.left) + countParent(node.right);
     }
 
-    private void traverseInOrder(TNode<T> node) {
+    protected void traverseInOrder(TNode<T> node) {
         if (node != null) {
-            if (node.left != null)
-                traverseInOrder(node.left);
-            System.out.print(node.data + " ");
-            if (node.right != null)
-                traverseInOrder(node.right);
+            traverseInOrder(node.getLeft());
+            System.out.print(node.getData() + " ");
+            traverseInOrder(node.getRight());
         }
     }
 
-    public static void main(String[] args) {
-        BST<Integer> tree = new BST<>();
-        tree.add(1);
-        tree.add(2);
-        tree.add(3);
-        tree.add(6);
-        System.out.println(tree.remove(1));
-        // System.out.println(tree.smallest());
-        // System.out.println(tree.height());
-        // System.out.println("==================POST=================");
-        // tree.traversePostOrder();
-        // System.out.println();
-        // System.out.println("==================PRE=================");
-        // tree.traversePreOrder();
-        // System.out.println();
-        System.out.println("==================IN=================");
-        tree.traverseInOrder();
-        // System.out.println();
-        // System.out.println("==================LEVEL=================");
-        // tree.traverseLevelOrder();
-        // System.out.println(tree.isComplete());
-        // System.out.println(tree.isFull());
+    @Override
+    public Iterator<T> iterator() {
+        return new InOrderIterator(root);
+    }
+
+    protected class InOrderIterator implements Iterator<T> {
+        TNode<T> curr;
+        private ArrayList<T> list = new ArrayList<>();
+        private int index = 0;
+
+        public InOrderIterator(TNode<T> root) {
+            curr = root;
+            inOrder();
+        }
+
+        public void inOrder() {
+            inOrder(curr);
+        }
+
+        private void inOrder(TNode<T> curr2) {
+            if (curr2 == null) {
+                return;
+            }
+            inOrder(curr2.left);
+            list.add(curr2.data);
+            inOrder(curr2.right);
+        }
+
+        @Override
+        public boolean hasNext() {
+            if (index < list.size()) {
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public T next() {
+            return list.get(index++);
+        }
     }
 }

@@ -1,3 +1,4 @@
+package src;
 public class TNode<T extends Comparable<T>> {
     T data;
     TNode<T> left;

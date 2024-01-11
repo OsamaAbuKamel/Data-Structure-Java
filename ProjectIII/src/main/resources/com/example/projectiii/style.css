@@ -1,0 +1,56 @@
+/* TableView */
+.table-view {
+    -fx-background-color: #f5f5f5; /* Light gray background */
+    -fx-selection-bar: #3498db; /* Blue selection bar */
+}
+
+.table-view .column-header {
+    -fx-background-color: #2c3e50; /* Dark header background */
+    -fx-font-weight: bold;
+    -fx-text-fill: white; /* White text */
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-view .table-cell {
+    -fx-border-color: transparent;
+    -fx-padding: 8px; /* Increased padding */
+}
+
+/* Buttons */
+.button {
+    -fx-background-color: #2c3e50; /* Blue button */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+}
+
+.button:hover {
+    -fx-background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Date Picker */
+.date-picker {
+    -fx-background-color: white;
+}
+
+.date-picker > .arrow-button > .arrow {
+    -fx-background-color: #3498db;
+}
+
+/* Text Field */
+.text-field {
+    -fx-background-color: #ecf0f1; /* Light gray text field */
+    -fx-border-color: #bdc3c7; /* Light border color */
+    -fx-padding: 8px;
+}
+
+/* Label */
+.label {
+    -fx-text-fill: #34495e; /* Dark gray text */
+    -fx-font-size: 14px;
+    -fx-border-color: transparent transparent #bdc3c7 transparent;
+    -fx-border-width: 0 0 1 0;
+}

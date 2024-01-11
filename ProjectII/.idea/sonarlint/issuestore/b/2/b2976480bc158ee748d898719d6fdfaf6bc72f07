@@ -1,7 +1,8 @@
 
 {
-java:S1192"YDefine a constant instead of duplicating this literal "Equation is not balanced" 3 times.(®£ÎĞÿÿÿÿÿ8Öì¨Î1
+java:S1192"YDefine a constant instead of duplicating this literal "Equation is not balanced" 3 times.(®£ÎĞÿÿÿÿÿ8æÄ¬ÅÏ1
 L
-java:S1066E"/Merge this if statement with the enclosing one.(ë÷‚8ÆÅ“æÎ1
+java:S1066E"/Merge this if statement with the enclosing one.(ë÷‚8çÄ¬ÅÏ1
 t
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 57 to the 15 allowed.(¨õåÚÿÿÿÿÿ8ĞØì¨Î1
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 57 to the 15 allowed.(¨õåÚÿÿÿÿÿ8ùÅ¬ÅÏ1
+]	java:S125L"<This block of commented-out lines of code should be removed.(·òµ•ùÿÿÿÿ8€Æ¬ÅÏ1

@@ -73,3 +73,66 @@ public class Main {
         return builder.toString();
     }
 }
+//public class Main {
+//    private CStack<String> stack;
+//    private Converter converter;
+//    private EquationParser equationParser;
+//
+//    public Main() {
+//        this.stack = new CStack<>(300);
+//        this.converter = new Converter();
+//        this.equationParser = new EquationParser();
+//    }
+//
+//    public boolean isBalanced(String equation) {
+//        return equationParser.isBalanced(equation, stack);
+//    }
+//
+//    public int size() {
+//        return equationParser.size(stack);
+//    }
+//
+//    public String convertEquation(String equation, int j) {
+//        stack.clear();
+//        StringBuilder builder = new StringBuilder();
+//        String s = equationParser.extractEquations(equation, j, stack);
+//        String[] ex = s.trim().split(",");
+//        String exp = " ";
+//        double value = 0;
+//        int i = 0, k = 0;
+//        for (String string : ex) {
+//            string = string.replaceAll("^\\s+", "");
+//            if (!isPostfix(string)) {
+//                if (!equationParser.isBalance(string, stack)) {
+//                    throw new IllegalArgumentException("Equation is not balanced");
+//                }
+//                exp = converter.infixToPostfix(string, stack);
+//                value = converter.evaluatePostfix(exp, stack);
+//                if (k == 0) {
+//                    builder.append("INFIX: ").append("\n");
+//                    k++;
+//                }
+//            } else {
+//                exp = converter.postfixToPrefix(string, stack);
+//                value = converter.evaluatePrefix(exp, stack);
+//                if (i == 0) {
+//                    builder.append("POSTFIX: ").append("\n");
+//                    i++;
+//                }
+//            }
+//            builder.append(string).append("===>").append(exp).append("===>").append(value).append("\n");
+//        }
+//        return builder.toString();
+//    }
+//
+//    boolean isPostfix(String equation) {
+//        if (equation != null) {
+//            if (!equation.contains("(") || !equation.contains(")")) {
+//                String[] exp = equation.split(" ");
+//                if (exp.length >= 2 && Character.isLetterOrDigit(exp[1].charAt(0)))
+//                    return true;
+//            }
+//        }
+//        return false;
+//    }
+//}

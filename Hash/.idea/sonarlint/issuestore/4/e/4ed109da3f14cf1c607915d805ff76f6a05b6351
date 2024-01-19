@@ -1,0 +1,5 @@
+
+n	java:S127"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ö¢Ã
+p
+java:S1210¼"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(ì£ ÿ
+F	java:S106®"+Replace this use of System.out by a logger.(¨óŒ¾ûÿÿÿÿ

@@ -1,0 +1,75 @@
+
+P
+java:S6213":Rename this variable to not match a restricted identifier.(ƒ¼ŸÛ
+P
+java:S6213L":Rename this variable to not match a restricted identifier.(ñÇğ‹
+U
+java:S6213k":Rename this variable to not match a restricted identifier.(ûéôøÿÿÿÿ
+]	java:S125z"<This block of commented-out lines of code should be removed.(°Ã†Äúÿÿÿÿ8×€‹Ñ1
+F
+java:S1197ˆ"*Move the array designators [] to the type.(•üÉûÿÿÿÿ
+V
+java:S6213Š":Rename this variable to not match a restricted identifier.(¥¬ËÕüÿÿÿÿ
+V
+java:S6213":Rename this variable to not match a restricted identifier.(è¥Å¾øÿÿÿÿ
+F	java:S106¤"+Replace this use of System.out by a logger.(©şêÜúÿÿÿÿ
+A	java:S106©"+Replace this use of System.out by a logger.(†û×‘
+Q
+java:S6213ª":Rename this variable to not match a restricted identifier.(µÙ°
+^	java:S125¬"<This block of commented-out lines of code should be removed.(Çœß…ÿÿÿÿÿ8ä€‹Ñ1
+H	java:S106®"+Replace this use of System.out by a logger.(î ±8ä€‹Ñ1
+Z
+java:S1854è"<Remove this useless assignment to local variable "record12".(Ç•ÉŞ8é€‹Ñ1
+Z
+java:S1854ç"<Remove this useless assignment to local variable "record11".(‚õÑó8é€‹Ñ1
+Z
+java:S1854æ"<Remove this useless assignment to local variable "record10".(ÑÃÇ£8é€‹Ñ1
+^
+java:S1854å";Remove this useless assignment to local variable "record9".(ü—ËÄÿÿÿÿÿ8ê€‹Ñ1
+Y
+java:S1854ä";Remove this useless assignment to local variable "record8".(ĞªØ8ê€‹Ñ1
+^
+java:S1854ã";Remove this useless assignment to local variable "record7".(ëµ¶²ıÿÿÿÿ8ê€‹Ñ1
+^
+java:S1854â";Remove this useless assignment to local variable "record6".(ºÂ®Îúÿÿÿÿ8ê€‹Ñ1
+Y
+java:S1854á";Remove this useless assignment to local variable "record5".(¡Ç›8ê€‹Ñ1
+^
+java:S1854à";Remove this useless assignment to local variable "record4".(‡´¥êùÿÿÿÿ8ë€‹Ñ1
+Y
+java:S1854ß";Remove this useless assignment to local variable "record3".(«¶½8ë€‹Ñ1
+Y
+java:S1854Ş";Remove this useless assignment to local variable "record2".(µƒ‘8ë€‹Ñ1
+X
+java:S1854Ù"<Remove this useless assignment to local variable "fileName".(í•ì¾øÿÿÿÿ
+]
+java:S1075Ù"ARefactor your code to get this URI from a customizable parameter.(í•ì¾øÿÿÿÿ
+I
+java:S1481Ù"-Remove this unused "fileName" local variable.(í•ì¾øÿÿÿÿ
+]
+java:S6213Ü":Rename this variable to not match a restricted identifier.(Ü÷Ïıÿÿÿÿ8í€‹Ñ1
+W	java:S125Ú"<This block of commented-out lines of code should be removed.(îÙ¸üÿÿÿÿ
+J
+java:S1481Ş",Remove this unused "record2" local variable.(µƒ‘8ï€‹Ñ1
+J
+java:S1481ß",Remove this unused "record3" local variable.(«¶½8ï€‹Ñ1
+O
+java:S1481à",Remove this unused "record4" local variable.(‡´¥êùÿÿÿÿ8ğ€‹Ñ1
+J
+java:S1481á",Remove this unused "record5" local variable.(¡Ç›8ğ€‹Ñ1
+O
+java:S1481â",Remove this unused "record6" local variable.(ºÂ®Îúÿÿÿÿ8ñ€‹Ñ1
+O
+java:S1481ã",Remove this unused "record7" local variable.(ëµ¶²ıÿÿÿÿ8ñ€‹Ñ1
+J
+java:S1481ä",Remove this unused "record8" local variable.(ĞªØ8ò€‹Ñ1
+O
+java:S1481å",Remove this unused "record9" local variable.(ü—ËÄÿÿÿÿÿ8ò€‹Ñ1
+K
+java:S1481æ"-Remove this unused "record10" local variable.(ÑÃÇ£8ò€‹Ñ1
+K
+java:S1481ç"-Remove this unused "record11" local variable.(‚õÑó8ó€‹Ñ1
+K
+java:S1481è"-Remove this unused "record12" local variable.(Ç•ÉŞ8ó€‹Ñ1
+M	java:S106ì"+Replace this use of System.out by a logger.(Æ¬÷İøÿÿÿÿ8ô€‹Ñ1
+^	java:S125ï"<This block of commented-out lines of code should be removed.(Òôî²øÿÿÿÿ8õ€‹Ñ1

@@ -28,7 +28,10 @@
   .combo-box {
     -fx-background-color: #ecf0f1;
     -fx-border-color: #bdc3c7;
-    -fx-background-radius: 4px;
+    -fx-background-radius: 6px;
+    -fx-padding: 8px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #333333;
   }
   
   .text-field {
@@ -61,3 +64,4 @@
     -fx-border-color: #ccc;
     -fx-border-radius: 4px;  
   }
+  

@@ -4,6 +4,41 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Comparable<SLinkedList<T>> {
+    class Node<T extends Comparable<T>> {
+        private T data;
+        private Node<T> next;
+
+        public Node(T data) {
+            this.data = data;
+        }
+
+        // Getter method to return the data stored in the node
+        public T getData() {
+            return this.data;
+        }
+
+        // Setter method to set the data stored in the node
+        public void setData(T data) {
+            this.data = data;
+        }
+
+        // Getter method to return the next node
+        public Node<T> getNext() {
+            return this.next;
+        }
+
+        // Setter method to set the next node
+        public void setNext(Node<T> next) {
+            this.next = next;
+        }
+
+        // Overriding the toString method to return the data and the next node
+        @Override
+        public String toString() {
+            return getData() + " , " + getNext();
+        }
+    }
+
     private Node<T> head;
 
     public SLinkedList() {
@@ -61,6 +96,10 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         newNode.setNext(curr);
         // Set the previous node's next node to the new node
         prev.setNext(newNode);
+    }
+
+    public T getFront() {
+        return head.getNext().getData();
     }
 
     // This method deletes the first node from the linked list and returns its data

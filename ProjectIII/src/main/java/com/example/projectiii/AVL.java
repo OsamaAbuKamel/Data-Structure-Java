@@ -17,7 +17,7 @@ public class AVL<T extends Comparable<T>> extends BST<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new InOrderIterator(root);
+        return new OrderIterator(root);
     }
 
     public T get(int index) {
@@ -56,16 +56,21 @@ public class AVL<T extends Comparable<T>> extends BST<T> {
         StringBuilder builder = new StringBuilder();
         int h = height(root);
         for (int i = 1; i <= h; i++) {
-             builder.append( traverseLevelOrder(root, i));
+            builder.append(traverseLevelOrder(root, i));
         }
         return builder.toString();
     }
 
     public T delete(T data) {
-        T temp = super.remove(root, data);
+        root = delete(root, data);
+        return data;
+    }
+
+    private TNode<T> delete(TNode<T> node, T data) {
+        TNode<T> temp = super.remove(node, data);
         if (temp != null) {
-            TNode<T> rootNode = root;
-            root = rebalance(rootNode);
+            TNode<T> rootNode = node;
+            node = rebalance(rootNode);
         }
         return temp;
     }
@@ -168,25 +173,15 @@ public class AVL<T extends Comparable<T>> extends BST<T> {
     public String toString() {
         return toStringInorder(root);
     }
+
     public String toStringInorder(TNode<T> root) {
-    String s = "";
-    if (root == null) {
-        return "";
-    }
-
-    s += toStringInorder(root.left);
-    s += root.toString();
-    s += toStringInorder(root.right);
-    return s;
-}
-
-    public static void main(String[] args) {
-        AVL<Integer> tree = new AVL<>();
-        tree.insert(10);
-        tree.insert(5);
-        System.out.println(tree.get(0));
-
-        // tree.traverseLevelOrder();
-
+        String s = "";
+        if (root == null) {
+            return "";
+        }
+        s += toStringInorder(root.left);
+        s += root.toString();
+        s += toStringInorder(root.right);
+        return s;
     }
 }

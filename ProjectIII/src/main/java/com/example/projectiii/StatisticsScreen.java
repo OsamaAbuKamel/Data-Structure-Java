@@ -16,19 +16,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class StatisticsScreen extends BorderPane {
-    private RecordList list;
+    private RecordAVL list;
     private Button btnBack = new Button();
     private VBox vBox = new VBox();
     private TextField tfInput = new TextField();
-    private RadioButton rbTotal = new RadioButton("TOTAL");
+    private RadioButton rbTotal = new RadioButton("TOTAL\t  ");
     private RadioButton rbAvg = new RadioButton("AVERAGE");
     private RadioButton rbMax = new RadioButton("MAXIMUM");
     private RadioButton rbMin = new RadioButton("MINIMUM");
     private ComboBox<ElectricityType> comboBox = new ComboBox<>();
     private ComboBox<String> comboBox1 = new ComboBox<>();
+    private ComboBox<Months> cbMonths = new ComboBox<>();
     private VBox box = new VBox();
     private TextArea area = new TextArea();
     private Button btnResult = new Button("Result");
@@ -39,9 +41,11 @@ public class StatisticsScreen extends BorderPane {
     private XYChart.Series<Number, Number> series = new XYChart.Series<>();
     private ToggleGroup group = new ToggleGroup();
     private GridPane gridPane = new GridPane();
+    private HBox hBox = new HBox();
+    private HBox hBox1 = new HBox();
 
     // Constructor
-    public StatisticsScreen(RecordList list) {
+    public StatisticsScreen(RecordAVL list) {
         this.list = list;
         setStyle("-fx-background-color:#ffffff");
         getStylesheets().add(getClass().getResource("statisticStyle.css").toExternalForm());
@@ -56,13 +60,16 @@ public class StatisticsScreen extends BorderPane {
 
     // Initialize the screen
     private void initialize() {
-        gridPane.add(rbTotal, 0, 0);
-        gridPane.add(rbAvg, 1, 0);
-        gridPane.add(rbMax, 0, 1);
-        gridPane.add(rbMin, 1, 1);
+        hBox.getChildren().addAll(rbTotal, rbAvg);
+        hBox1.getChildren().addAll(rbMax, rbMin);
+        gridPane.add(cbMonths, 0, 0);
+        gridPane.add(tfInput, 0, 0);
+        gridPane.add(hBox, 0, 1);
+        gridPane.add(hBox1, 0, 2);
         comboBox.getItems().addAll(ElectricityType.values());
         comboBox1.getItems().addAll("Day", "Month", "Year");
-        vBox.getChildren().addAll(comboBox1, tfInput, comboBox, gridPane, btnResult);
+        cbMonths.getItems().addAll(Months.values());
+        vBox.getChildren().addAll(comboBox1, comboBox, gridPane, btnResult);
         box.getChildren().addAll(area, createChart());
         box.setPrefHeight(300);
         box.setPrefWidth(300);
@@ -71,6 +78,8 @@ public class StatisticsScreen extends BorderPane {
         rbMin.setToggleGroup(group);
         rbTotal.setToggleGroup(group);
         tfInput.setPromptText("Enter a number");
+        cbMonths.setVisible(false);
+        tfInput.setVisible(false);
     }
 
     private LineChart<Number, Number> createChart() {
@@ -93,13 +102,22 @@ public class StatisticsScreen extends BorderPane {
             clear();
             SceneChanger.changeScene(new MainScreen(list));
         });
+        comboBox1.setOnAction(e -> {
+            if ("Month".equals(comboBox1.getValue())) {
+                cbMonths.setVisible(true);
+                tfInput.setVisible(false);
+            } else {
+                cbMonths.setVisible(false);
+                tfInput.setVisible(true);
+            }
+        });
         btnResult.setOnAction(e -> {
             try {
                 // Check if all inputs are empty
                 if (comboBox1.getValue() == null)
                     alert(Alert.AlertType.ERROR, "Error", "Please select a time unit");
-                else if (tfInput.getText().isEmpty())
-                    alert(Alert.AlertType.ERROR, "Error", "Please enter a number");
+                // else if (tfInput.getText().isEmpty())
+                // alert(Alert.AlertType.ERROR, "Error", "Please enter a number");
                 else if (comboBox.getValue() == null)
                     alert(Alert.AlertType.ERROR, "Error", "Please select an electricity type");
                 else if (group.getSelectedToggle() == null)
@@ -111,7 +129,7 @@ public class StatisticsScreen extends BorderPane {
                             comboBox.getValue(),
                             getType());
                 } else if (comboBox1.getValue() == "Month") {
-                    value = statistics.getStatisticForMonth(Integer.parseInt(tfInput.getText()),
+                    value = statistics.getStatisticForMonth(cbMonths.getValue(),
                             comboBox.getValue(),
                             getType());
                 } else if (comboBox1.getValue() == "Year") {
@@ -127,7 +145,12 @@ public class StatisticsScreen extends BorderPane {
                     lineChart.setTitle(comboBox.getValue() + " " + comboBox1.getValue() + " " + getType().toString());
                 }
                 // Add the value to the Line Chart
-                series.getData().add(new XYChart.Data<>(Integer.parseInt(tfInput.getText()), value));
+                String input = tfInput.getText();
+                if (input != null && !input.isEmpty()) {
+                    // Input is all digits
+                    int value1 = Integer.parseInt(input);
+                    series.getData().add(new XYChart.Data<>(value1, value));
+                }
             } catch (IllegalArgumentException ex) {
                 // Display Error
                 alert(Alert.AlertType.ERROR, "Error", ex.getMessage());
@@ -169,8 +192,10 @@ public class StatisticsScreen extends BorderPane {
         btnResult.prefWidthProperty().bind(vBox.widthProperty().divide(2));
         comboBox.prefWidthProperty().bind(vBox.widthProperty().divide(2));
         comboBox1.prefWidthProperty().bind(vBox.widthProperty().divide(2));
+        cbMonths.prefWidthProperty().bind(vBox.widthProperty().divide(2));
         gridPane.prefWidthProperty().bind(vBox.widthProperty().divide(2));
         tfInput.maxWidthProperty().bind(vBox.widthProperty().divide(2));
+        tfInput.setMaxHeight(150);
         vBox.setAlignment(Pos.TOP_CENTER);
         gridPane.setAlignment(Pos.TOP_CENTER);
         box.setAlignment(Pos.TOP_CENTER);
@@ -178,6 +203,10 @@ public class StatisticsScreen extends BorderPane {
         area.setMinHeight(200);
         lineChart.setMaxHeight(550);
         lineChart.setMinHeight(550);
+        hBox.setAlignment(Pos.CENTER_LEFT);
+        hBox.setSpacing(8);
+        hBox1.setSpacing(8);
+        hBox1.setAlignment(Pos.CENTER_LEFT);
     }
 
     private void clear() {

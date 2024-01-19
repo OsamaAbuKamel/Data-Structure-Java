@@ -58,7 +58,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         StringBuilder builder = new StringBuilder();
         int h = height(root);
         for (int i = 1; i <= h; i++) {
-             builder.append( traverseLevelOrder(root, i));
+            builder.append(traverseLevelOrder(root, i));
         }
         return builder.toString();
     }
@@ -162,8 +162,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             builder.append(root2.data).append(" ");
         } else if (level > 1) {
             // Traverse the left and right subtrees
-            builder.append( traverseLevelOrder(root2.left, level - 1));
-            builder.append( traverseLevelOrder(root2.right, level - 1));
+            builder.append(traverseLevelOrder(root2.left, level - 1));
+            builder.append(traverseLevelOrder(root2.right, level - 1));
         }
         return builder.toString();
     }
@@ -242,10 +242,11 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
     }
 
     public T remove(T data) {
-        return remove(root, data);
+        root = remove(root, data);
+        return data;
     }
 
-    protected T remove(TNode<T> node, T data) {
+    protected TNode<T> remove(TNode<T> node, T data) {
         TNode<T> curr = node;
         TNode<T> parent = null;
         boolean isLeftChild = false;
@@ -264,12 +265,12 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             }
         }
         if (curr == null) {
-            return null; // Node not found
+            return node; // Node not found
         }
         // Case 1: Node is a leaf
         if (!curr.hasLeft() && !curr.hasRight()) {
-            if (curr == root) {
-                root = null;
+            if (curr == node) {
+                node = null;
             } else if (isLeftChild) {
                 parent.left = null;
             } else {
@@ -278,8 +279,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         }
         // Case 2: Node has only left child
         else if (curr.hasLeft() && !curr.hasRight()) {
-            if (curr == root) {
-                root = curr.left;
+            if (curr == node) {
+                node = curr.left;
             } else if (isLeftChild) {
                 parent.left = curr.left;
             } else {
@@ -288,8 +289,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         }
         // Case 2: Node has only right child
         else if (!curr.hasLeft() && curr.hasRight()) {
-            if (curr == root) {
-                root = curr.right;
+            if (curr == node) {
+                node = curr.right;
             } else if (isLeftChild) {
                 parent.left = curr.right;
             } else {
@@ -299,8 +300,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         // Case 3: Node has both left and right children
         else {
             TNode<T> successor = getSuccessor(curr);
-            if (curr == root) {
-                root = successor;
+            if (curr == node) {
+                node = successor;
             } else if (isLeftChild) {
                 parent.left = successor;
             } else {
@@ -308,7 +309,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             }
             successor.left = curr.left;
         }
-        return curr.data;
+        return node;
     }
 
     private TNode<T> getSuccessor(TNode<T> node) {
@@ -336,7 +337,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             } else
                 // Otherwise, call the add method recursively with the data and the right child
                 add(data, node.right);
-        // If the data is less than the node data
+            // If the data is less than the node data
         } else if (!node.hasLeft()) {
             // Create a new node with the data
             node.left = new TNode<>(data);
@@ -377,35 +378,40 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new InOrderIterator(root);
+        return new OrderIterator(root);
     }
 
-    protected class InOrderIterator implements Iterator<T> {
-        TNode<T> curr;
-        private ArrayList<T> list = new ArrayList<>();
-        private int index = 0;
+    protected class OrderIterator implements Iterator<T> {
+        private TNode<T> curr;
+        private SLinkedList<T> list = new SLinkedList<>();
+        int index = 0;
 
-        public InOrderIterator(TNode<T> root) {
+        public OrderIterator(TNode<T> root) {
             curr = root;
-            inOrder();
+            LevelOrder(curr);
         }
 
-        public void inOrder() {
-            inOrder(curr);
-        }
-
-        private void inOrder(TNode<T> curr2) {
-            if (curr2 == null) {
+        private void LevelOrder(TNode<T> node) {
+            if (node == null) {
                 return;
             }
-            inOrder(curr2.left);
-            list.add(curr2.data);
-            inOrder(curr2.right);
+            SQueue<TNode<T>> queue = new SQueue<>();
+            queue.enqueue(node);
+            while (!queue.isEmpty()) {
+                TNode<T> temp = queue.dequeue();
+                list.insertAtLast(temp.getData());
+                if (temp.getLeft() != null) {
+                    queue.enqueue(temp.getLeft());
+                }
+                if (temp.getRight() != null) {
+                    queue.enqueue(temp.getRight());
+                }
+            }
         }
 
         @Override
         public boolean hasNext() {
-            if (index < list.size()) {
+            if (index < list.length()) {
                 return true;
             }
             return false;

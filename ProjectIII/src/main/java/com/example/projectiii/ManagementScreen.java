@@ -1,8 +1,6 @@
 package com.example.projectiii;
 
 import java.time.LocalDate;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -11,16 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.converter.DoubleStringConverter;
 
 public class ManagementScreen extends BorderPane {
     // Input Fields
@@ -37,10 +34,11 @@ public class ManagementScreen extends BorderPane {
     private Button deleteBtn = new Button("Delete");
     private Button backBtn = new Button();
     private Button searchBtn = new Button("Search");
-    private HBox buttonBox = new HBox();
+    private Button displayHeight = new Button("Display Height");
     private VBox vLeft = new VBox();
+    private FlowPane pane = new FlowPane();
     private TableView<ElectricityRecord> tableView = new TableView<>();
-    private RecordList list;
+    private RecordAVL list;
     private TableColumn<ElectricityRecord, LocalDate> dateCol = new TableColumn<>("Date");
     private TableColumn<ElectricityRecord, Double> israeliLinesCol = new TableColumn<>("Israeli Lines");
     private TableColumn<ElectricityRecord, Double> gazaPlantCol = new TableColumn<>("Gaza Plant");
@@ -49,9 +47,12 @@ public class ManagementScreen extends BorderPane {
     private TableColumn<ElectricityRecord, Double> overallDemandCol = new TableColumn<>("Overall Demand");
     private TableColumn<ElectricityRecord, Double> powerCutsCol = new TableColumn<>("Power Cuts Hours Day");
     private TableColumn<ElectricityRecord, Double> tempCol = new TableColumn<>("Temp");
+    private Tooltip tooltip = new Tooltip();
+    private Tooltip ttUpdate = new Tooltip();
+    private int clickCount = 0;
 
     // Constructor
-    public ManagementScreen(RecordList list) {
+    public ManagementScreen(RecordAVL list) {
         String fileName = "style.css";
         if (fileName != null) {
             getStylesheets().add(getClass().getResource(fileName).toExternalForm());
@@ -81,8 +82,8 @@ public class ManagementScreen extends BorderPane {
         inputGrid.add(powerCutsHoursDayInput, 1, 5);
         inputGrid.add(new Label("Temp:"), 0, 6);
         inputGrid.add(tempInput, 1, 6);
-        buttonBox.getChildren().addAll(addBtn, updateBtn, deleteBtn, searchBtn);
-        inputGrid.add(buttonBox, 1, 7);
+        pane.getChildren().addAll(addBtn, updateBtn, deleteBtn, searchBtn, displayHeight);
+        inputGrid.add(pane, 1, 7);
         inputGrid.setPadding(new Insets(16));
         inputGrid.setVgap(8);
         inputGrid.setHgap(8);
@@ -109,23 +110,31 @@ public class ManagementScreen extends BorderPane {
                 alert(AlertType.ERROR, "Error", "Please enter date");
             }
         });
-        updateBtn.setOnAction(e -> {
-            try {
-                // Get the record from the list
-                ElectricityRecord updatedRecord = getRecord();
-                // Update the record in the list
-                list.update(updatedRecord);
-                // Update the table view
-                updateTableView();
-                tableView.setEditable(true);
-                // Clear the text fields
-                clear();
-            } catch (IllegalArgumentException ex) {
-                // Show an error alert if the date is invalid
-                alert(AlertType.ERROR, "Error", ex.getMessage());
-            } catch (NullPointerException ex) {
-                // Show an error alert if the date is not entered
-                alert(AlertType.ERROR, "Error", "Please enter date");
+        updateBtn.setOnMouseClicked(event -> {
+            clickCount++;
+            if (clickCount == 1) {
+                // First click: populate text fields with existing data
+                ElectricityRecord currentRecord = list.search(getDate());
+                populateTextFields(currentRecord);
+            } else if (clickCount == 2) {
+                // Second click: update record
+                clickCount = 0; // Reset the click count
+                try {
+                    // Get updated record from the text fields
+                    ElectricityRecord updatedRecord = getRecord();
+                    // Update the record in the list
+                    list.update(updatedRecord);
+                    // Update the table view
+                    updateTableView();
+                    // Clear the text fields
+                    clear();
+                } catch (IllegalArgumentException ex) {
+                    // Show an error alert if the date is invalid
+                    alert(AlertType.ERROR, "Error", ex.getMessage());
+                } catch (NullPointerException ex) {
+                    // Show an error alert if the date is not entered
+                    alert(AlertType.ERROR, "Error", "Please enter date");
+                }
             }
         });
         deleteBtn.setOnAction(e -> {
@@ -150,15 +159,12 @@ public class ManagementScreen extends BorderPane {
                 ElectricityRecord record = list.search(getDate());
                 // if the record is found
                 if (record != null) {
-                    // create an observable list of the record
-                    ObservableList<ElectricityRecord> list1 = FXCollections.observableArrayList(record);
-                    // set the items of the table view to the observable list
-                    tableView.setItems(list1);
+                    alert(AlertType.INFORMATION, "Record Found", record.toString());
                 } else
                     // if no record is found, show a warning
                     alert(AlertType.WARNING, "Warning", "No record found for the given date");
                 // clear the text fields
-                clear();
+                // clear();
             } catch (NullPointerException ex) {
                 // if the date is empty, show an error
                 alert(AlertType.ERROR, "Error", "Please enter date");
@@ -169,6 +175,36 @@ public class ManagementScreen extends BorderPane {
             SceneChanger.changeScene(new MainScreen(list));
             updateTableView();
         });
+        displayHeight.setOnAction(e -> {
+            int h = 0, h1 = 0, h2 = 0;
+            String s = " ";
+            if (getDate() != null) {
+                h = list.getHeight();
+                h1 = list.getMonthHeight(getDate());
+                h2 = list.getDayHeight(getDate());
+                s = "Height of year: " + h + "\nHeight of month: " + h1 + "\nHeight of day: " + h2;
+                alert(AlertType.INFORMATION, "Height", s);
+            } else {
+                h = list.getHeight();
+                for (Year year : list.getRecords()) {
+                    h1 = year.getHeight();
+                    for (Month month : year.getMonthAVL()) {
+                        h2 = month.getHeight();
+                    }
+                }
+                s = "Height of year: " + h + "\nHeight of month: " + h1 + "\nHeight of day: " + h2;
+                alert(AlertType.INFORMATION, "Height", s);
+            }
+        });
+    }
+
+    private void populateTextFields(ElectricityRecord record) {
+        israelInput.setText(String.valueOf(record.getIsraeliLines()));
+        egyptInput.setText(String.valueOf(record.getEgyptianLines()));
+        gazaInput.setText(String.valueOf(record.getGazaPowerPlant()));
+        overallDemandInput.setText(String.valueOf(record.getOverallDemand()));
+        powerCutsHoursDayInput.setText(String.valueOf(record.getPowerCutsHoursDay()));
+        tempInput.setText(String.valueOf(record.getTemp()));
     }
 
     // Methods for initializing table
@@ -193,65 +229,7 @@ public class ManagementScreen extends BorderPane {
         tempCol.prefWidthProperty().bind(tableView.widthProperty().divide(8));
         tableView.setEditable(true);
         updateTableView();
-        editTable();
         return tableView;
-    }
-
-    public void editTable() {
-        israeliLinesCol.setCellFactory(
-                TextFieldTableCell.<ElectricityRecord, Double>forTableColumn(new DoubleStringConverter()));
-        israeliLinesCol.setOnEditCommit(event -> {
-            Double newValue = event.getNewValue();
-            if (newValue != null) {
-                ElectricityRecord record = event.getRowValue();
-                record.setIsraeliLines(newValue);
-            }
-        });
-        gazaPlantCol.setCellFactory(
-                TextFieldTableCell.<ElectricityRecord, Double>forTableColumn(new DoubleStringConverter()));
-        gazaPlantCol.setOnEditCommit(event -> {
-            Double newValue = event.getNewValue();
-            if (newValue != null) {
-                ElectricityRecord record = event.getRowValue();
-                record.setGazaPowerPlant(newValue);
-            }
-        });
-        egyptianLinesCol.setCellFactory(
-                TextFieldTableCell.<ElectricityRecord, Double>forTableColumn(new DoubleStringConverter()));
-        egyptianLinesCol.setOnEditCommit(event -> {
-            Double newValue = event.getNewValue();
-            if (newValue != null) {
-                ElectricityRecord record = event.getRowValue();
-                record.setEgyptianLines(newValue);
-            }
-        });
-        overallDemandCol.setCellFactory(
-                TextFieldTableCell.<ElectricityRecord, Double>forTableColumn(new DoubleStringConverter()));
-        overallDemandCol.setOnEditCommit(event -> {
-            Double newValue = event.getNewValue();
-            if (newValue != null) {
-                ElectricityRecord record = event.getRowValue();
-                record.setOverallDemand(newValue);
-            }
-        });
-        powerCutsCol.setCellFactory(
-                TextFieldTableCell.<ElectricityRecord, Double>forTableColumn(new DoubleStringConverter()));
-        powerCutsCol.setOnEditCommit(event -> {
-            Double newValue = event.getNewValue();
-            if (newValue != null) {
-                ElectricityRecord record = event.getRowValue();
-                record.setPowerCutsHoursDay(newValue);
-            }
-        });
-        tempCol.setCellFactory(
-                TextFieldTableCell.<ElectricityRecord, Double>forTableColumn(new DoubleStringConverter()));
-        tempCol.setOnEditCommit(event -> {
-            Double newValue = event.getNewValue();
-            if (newValue != null) {
-                ElectricityRecord record = event.getRowValue();
-                record.setTemp(newValue);
-            }
-        });
     }
 
     // Methods for fill and update table
@@ -260,7 +238,7 @@ public class ManagementScreen extends BorderPane {
             tableView.getItems().clear();
         }
         for (Year year : list.getRecords()) {
-            for (Month month : year.getMonths()) {
+            for (Month month : year.getMonthAVL()) {
                 for (Day day : month.getDays()) {
                     tableView.getItems().addAll(day.getRecord());
                 }
@@ -283,12 +261,18 @@ public class ManagementScreen extends BorderPane {
         imageView.setFitWidth(40);
         backBtn.setGraphic(imageView);
         backBtn.setStyle("-fx-background-color: transparent;");
-        buttonBox.setPadding(new Insets(16));
-        buttonBox.setSpacing(16);
+        pane.setPadding(new Insets(12, 0, 0, 0));
+        pane.setHgap(12);
+        pane.setVgap(12);
         vLeft.setMaxWidth(520);
         vLeft.setMinWidth(520);
         tableView.setMaxWidth(880);
         tableView.setMinWidth(880);
+        tooltip.setText(
+                "If the date is empty, display the height of the record, months, days\n If the date is not empty, display the height of the record and the sum of the height of months and days.");
+        displayHeight.setTooltip(tooltip);
+        ttUpdate.setText("First select a record to update.\n Then enter the new values.");
+        updateBtn.setTooltip(ttUpdate);
     }
 
     // Methods for clear

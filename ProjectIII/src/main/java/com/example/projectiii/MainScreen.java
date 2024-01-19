@@ -14,7 +14,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 
 public class MainScreen extends BorderPane {
-    private RecordList list;
+    private RecordAVL list;
     private Button btnUpload = new Button();
     private Button btnManagement = new Button("MANAGEMENT");
     private Button btnStatistics = new Button("STATISTICS");
@@ -24,14 +24,14 @@ public class MainScreen extends BorderPane {
     private Image gifImageUpload = new Image(
             "C:\\Users\\osama\\DataStructure\\Data-Structure-\\ProjectIII\\src\\main\\resources\\com\\example\\projectiii\\system-solid-49-upload-file.gif");
     private ImageView uploadImage = new ImageView(gifImageUpload);
-    private Tooltip toolTip = new Tooltip("Upload File");
+    private Tooltip toolTip = new Tooltip("Upload File .CSV");
 
-    public MainScreen(RecordList list) {
+    public MainScreen(RecordAVL list) {
         this.list = list;
         setStyle("-fx-background-color:#ffffff");
         toolTip.setTextAlignment(TextAlignment.LEFT);
         // btnUpload.setTooltip(toolTip);
-        btnManagement.setTooltip(toolTip);
+        btnUpload.setTooltip(toolTip);
         style();
         handle(list);
         hBox.getChildren().addAll(btnUpload, btnManagement, btnStatistics, btnSave);
@@ -55,7 +55,7 @@ public class MainScreen extends BorderPane {
         btnSave.setPrefSize(120, 60);
     }
 
-    private void handle(RecordList list) {
+    private void handle(RecordAVL list) {
         btnUpload.setOnAction(e -> {
             chooser.setTitle("Open File");
             File file = chooser.showOpenDialog(null);

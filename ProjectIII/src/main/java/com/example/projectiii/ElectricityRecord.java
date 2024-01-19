@@ -80,7 +80,7 @@ public class ElectricityRecord implements Comparable<ElectricityRecord>, Cloneab
     }
 
     public double getTotalSupply() {
-        return this.totalSupply = israeliLines+gazaPowerPlant+egyptianLines;
+        return this.totalSupply = israeliLines + gazaPowerPlant + egyptianLines;
     }
 
     public double getOverallDemand() {
@@ -118,7 +118,8 @@ public class ElectricityRecord implements Comparable<ElectricityRecord>, Cloneab
 
     @Override
     public String toString() {
-        return getDate() + "," + israeliLines + "," + gazaPowerPlant + "," + egyptianLines + "," + totalSupply + ","
+        // date.format(DateTimeFormatter.ofPattern("yyyy-MMMM-dd"))
+        return date + "," + israeliLines + "," + gazaPowerPlant + "," + egyptianLines + "," + totalSupply + ","
                 + overallDemand
                 + "," + powerCutsHoursDay + "," + temp + "\n";
     }
@@ -134,17 +135,13 @@ public class ElectricityRecord implements Comparable<ElectricityRecord>, Cloneab
         if (o == this)
             return true;
         if (o instanceof ElectricityRecord electricityRecord) {
-            return Objects.equals(date, electricityRecord.date) && israeliLines == electricityRecord.israeliLines
-                    && gazaPowerPlant == electricityRecord.gazaPowerPlant
-                    && egyptianLines == electricityRecord.egyptianLines && totalSupply == electricityRecord.totalSupply
-                    && overallDemand == electricityRecord.overallDemand
-                    && powerCutsHoursDay == electricityRecord.powerCutsHoursDay && temp == electricityRecord.temp;
+            return Objects.equals(date, electricityRecord.date);
         }
         return false;
     }
 
     @Override
     public int compareTo(ElectricityRecord o) {
-        return this.date.compareTo(o.date) ;
+        return this.date.compareTo(o.date);
     }
 }

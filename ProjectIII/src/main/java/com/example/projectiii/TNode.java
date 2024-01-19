@@ -1,5 +1,6 @@
 package com.example.projectiii;
-public class TNode<T extends Comparable<T>> {
+
+public class TNode<T extends Comparable<T>> implements Comparable<TNode<T>> {
     T data;
     TNode<T> left;
     TNode<T> right;
@@ -35,15 +36,22 @@ public class TNode<T extends Comparable<T>> {
     public boolean isLeaf() {
         return left == null && right == null;
     }
-    public boolean hasLeft(){
+
+    public boolean hasLeft() {
         return left != null;
     }
-    public boolean hasRight(){
+
+    public boolean hasRight() {
         return right != null;
     }
+
     @Override
     public String toString() {
-        return data+" ";
+        return data + " ";
     }
 
+    @Override
+    public int compareTo(TNode<T> o) {
+        return this.data.compareTo(o.data);
+    }
 }

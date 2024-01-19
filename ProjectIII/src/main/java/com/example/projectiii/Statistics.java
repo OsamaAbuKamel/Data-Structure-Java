@@ -1,9 +1,11 @@
 package com.example.projectiii;
 
-public class Statistics {
-  private RecordList records;
+import java.time.LocalDate;
 
-  public Statistics(RecordList records) {
+public class Statistics {
+  private RecordAVL records;
+
+  public Statistics(RecordAVL records) {
     this.records = records;
   }
 
@@ -23,7 +25,7 @@ public class Statistics {
       // Loop through all the years
       for (Year year : yearList) {
         // Loop through all the months
-        for (Month month : year.getMonths()) {
+        for (Month month : year.getMonthAVL()) {
           for (Day days : month.getDays()) {
             // check if the day in the list is the same as the day passed
             if (days.getDay() == day) {
@@ -46,41 +48,47 @@ public class Statistics {
   }
 
   public double getStatisticForMonth(
-      int month,
+      Months month,
       ElectricityType electricityType,
       StatisticType type) {
-    // check if month is valid
-    if (month < 1 || month > 12) {
-      throw new IllegalArgumentException("Month must be between 1 and 12");
-    } else {
-      double total = 0;
-      double count = 0;
-      double max = 0;
-      double min = Double.MAX_VALUE;
-      AVL<Year> yearList = records.getRecords();
-      // Loop through all the years
-      for (Year year : yearList) {
-        for (Month months : year.getMonths()) {
-          // Check if the month in the list is the same as the month passed
-          if (months.getMonth() == "month") {
-            // Loop through all the days in the month
-            for (Day days : months.getDays()) {
-              // get record value from method getRecord
-              double recordValue = getRecord(electricityType, days.getRecord());
-              // add value to total
-              total += recordValue;
-              // Increment count
-              count++;
-              // find max and min
-              max = Math.max(max, recordValue);
-              min = Math.min(min, recordValue);
-            }
+    // month = month.toUpperCase();
+    // if (!isValidMonth(month)) {
+    // throw new IllegalArgumentException("Invalid month");
+    // } else {
+    double total = 0;
+    double count = 0;
+    double max = 0;
+    double min = Double.MAX_VALUE;
+    for (Year year : records.getRecords()) {
+      for (Month months : year.getMonthAVL()) {
+        if (months.getMonth().equals(month.toString())) {
+          for (Day dayList : months.getDays()) {
+            double recordValue = getRecord(electricityType, dayList.getRecord());
+            total += recordValue;
+            count++;
+            max = Math.max(max, recordValue);
+            min = Math.min(min, recordValue);
           }
         }
       }
-      // return statistic
-      return calcStatistic(type, total, count, max, min);
     }
+    return calcStatistic(type, total, count, max, min);
+    // }
+  }
+
+  private boolean isValidMonth(String month) {
+    return month.equals("JANUARY")
+        || month.equals("FEBRUARY")
+        || month.equals("MARCH")
+        || month.equals("APRIL")
+        || month.equals("MAY")
+        || month.equals("JUNE")
+        || month.equals("JULY")
+        || month.equals("AUGUST")
+        || month.equals("SEPTEMBER")
+        || month.equals("OCTOBER")
+        || month.equals("NOVEMBER")
+        || month.equals("DECEMBER");
   }
 
   public double getStatisticForYear(
@@ -97,7 +105,7 @@ public class Statistics {
       double min = Double.MAX_VALUE;
       // get year from list
       Year yearList = records.getYear(year);
-      AVL<Month> monthList = yearList.getMonths();
+      AVL<Month> monthList = yearList.getMonthAVL();
       // loop through all the months
       for (Month months : monthList) {
         // loop through all the days
@@ -158,5 +166,16 @@ public class Statistics {
       default:
         return Double.NaN;
     }
+  }
+
+  public static void main(String[] args) {
+    RecordAVL list = new RecordAVL();
+    // Create an instance of the class
+    Statistics statistics = new Statistics(list);
+    ElectricityRecord record = new ElectricityRecord(LocalDate.now(), 4, 4, 4, 4, 4, 4);
+    list.add(record);
+    double max = statistics.getStatisticForMonth(Months.JANUARY, ElectricityType.GAZA_POWER, StatisticType.TOTAL);
+    // double gaza = statistics.getRecord(ElectricityType.GAZA_POWER, record);
+    System.out.println(max);
   }
 }

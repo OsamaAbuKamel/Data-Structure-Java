@@ -17,9 +17,9 @@ public class SaveScreen extends BorderPane {
     Image image = new Image(
             "C:\\Users\\osama\\DataStructure\\Data-Structure-\\ProjectIII\\src\\main\\resources\\com\\example\\projectiii\\left-arrow.gif");
     ImageView imageView = new ImageView(image);
-    private RecordList list;
+    private RecordAVL list;
 
-    public SaveScreen(RecordList list) {
+    public SaveScreen(RecordAVL list) {
         this.list = list;
         btnSave.setOnAction(e -> {
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");

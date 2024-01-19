@@ -5,11 +5,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MainGUI extends Application {
-    private RecordList list;
+    private RecordAVL list;
 
     @Override
     public void start(Stage stage) throws Exception {
-        list = new RecordList();
+        list = new RecordAVL();
         SceneChanger.setMainStage(stage);
         SceneChanger.changeScene(new MainScreen(list));
         stage.getIcons().add(new Image(

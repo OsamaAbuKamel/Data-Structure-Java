@@ -25,16 +25,20 @@ public class Year implements Comparable<Year>, Cloneable {
         return monthAVL.search(new Month(month));
     }
 
-    // public Month get(int index) {
-    //     for (Month month : monthAVL) {
-    //         if (month.getMonth() == index) {
-    //             return month;
-    //         }
-    //     }
-    //     return null;
-    // }
+    public int getHeight() {
+        return monthAVL.height();
+    }
 
-    public AVL<Month> getmonthAVL() {
+    public Month get(String index) {
+        for (Month month : monthAVL) {
+            if (month.getMonth().equals(index)) {
+                return month;
+            }
+        }
+        return null;
+    }
+
+    public AVL<Month> getMonthAVL() {
         return monthAVL;
     }
 

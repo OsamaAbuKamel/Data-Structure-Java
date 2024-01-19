@@ -12,7 +12,6 @@
 			<equation>2.5 3 - 4 + 5 6 7 * + * </equation>
                 </postfix>
 	</section> 
-
 	<section>
 		<infix>
 			<equation>( 2 - 3 + 4 ) * ( 5 + 6 * 7 )</equation>

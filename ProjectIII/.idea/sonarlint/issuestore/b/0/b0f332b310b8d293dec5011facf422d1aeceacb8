@@ -1,16 +1,15 @@
 
 (
-java:S1700"Rename field "day"(˜Èòš
+java:S1700"Rename field "day"(˜Èòš
 O
-java:S6213":Rename this variable to not match a restricted identifier.(ÿÀšF
+java:S6213":Rename this variable to not match a restricted identifier.(ÿÀšF
 U
-java:S6213
-":Rename this variable to not match a restricted identifier.(òÃÛüÿÿÿÿ
+java:S6213":Rename this variable to not match a restricted identifier.(òÃÛüÿÿÿÿ
 P
-java:S6213":Rename this variable to not match a restricted identifier.(ÕÃ
+java:S6213":Rename this variable to not match a restricted identifier.(ÕÃ
 L
-java:S1117("6Rename "day" which hides the field declared at line 4.(ÖÑç
+java:S1117)"6Rename "day" which hides the field declared at line 5.(ÖÑç
 n
-java:S2975/"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(ûİ‹¬ÿÿÿÿÿ
+java:S29750"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(ûİ‹¬ÿÿÿÿÿ
 C
-java:S1185/"(Remove this method to simply inherit it.(ûİ‹¬ÿÿÿÿÿ
+java:S11850"(Remove this method to simply inherit it.(ûİ‹¬ÿÿÿÿÿ

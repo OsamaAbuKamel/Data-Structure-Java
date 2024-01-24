@@ -8,9 +8,9 @@ public class Main {
         hashing.insert(10);
         System.out.println(hashing);
 
-        for (Integer integer : hashing) {
-            System.out.println(integer);
-        }
+        // for (Integer integer : hashing) {
+        //     System.out.println(integer);
+        // }
 
 
 

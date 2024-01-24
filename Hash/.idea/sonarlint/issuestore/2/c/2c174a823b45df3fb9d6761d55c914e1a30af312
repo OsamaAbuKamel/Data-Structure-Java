@@ -1,0 +1,11 @@
+
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(„„ß-8Î¡æ®Ó1
+r	java:S116"QRename this field "DELETE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ËùÎüÿÿÿÿ8Ò¡æ®Ó1
+l	java:S116"PRename this field "EMPTY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÑÙÉš8Ò¡æ®Ó1
+k	java:S116"ORename this field "FULL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬üŞ¬8Ò¡æ®Ó1
+C
+java:S1170"!Make this final field static too.(ËùÎüÿÿÿÿ8Ò¡æ®Ó1
+>
+java:S1170"!Make this final field static too.(ÑÙÉš8Ò¡æ®Ó1
+>
+java:S1170"!Make this final field static too.(¬üŞ¬8Ò¡æ®Ó1

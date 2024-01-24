@@ -1,0 +1,12 @@
+
+>
+java:S1643Q"Use a StringBuilder instead.(„‰Ô¸øÿÿÿÿ8íÚæ®Ó1
+u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(„„ß-8íÚæ®Ó1
+A
+java:S1659"Declare "i" on a separate line.(ü³ãûÿÿÿÿ8öÚæ®Ó1
+A
+java:S1659"Declare "i" on a separate line.(ü³ãûÿÿÿÿ8öÚæ®Ó1
+A
+java:S1659-"Declare "i" on a separate line.(ü³ãûÿÿÿÿ8÷Úæ®Ó1
+L	java:S106]"+Replace this use of System.out by a logger.(õÖü­ıÿÿÿÿ8ùÚæ®Ó1
+L	java:S106^"+Replace this use of System.out by a logger.(­îÒÊùÿÿÿÿ8ùÚæ®Ó1

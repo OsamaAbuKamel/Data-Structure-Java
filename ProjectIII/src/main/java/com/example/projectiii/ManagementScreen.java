@@ -1,6 +1,7 @@
 package com.example.projectiii;
 
 import java.time.LocalDate;
+
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -50,7 +51,7 @@ public class ManagementScreen extends BorderPane {
     private Tooltip tooltip = new Tooltip();
     private Tooltip ttUpdate = new Tooltip();
     private int clickCount = 0;
-
+    
     // Constructor
     public ManagementScreen(RecordAVL list) {
         String fileName = "style.css";
@@ -64,7 +65,7 @@ public class ManagementScreen extends BorderPane {
         vLeft.getChildren().addAll(backBtn, initializeGridPane());
         setLeft(vLeft);
     }
-
+    
     // Methods for initializing gridPane
     private GridPane initializeGridPane() {
         GridPane inputGrid = new GridPane();
@@ -73,9 +74,9 @@ public class ManagementScreen extends BorderPane {
         inputGrid.add(new Label("Israel Lines:"), 0, 1);
         inputGrid.add(israelInput, 1, 1);
         inputGrid.add(new Label("Gaza Lines:"), 0, 2);
-        inputGrid.add(egyptInput, 1, 2);
+        inputGrid.add(gazaInput, 1, 2);
         inputGrid.add(new Label("Egypt Lines:"), 0, 3);
-        inputGrid.add(gazaInput, 1, 3);
+        inputGrid.add(egyptInput, 1, 3);
         inputGrid.add(new Label("Over All Demand:"), 0, 4);
         inputGrid.add(overallDemandInput, 1, 4);
         inputGrid.add(new Label("Power Cuts:"), 0, 5);
@@ -89,7 +90,7 @@ public class ManagementScreen extends BorderPane {
         inputGrid.setHgap(8);
         return inputGrid;
     }
-
+    
     // add event handlers to buttons
     private void handle() {
         addBtn.setOnAction(e -> {
@@ -111,16 +112,16 @@ public class ManagementScreen extends BorderPane {
             }
         });
         updateBtn.setOnMouseClicked(event -> {
-            clickCount++;
-            if (clickCount == 1) {
-                // First click: populate text fields with existing data
-                ElectricityRecord currentRecord = list.search(getDate());
-                populateTextFields(currentRecord);
-            } else if (clickCount == 2) {
-                // Second click: update record
-                clickCount = 0; // Reset the click count
-                try {
-                    // Get updated record from the text fields
+            try {
+                if (clickCount == 0) {
+                    // Get the record from the list
+                    ElectricityRecord record = list.search(getDate());
+                    // Display the record in the text fields
+                    filledTextFields(record);
+                    // Set the flag to false for the next click
+                    clickCount++;
+                } else {
+                    // Get the updated record from the text fields
                     ElectricityRecord updatedRecord = getRecord();
                     // Update the record in the list
                     list.update(updatedRecord);
@@ -128,13 +129,14 @@ public class ManagementScreen extends BorderPane {
                     updateTableView();
                     // Clear the text fields
                     clear();
-                } catch (IllegalArgumentException ex) {
-                    // Show an error alert if the date is invalid
-                    alert(AlertType.ERROR, "Error", ex.getMessage());
-                } catch (NullPointerException ex) {
-                    // Show an error alert if the date is not entered
-                    alert(AlertType.ERROR, "Error", "Please enter date");
+                    clickCount = 0;
                 }
+            } catch (IllegalArgumentException ex) {
+                // Show an error alert if the date is invalid
+                alert(AlertType.ERROR, "Error", ex.getMessage());
+            } catch (NullPointerException ex) {
+                // Show an error alert if the date is invalid
+                alert(AlertType.ERROR, "Error", ex.getMessage());
             }
         });
         deleteBtn.setOnAction(e -> {
@@ -178,27 +180,24 @@ public class ManagementScreen extends BorderPane {
         displayHeight.setOnAction(e -> {
             int h = 0, h1 = 0, h2 = 0;
             String s = " ";
+            h = list.getHeight();
             if (getDate() != null) {
-                h = list.getHeight();
                 h1 = list.getMonthHeight(getDate());
                 h2 = list.getDayHeight(getDate());
-                s = "Height of year: " + h + "\nHeight of month: " + h1 + "\nHeight of day: " + h2;
-                alert(AlertType.INFORMATION, "Height", s);
             } else {
-                h = list.getHeight();
                 for (Year year : list.getRecords()) {
                     h1 = year.getHeight();
                     for (Month month : year.getMonthAVL()) {
                         h2 = month.getHeight();
                     }
                 }
-                s = "Height of year: " + h + "\nHeight of month: " + h1 + "\nHeight of day: " + h2;
-                alert(AlertType.INFORMATION, "Height", s);
             }
+            s = "Height of year: " + h + "\nHeight of month: " + h1 + "\nHeight of day: " + h2;
+            alert(AlertType.INFORMATION, "Height", s);
         });
     }
-
-    private void populateTextFields(ElectricityRecord record) {
+    
+    private void filledTextFields(ElectricityRecord record) {
         israelInput.setText(String.valueOf(record.getIsraeliLines()));
         egyptInput.setText(String.valueOf(record.getEgyptianLines()));
         gazaInput.setText(String.valueOf(record.getGazaPowerPlant()));
@@ -206,7 +205,7 @@ public class ManagementScreen extends BorderPane {
         powerCutsHoursDayInput.setText(String.valueOf(record.getPowerCutsHoursDay()));
         tempInput.setText(String.valueOf(record.getTemp()));
     }
-
+    
     // Methods for initializing table
     private TableView<ElectricityRecord> initializeTable() {
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -231,7 +230,7 @@ public class ManagementScreen extends BorderPane {
         updateTableView();
         return tableView;
     }
-
+    
     // Methods for fill and update table
     private void updateTableView() {
         if (tableView != null) {
@@ -245,12 +244,12 @@ public class ManagementScreen extends BorderPane {
             }
         }
     }
-
+    
     // get date from date picker
     private LocalDate getDate() {
         return datePicker.getValue();
     }
-
+    
     // Methods for styling
     private void style() {
         setStyle("-fx-background-color:#ffffff");
@@ -274,7 +273,7 @@ public class ManagementScreen extends BorderPane {
         ttUpdate.setText("First select a record to update.\n Then enter the new values.");
         updateBtn.setTooltip(ttUpdate);
     }
-
+    
     // Methods for clear
     private void clear() {
         datePicker.setValue(null);
@@ -285,7 +284,7 @@ public class ManagementScreen extends BorderPane {
         powerCutsHoursDayInput.clear();
         tempInput.clear();
     }
-
+    
     // get records from text fields
     private ElectricityRecord getRecord() {
         double israeliLines = Double.parseDouble(israelInput.getText());
@@ -304,7 +303,7 @@ public class ManagementScreen extends BorderPane {
                 temp);
         return record;
     }
-
+    
     // Methods for alert
     private void alert(Alert.AlertType type, String title, String message) {
         // Create an alert with the given type, title, and message

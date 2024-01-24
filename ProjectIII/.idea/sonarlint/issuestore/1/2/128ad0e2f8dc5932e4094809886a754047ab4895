@@ -1,0 +1,12 @@
+
+Z
+java:S1192@"FDefine a constant instead of duplicating this literal "Error" 3 times.(ôE
+V	java:S125""<This block of commented-out lines of code should be removed.(¿°»ùÿÿÿÿ
+G
+java:S1602J",Remove useless curly braces around statement(È…¯Üúÿÿÿÿ
+G
+java:S1602M",Remove useless curly braces around statement(í¸ÿºùÿÿÿÿ
+G
+java:S1602P",Remove useless curly braces around statement(ÜğöÓüÿÿÿÿ
+>
+java:S1068"(Remove this unused "list" private field.(­¬áÃ

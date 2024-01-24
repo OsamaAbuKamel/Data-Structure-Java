@@ -4,47 +4,12 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Comparable<SLinkedList<T>> {
-    class Node<T extends Comparable<T>> {
-        private T data;
-        private Node<T> next;
-
-        public Node(T data) {
-            this.data = data;
-        }
-
-        // Getter method to return the data stored in the node
-        public T getData() {
-            return this.data;
-        }
-
-        // Setter method to set the data stored in the node
-        public void setData(T data) {
-            this.data = data;
-        }
-
-        // Getter method to return the next node
-        public Node<T> getNext() {
-            return this.next;
-        }
-
-        // Setter method to set the next node
-        public void setNext(Node<T> next) {
-            this.next = next;
-        }
-
-        // Overriding the toString method to return the data and the next node
-        @Override
-        public String toString() {
-            return getData() + " , " + getNext();
-        }
-    }
-
     private Node<T> head;
-
+    
     public SLinkedList() {
         head = new Node<>(null);
     }
-
+    
     // This method inserts a new node with the given data at the head of the linked
     // list
     public void insertAtHead(T data) {
@@ -55,7 +20,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         // Set the current head's next node to the new node
         head.setNext(newNode);
     }
-
+    
     // This method inserts a new node with the given data at the end of the linked
     // list
     public void insertAtLast(T data) {
@@ -75,7 +40,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         // Set the previous node's next node to the new node
         prev.setNext(newNode);
     }
-
+    
     // This method inserts a new node with the given data in the correct position in
     // the linked list based on the comparison result of the data with the current
     // node's data
@@ -97,11 +62,11 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         // Set the previous node's next node to the new node
         prev.setNext(newNode);
     }
-
+    
     public T getFront() {
         return head.getNext().getData();
     }
-
+    
     // This method deletes the first node from the linked list and returns its data
     public T deleteAtHead() {
         // Get the data from the first node
@@ -116,7 +81,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         // Return the data from the first node
         return data;
     }
-
+    
     // This method deletes the last node from the linked list and returns its data
     public T deleteAtEnd() {
         // If the linked list is empty, return null
@@ -143,7 +108,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         // Return the data from the last node
         return curr.getData();
     }
-
+    
     public T deleteSorted(T data) {
         Node<T> curr = head.getNext();
         Node<T> prev = head;
@@ -162,7 +127,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
             }
         }
     }
-
+    
     public T search(T data) {
         // Start at the first node
         for (Node<T> curr = this.head.getNext(); curr != null; curr = curr.getNext()) {
@@ -175,7 +140,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         // If we've gone through the whole list and haven't found the data, return false
         return null;
     }
-
+    
     public void reverse() {
         Node<T> curr = this.head.getNext(); // Start at the first node
         Node<T> prev = null; // Initialize previous node to null
@@ -187,15 +152,15 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         }
         this.head.setNext(prev); // After the loop, prev will be pointing to the new head of the reversed list
     }
-
+    
     public boolean isEmpty() {
         return head.getNext() == null; // Returns true if the list is empty, false otherwise
     }
-
+    
     public void clear() {
         head.setNext(null); // Clears the list by setting the next node of the head to null
     }
-
+    
     public int length() {
         int length = 0; // Initialize the count variable to 0
         Node<T> curr = head.getNext(); // Start at the first node
@@ -205,7 +170,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         }
         return length; // Return the count
     }
-
+    
     // Traverses the linked list and prints each node's data
     public void traversList() {
         // Start at the first node
@@ -214,7 +179,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
             System.out.print(curr.getData() + " ");
         }
     }
-
+    
     public String toString() {
         String s = " "; // Initialize the string
         // Traverse the list
@@ -223,7 +188,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         }
         return s; // Return the string
     }
-
+    
     @Override
     public int compareTo(SLinkedList<T> o) {
         Node<T> curr1 = this.head.getNext();
@@ -243,7 +208,7 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         } else
             return 0;
     }
-
+    
     public T get(int index) {
         if (index < 0) {
             throw new IllegalArgumentException("Index cannot be negative: " + index);
@@ -259,28 +224,28 @@ public class SLinkedList<T extends Comparable<T>> implements Iterable<T>, Compar
         }
         throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + currentIndex);
     }
-
+    
     public Node<T> getHead() {
         return this.head;
     }
-
+    
     public void setHead(Node<T> head) {
         this.head = head;
     }
-
+    
     @Override
     public Iterator<T> iterator() {
         return new LinkedListIterator();
     }
-
+    
     private class LinkedListIterator implements Iterator<T> {
         private Node<T> current = head.getNext();
-
+        
         @Override
         public boolean hasNext() {
             return current != null;
         }
-
+        
         @Override
         public T next() {
             if (!hasNext()) {

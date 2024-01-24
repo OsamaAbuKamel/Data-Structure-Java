@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class MainGUI extends Application {
     private RecordAVL list;
-
+    
     @Override
     public void start(Stage stage) throws Exception {
         list = new RecordAVL();
@@ -16,7 +16,7 @@ public class MainGUI extends Application {
                 "C:\\Users\\osama\\DataStructure\\Data-Structure-\\ProjectIII\\src\\main\\resources\\com\\example\\projectiii\\electricity.png"));
         stage.show();
     }
-
+    
     public static void main(String[] args) {
         launch(args);
     }

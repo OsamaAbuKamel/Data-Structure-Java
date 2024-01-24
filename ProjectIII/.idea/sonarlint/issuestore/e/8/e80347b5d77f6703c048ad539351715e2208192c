@@ -1,26 +1,19 @@
 
 ^
-java:S2259u"CA "NullPointerException" could be thrown; "nodeN" is nullable here.(¯¿â€ÿÿÿÿÿ
+java:S2259s"CA "NullPointerException" could be thrown; "nodeN" is nullable here.(µğƒ¢üÿÿÿÿ
 ^
-java:S2259z"CA "NullPointerException" could be thrown; "nodeN" is nullable here.(µğƒ¢üÿÿÿÿ
-P
-java:S1161":Add the "@Override" annotation above this method signature(‘éìİ
+java:S2259n"CA "NullPointerException" could be thrown; "nodeN" is nullable here.(¯¿â€ÿÿÿÿÿ
 U
-java:S1161":Add the "@Override" annotation above this method signature(Ğ­º¶üÿÿÿÿ
+java:S1161":Add the "@Override" annotation above this method signature(Ğ­º¶üÿÿÿÿ
 P
-java:S1161":Add the "@Override" annotation above this method signature(¡Õîã
+java:S1161":Add the "@Override" annotation above this method signature(¡Õîã
 P
-java:S11613":Add the "@Override" annotation above this method signature(ŸÁÁ
+java:S1161/":Add the "@Override" annotation above this method signature(ŸÁÁ
+\
+java:S11613":Add the "@Override" annotation above this method signature(œÕÂĞøÿÿÿÿ8Ï‹ªÓ1
 U
-java:S11617":Add the "@Override" annotation above this method signature(—Ãèäÿÿÿÿÿ
-U
-java:S1854G"8Remove this useless assignment to local variable "node".(·‰ì8Å’€‹Ñ1
+java:S1854@"8Remove this useless assignment to local variable "node".(·‰ì8Å’€‹Ñ1
 P
-java:S1161L":Add the "@Override" annotation above this method signature(ûÄ•
+java:S1161E":Add the "@Override" annotation above this method signature(ûÄ•
 P
-java:S1161P":Add the "@Override" annotation above this method signature(‚¨—£
-A	java:S106Â"+Replace this use of System.out by a logger.(«òˆì
-H	java:S106Ä"+Replace this use of System.out by a logger.(¤¸û™8Ğ’€‹Ñ1
-H	java:S106Ç"+Replace this use of System.out by a logger.(«òˆì8Ğ’€‹Ñ1
-Y	java:S125É"<This block of commented-out lines of code should be removed.(ë€‚Î8Ñ’€‹Ñ1
-R	java:S125Õ"<This block of commented-out lines of code should be removed.(ìöÕ
+java:S1161I":Add the "@Override" annotation above this method signature(‚¨—£

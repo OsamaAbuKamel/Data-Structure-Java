@@ -43,7 +43,7 @@ public class StatisticsScreen extends BorderPane {
     private GridPane gridPane = new GridPane();
     private HBox hBox = new HBox();
     private HBox hBox1 = new HBox();
-
+    
     // Constructor
     public StatisticsScreen(RecordAVL list) {
         this.list = list;
@@ -57,7 +57,7 @@ public class StatisticsScreen extends BorderPane {
         setLeft(vBox);
         setCenter(box);
     }
-
+    
     // Initialize the screen
     private void initialize() {
         hBox.getChildren().addAll(rbTotal, rbAvg);
@@ -81,7 +81,7 @@ public class StatisticsScreen extends BorderPane {
         cbMonths.setVisible(false);
         tfInput.setVisible(false);
     }
-
+    
     private LineChart<Number, Number> createChart() {
         // Set X-axis label based on the selected time unit
         String timeUnit = comboBox1.getValue();
@@ -95,7 +95,7 @@ public class StatisticsScreen extends BorderPane {
         lineChart.getData().add(series);
         return lineChart;
     }
-
+    
     private void handle() {
         // back button to main screen
         btnBack.setOnAction(e -> {
@@ -116,8 +116,8 @@ public class StatisticsScreen extends BorderPane {
                 // Check if all inputs are empty
                 if (comboBox1.getValue() == null)
                     alert(Alert.AlertType.ERROR, "Error", "Please select a time unit");
-                // else if (tfInput.getText().isEmpty())
-                // alert(Alert.AlertType.ERROR, "Error", "Please enter a number");
+                    // else if (tfInput.getText().isEmpty())
+                    // alert(Alert.AlertType.ERROR, "Error", "Please enter a number");
                 else if (comboBox.getValue() == null)
                     alert(Alert.AlertType.ERROR, "Error", "Please select an electricity type");
                 else if (group.getSelectedToggle() == null)
@@ -157,7 +157,7 @@ public class StatisticsScreen extends BorderPane {
             }
         });
     }
-
+    
     private StatisticType getType() {
         if (rbTotal.isSelected()) {
             return StatisticType.TOTAL;
@@ -173,7 +173,7 @@ public class StatisticsScreen extends BorderPane {
         }
         return null;
     }
-
+    
     private void style() {
         Image image = new Image(
                 "C:\\Users\\osama\\DataStructure\\Data-Structure-\\ProjectIII\\src\\main\\resources\\com\\example\\projectiii\\left-arrow.gif");
@@ -208,7 +208,7 @@ public class StatisticsScreen extends BorderPane {
         hBox1.setSpacing(8);
         hBox1.setAlignment(Pos.CENTER_LEFT);
     }
-
+    
     private void clear() {
         comboBox.getItems().clear();
         comboBox1.getItems().clear();
@@ -217,7 +217,7 @@ public class StatisticsScreen extends BorderPane {
             group.getSelectedToggle().setSelected(false);
         }
     }
-
+    
     private void alert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

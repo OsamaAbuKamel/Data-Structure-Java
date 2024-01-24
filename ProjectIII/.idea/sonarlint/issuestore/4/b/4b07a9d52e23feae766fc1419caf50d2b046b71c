@@ -1,17 +1,14 @@
 
 e
-java:S2259ç"BA "NullPointerException" could be thrown; "node" is nullable here.(ç‘›·şÿÿÿÿ8¶¸’Ğ1
-Y	java:S125¡"<This block of commented-out lines of code should be removed.(¼¾†ô8Æ¸’Ğ1
-M	java:S106ç"+Replace this use of System.out by a logger.(ç‘›·şÿÿÿÿ8Ê¸’Ğ1
-M	java:S106ì"+Replace this use of System.out by a logger.(ç‘›·şÿÿÿÿ8Ë¸’Ğ1
+java:S2259Å"BA "NullPointerException" could be thrown; "node" is nullable here.(ç‘›·şÿÿÿÿ8¶¸’Ğ1
+F	java:S106"+Replace this use of System.out by a logger.(ìÉºZ8óªÓ1
+M	java:S106Å"+Replace this use of System.out by a logger.(ç‘›·şÿÿÿÿ8Ê¸’Ğ1
+M	java:S106Ê"+Replace this use of System.out by a logger.(ç‘›·şÿÿÿÿ8Ë¸’Ğ1
 u
-java:S3776ù"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(çŒ§Øşÿÿÿÿ8‡”€‹Ñ1
-H	java:S106ö"+Replace this use of System.out by a logger.(ë¢‹8Ò¸’Ğ1
-k	java:S100Š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†Ğò’8Õ¸’Ğ1
-_
-java:S1126"AReplace this if-then-else statement by a single return statement.(’¡¾™8×¸’Ğ1
+java:S3776×"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(çŒ§Øşÿÿÿÿ8‡”€‹Ñ1
+H	java:S106Ô"+Replace this use of System.out by a logger.(ë¢‹8Ò¸’Ğ1
+k	java:S100è"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†Ğò’8Õ¸’Ğ1
+d
+java:S1126ü"AReplace this if-then-else statement by a single return statement.(éƒí‚øÿÿÿÿ8“ªÓ1
 l
-java:S2272¥"NAdd a "NoSuchElementException" for iteration beyond the end of the collection.(ÓÔç8Ù¸’Ğ1
-H	java:S106±"+Replace this use of System.out by a logger.(¡èò8 ”€‹Ñ1
-M	java:S106³"+Replace this use of System.out by a logger.(ªÓ¼áşÿÿÿÿ8¡”€‹Ñ1
-H	java:S106¶"+Replace this use of System.out by a logger.(¡èò8¡”€‹Ñ1
+java:S2272ƒ"NAdd a "NoSuchElementException" for iteration beyond the end of the collection.(ÓÔç8Ù¸’Ğ1

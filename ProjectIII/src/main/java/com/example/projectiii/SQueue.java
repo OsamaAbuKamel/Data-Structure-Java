@@ -3,7 +3,7 @@ package com.example.projectiii;
 public class SQueue<T extends Comparable<T>> implements Queueable<T> {
     SLStack<T> stack = new SLStack<T>();
     SLStack<T> tempStack = new SLStack<T>();
-
+    
     @Override
     public void enqueue(T data) {
         if (stack.isEmpty()) {
@@ -19,22 +19,22 @@ public class SQueue<T extends Comparable<T>> implements Queueable<T> {
             stack.push(tempStack.pop());
         }
     }
-
+    
     @Override
     public T dequeue() {
         return stack.pop();
     }
-
+    
     @Override
     public T getFront() {
         return stack.peek();
     }
-
+    
     @Override
     public boolean isEmpty() {
         return stack.isEmpty();
     }
-
+    
     @Override
     public void clear() {
         stack.clear();
@@ -43,12 +43,12 @@ public class SQueue<T extends Comparable<T>> implements Queueable<T> {
 
 interface Queueable<T> {
     void enqueue(T data);
-
+    
     T dequeue();
-
+    
     T getFront();
-
+    
     boolean isEmpty();
-
+    
     void clear();
 }

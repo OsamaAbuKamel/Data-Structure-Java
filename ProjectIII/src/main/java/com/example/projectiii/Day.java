@@ -1,6 +1,5 @@
 package com.example.projectiii;
 
-
 public class Day implements Comparable<Day>, Cloneable {
     private int day;
     private ElectricityRecord record;
@@ -54,5 +53,4 @@ public class Day implements Comparable<Day>, Cloneable {
     public String toString() {
         return "" + getRecord();
     }
-
 }

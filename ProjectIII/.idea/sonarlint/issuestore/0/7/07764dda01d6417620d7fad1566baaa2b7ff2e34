@@ -1,0 +1,9 @@
+
+n	java:S127•"XRefactor the code in order to not assign to this loop counter from within the loop body.(Ö¢Ã
+3
+java:S1643»"Use a StringBuilder instead.(€†²Ø
+S
+java:S2589Î"7Remove this expression which always evaluates to "true"(×Ë†ûÿÿÿÿ
+p
+java:S1210Á"YOverride "equals(Object obj)" to comply with the contract of the "compareTo(T o)" method.(ì£ ÿ
+F	java:S106³"+Replace this use of System.out by a logger.(¨óŒ¾ûÿÿÿÿ

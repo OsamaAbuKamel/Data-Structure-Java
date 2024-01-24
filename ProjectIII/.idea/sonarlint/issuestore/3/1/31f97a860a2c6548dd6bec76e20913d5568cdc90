@@ -1,0 +1,26 @@
+
+\
+java:S1192l"FDefine a constant instead of duplicating this literal "Error" 7 times.(Ôó›¬
+h
+java:S1192o"RDefine a constant instead of duplicating this literal "Please enter date" 3 times.(úŸöÚ
+z
+java:S1488¨"^Immediately return this expression instead of assigning it to the temporary variable "record".(¥¬ËÕüÿÿÿÿ
+]
+java:S2259ò"GA "NullPointerException" could be thrown; "tableView" is nullable here.(½ºÂX
+M
+java:S2589:"7Remove this expression which always evaluates to "true"(™ªøñ
+m
+java:S3776_"RRefactor this method to reduce its Cognitive Complexity from 30 to the 15 allowed.(œ ÿŒÿÿÿÿÿ
+a
+java:S2147‰"ECombine this catch with the one at line 134, which has the same body.(‰•’şÿÿÿÿ
+U
+java:S6213v":Rename this variable to not match a restricted identifier.(û•úÁùÿÿÿÿ
+V
+java:S6213¡":Rename this variable to not match a restricted identifier.(û•úÁùÿÿÿÿ
+W	java:S125©"<This block of commented-out lines of code should be removed.(º¥¾€øÿÿÿÿ
+[
+java:S1659µ"?Declare "h1" and all following declarations on a separate line.(ûü»ˆùÿÿÿÿ
+V
+java:S6213È":Rename this variable to not match a restricted identifier.(ƒÁ–úÿÿÿÿ
+V
+java:S6213¨":Rename this variable to not match a restricted identifier.(¥¬ËÕüÿÿÿÿ

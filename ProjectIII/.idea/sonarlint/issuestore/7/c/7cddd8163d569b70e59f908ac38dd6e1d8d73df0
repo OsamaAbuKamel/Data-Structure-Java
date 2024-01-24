@@ -1,18 +1,15 @@
 
 6
-java:S1700"Rename field "month"(æ£Šûøÿÿÿÿ8ùë‘Ğ1
+java:S1700"Rename field "month"(æ£Šûøÿÿÿÿ8ùë‘Ğ1
 a
-java:S6201:"DReplace this instanceof check and cast with 'instanceof Month month'(½¶¯8¤˜˜Ğ1
+java:S62010"DReplace this instanceof check and cast with 'instanceof Month month'(½¶¯8¤˜˜Ğ1
 Z
-java:S1117;"8Rename "month" which hides the field declared at line 6.(º‰˜şÿÿÿÿ8í‚–Ğ1
+java:S11171"8Rename "month" which hides the field declared at line 4.(º‰˜şÿÿÿÿ8í‚–Ğ1
 J
-java:S1905;"(Remove this unnecessary cast to "Month".(º‰˜şÿÿÿÿ8¥˜˜Ğ1
-X	java:S125="<This block of commented-out lines of code should be removed.(Ë½Ú8­î˜Ğ1
+java:S19051"(Remove this unnecessary cast to "Month".(º‰˜şÿÿÿÿ8¥˜˜Ğ1
 u
-java:S2975D"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(ûİ‹¬ÿÿÿÿÿ8š¥ÓÆÏ1
+java:S29759"SRemove this "clone" implementation; use a copy constructor or copy factory instead.(ûİ‹¬ÿÿÿÿÿ8š¥ÓÆÏ1
 J
-java:S1185D"(Remove this method to simply inherit it.(ûİ‹¬ÿÿÿÿÿ8š¥ÓÆÏ1
+java:S11859"(Remove this method to simply inherit it.(ûİ‹¬ÿÿÿÿÿ8š¥ÓÆÏ1
 Z
-java:S1117M"8Rename "month" which hides the field declared at line 6.(É½Ïÿÿÿÿÿ8¦˜˜Ğ1
-F	java:S106b"+Replace this use of System.out by a logger.(“‹£p8Ìì‘Ğ1
-]	java:S125Y"<This block of commented-out lines of code should be removed.(ŒéÌáÿÿÿÿÿ8Íì‘Ğ1
+java:S1117B"8Rename "month" which hides the field declared at line 4.(É½Ïÿÿÿÿÿ8¦˜˜Ğ1

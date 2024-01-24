@@ -1,0 +1,14 @@
+
+\
+java:S1192v"FDefine a constant instead of duplicating this literal "Error" 4 times.(Î¥¥’
+\
+java:S1192F"FDefine a constant instead of duplicating this literal "Month" 3 times.(´½«ˆ
+W
+java:S4973"<Strings and Boxed types should be compared using "equals()".(£Øî´øÿÿÿÿ
+X
+java:S4973ƒ"<Strings and Boxed types should be compared using "equals()".(ÄÜï¬ýÿÿÿÿ
+S
+java:S4973‡"<Strings and Boxed types should be compared using "equals()".(‘‹õ
+m
+java:S3776c"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(œ ÿŒÿÿÿÿÿ
+P	java:S125w"<This block of commented-out lines of code should be removed.(Þþÿm

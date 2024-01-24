@@ -1,6 +1,7 @@
 package com.example.projectiii;
 
 import java.io.File;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -25,7 +26,7 @@ public class MainScreen extends BorderPane {
             "C:\\Users\\osama\\DataStructure\\Data-Structure-\\ProjectIII\\src\\main\\resources\\com\\example\\projectiii\\system-solid-49-upload-file.gif");
     private ImageView uploadImage = new ImageView(gifImageUpload);
     private Tooltip toolTip = new Tooltip("Upload File .CSV");
-
+    
     public MainScreen(RecordAVL list) {
         this.list = list;
         setStyle("-fx-background-color:#ffffff");
@@ -37,7 +38,7 @@ public class MainScreen extends BorderPane {
         hBox.getChildren().addAll(btnUpload, btnManagement, btnStatistics, btnSave);
         setCenter(hBox);
     }
-
+    
     private void style() {
         hBox.setPadding(new Insets(16));
         hBox.setAlignment(Pos.CENTER);
@@ -54,7 +55,7 @@ public class MainScreen extends BorderPane {
         btnStatistics.setPrefSize(120, 60);
         btnSave.setPrefSize(120, 60);
     }
-
+    
     private void handle(RecordAVL list) {
         btnUpload.setOnAction(e -> {
             chooser.setTitle("Open File");
@@ -80,7 +81,7 @@ public class MainScreen extends BorderPane {
             SceneChanger.changeScene(new SaveScreen(list));
         });
     }
-
+    
     private void alert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
         alert.setTitle(title);

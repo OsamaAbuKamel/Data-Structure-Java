@@ -1,8 +1,7 @@
-import java.util.LinkedList;
 
 public class LinkedListDemo {
     public static void main(String[] args) {
-
+       
     }
     public static <T extends Comparable<T>> MyLinkedList<T> mergeSorted(MyLinkedList<T> list1, MyLinkedList<T> list2) {
         MyLinkedList<T> mergedList = new MyLinkedList<>(); // Create a new linked list to hold the merged result

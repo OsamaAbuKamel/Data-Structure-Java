@@ -2,10 +2,13 @@ package src;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class BST<T extends Comparable<T>> implements Iterable<T> {
     private TNode<T> root;
-
+    
     public void add(T data) {
         if (isEmpty()) {
             root = new TNode<>(data);
@@ -13,54 +16,51 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             add(data, root);
         }
     }
-
+    
     public int size() {
         return size(root);
     }
-
+    
     public int countParent() {
         return countParent(root);
     }
-
+    
     public boolean isEmpty() {
         return root == null;
     }
-
+    
     public void traverseInOrder() {
         traverseInOrder(root);
     }
-
+    
     public boolean isFull() {
         return isFull(root);
     }
-
+    
     public void traversePostOrder() {
         traverseInPost(root);
     }
-
+    
     public void traversePreOrder() {
         traverseInPre(root);
     }
-
+    
     public int height() {
         return height(root);
     }
-
+    
     public T smallest() {
         return smallest(root);
     }
-
+    
     public T largest() {
         return largest(root);
     }
-
+    
     public void traverseLevelOrder() {
-        int h = height(root);
-        for (int i = 1; i <= h; i++) {
-            traverseLevelOrder(root, i);
-        }
+        traverseLevelOrder(root);
     }
-
+    
     public T search(T data) {
         // start from root node
         TNode<T> curr = root;
@@ -79,12 +79,12 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         if (curr == null)
             // return null
             return null;
-        // if data is found
+            // if data is found
         else
             // return data
             return curr.data;
     }
-
+    
     public boolean isComplete() {
         if (root == null) {
             return true;
@@ -93,34 +93,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         int nodeCount = countParent(root);
         return isComplete(root, index, nodeCount);
     }
-
-    public T get(int index) {
-        return get(root, index);
-    }
-
-    protected T get(TNode<T> curr2, int index) {
-        // Create a new ArrayList to store the values
-        ArrayList<T> list = new ArrayList<>();
-        // Call the inOrder method to add the values to the ArrayList
-        inOrder(curr2, list);
-        // Return the value at the specified index
-        return list.get(index);
-    }
-
-    private void inOrder(TNode<T> curr2, ArrayList<T> list) {
-        // Check if the current node is null
-        if (curr2 == null) {
-            // Return if it is
-            return;
-        }
-        // Recursively call the inOrder method on the left child
-        inOrder(curr2.left, list);
-        // Add the current node's data to the list
-        list.add(curr2.data);
-        // Recursively call the inOrder method on the right child
-        inOrder(curr2.right, list);
-    }
-
+    
     protected boolean isComplete(TNode<T> node, int index, int nodeCount) {
         if (node == null) {
             return true;
@@ -132,7 +105,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         boolean isRightComplete = isComplete(node.right, 2 * index + 2, nodeCount);
         return isLeftComplete && isRightComplete;
     }
-
+    
     protected boolean isFull(TNode<T> node) {
         // Check if the node is null
         if (node == null)
@@ -146,23 +119,25 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         // Return false if the node has only one child
         return false;
     }
-
-    protected void traverseLevelOrder(TNode<T> root2, int level) {
-        // Check if the root node is null
-        if (root2 == null) {
+    
+    protected void traverseLevelOrder(TNode<T> node) {
+        if (node == null) {
             return;
         }
-        // Check if the level is 1
-        if (level == 1) {
-            // Print the data of the root node
-            System.out.print(root2.data + " ");
-        } else if (level > 1) {
-            // Traverse the left and right subtrees
-            traverseLevelOrder(root2.left, level - 1);
-            traverseLevelOrder(root2.right, level - 1);
+        Queue<TNode<T>> queue = new LinkedList<>();
+        queue.add(node);
+        while (!queue.isEmpty()) {
+            TNode<T> temp = queue.remove();
+            System.out.print(temp.getData() + " ");
+            if (temp.getLeft() != null) {
+                queue.add(temp.getLeft());
+            }
+            if (temp.getRight() != null) {
+                queue.add(temp.getRight());
+            }
         }
     }
-
+    
     // Method to return the largest node in the tree
     protected T largest(TNode<T> node) {
         // If the node is null, return null
@@ -171,11 +146,11 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         // If the node has a right child, return the smallest node in the right subtree
         if (node.hasRight())
             return smallest(node.right);
-        // Otherwise, return the node's data
+            // Otherwise, return the node's data
         else
             return node.data;
     }
-
+    
     // Method to return the smallest node in the tree
     protected T smallest(TNode<T> node) {
         // Check if the node is null
@@ -190,7 +165,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             // Return the node if the node has no left child
             return node.data;
     }
-
+    
     // Method to return the height of the tree
     protected int height(TNode<T> node) {
         // Check if the node is null
@@ -215,7 +190,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         // Return the larger of the left and right heights, plus 1
         return (left > right) ? (left + 1) : (right + 1);
     }
-
+    
     protected void traverseInPre(TNode<T> node) {
         if (node != null) {
             if (node.left != null)
@@ -225,7 +200,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         }
         System.out.print(node.data + " ");
     }
-
+    
     protected void traverseInPost(TNode<T> node) {
         if (node != null) {
             System.out.print(node.data + " ");
@@ -235,12 +210,13 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
                 traverseInPost(node.right);
         }
     }
-
+    
     public T remove(T data) {
-        return remove(root, data);
+        root = remove(root, data);
+        return data;
     }
-
-    protected T remove(TNode<T> node, T data) {
+    
+    protected TNode<T> remove(TNode<T> node, T data) {
         TNode<T> curr = node;
         TNode<T> parent = null;
         boolean isLeftChild = false;
@@ -259,12 +235,12 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             }
         }
         if (curr == null) {
-            return null; // Node not found
+            return node; // Node not found
         }
         // Case 1: Node is a leaf
         if (!curr.hasLeft() && !curr.hasRight()) {
-            if (curr == root) {
-                root = null;
+            if (curr == node) {
+                node = null;
             } else if (isLeftChild) {
                 parent.left = null;
             } else {
@@ -273,8 +249,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         }
         // Case 2: Node has only left child
         else if (curr.hasLeft() && !curr.hasRight()) {
-            if (curr == root) {
-                root = curr.left;
+            if (curr == node) {
+                node = curr.left;
             } else if (isLeftChild) {
                 parent.left = curr.left;
             } else {
@@ -283,8 +259,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         }
         // Case 2: Node has only right child
         else if (!curr.hasLeft() && curr.hasRight()) {
-            if (curr == root) {
-                root = curr.right;
+            if (curr == node) {
+                node = curr.right;
             } else if (isLeftChild) {
                 parent.left = curr.right;
             } else {
@@ -294,8 +270,8 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         // Case 3: Node has both left and right children
         else {
             TNode<T> successor = getSuccessor(curr);
-            if (curr == root) {
-                root = successor;
+            if (curr == node) {
+                node = successor;
             } else if (isLeftChild) {
                 parent.left = successor;
             } else {
@@ -303,9 +279,9 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             }
             successor.left = curr.left;
         }
-        return curr.data;
+        return node;
     }
-
+    
     private TNode<T> getSuccessor(TNode<T> node) {
         TNode<T> parentOfSuccessor = node;
         TNode<T> successor = node;
@@ -321,7 +297,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         }
         return successor;
     }
-
+    
     protected void add(T data, TNode<T> node) {
         // Check if the data is greater than or equal to the node data
         if (data.compareTo(node.data) >= 0) {
@@ -331,7 +307,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             } else
                 // Otherwise, call the add method recursively with the data and the right child
                 add(data, node.right);
-        // If the data is less than the node data
+            // If the data is less than the node data
         } else if (!node.hasLeft()) {
             // Create a new node with the data
             node.left = new TNode<>(data);
@@ -339,7 +315,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             // Otherwise, call the add method recursively with the data and the left child
             add(data, node.left);
     }
-
+    
     protected int size(TNode<T> node) {
         // Check if the node is null
         if (node == null)
@@ -352,7 +328,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         // Return the size of the left and right subtrees
         return 1 + size(node.left) + size(node.right);
     }
-
+    
     protected int countParent(TNode<T> node) {
         // Check if the node is null or a leaf
         if (node == null || node.isLeaf())
@@ -361,7 +337,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
         // Return 1 plus the number of parent nodes on the left and right subtrees
         return 1 + countParent(node.left) + countParent(node.right);
     }
-
+    
     protected void traverseInOrder(TNode<T> node) {
         if (node != null) {
             traverseInOrder(node.getLeft());
@@ -369,35 +345,40 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             traverseInOrder(node.getRight());
         }
     }
-
+    
     @Override
     public Iterator<T> iterator() {
-        return new InOrderIterator(root);
+        return new OrderIterator(root);
     }
-
-    protected class InOrderIterator implements Iterator<T> {
-        TNode<T> curr;
+    
+    protected class OrderIterator implements Iterator<T> {
+        private TNode<T> curr;
         private ArrayList<T> list = new ArrayList<>();
-        private int index = 0;
-
-        public InOrderIterator(TNode<T> root) {
+        int index = 0;
+        
+        public OrderIterator(TNode<T> root) {
             curr = root;
-            inOrder();
+            LevelOrder(curr);
         }
-
-        public void inOrder() {
-            inOrder(curr);
-        }
-
-        private void inOrder(TNode<T> curr2) {
-            if (curr2 == null) {
+        
+        private void LevelOrder(TNode<T> node) {
+            if (node == null) {
                 return;
             }
-            inOrder(curr2.left);
-            list.add(curr2.data);
-            inOrder(curr2.right);
+            Queue<TNode<T>> queue = new LinkedList<>();
+            queue.add(node);
+            while (!queue.isEmpty()) {
+                TNode<T> temp = queue.remove();
+                list.add(temp.getData());
+                if (temp.getLeft() != null) {
+                    queue.add(temp.getLeft());
+                }
+                if (temp.getRight() != null) {
+                    queue.add(temp.getRight());
+                }
+            }
         }
-
+        
         @Override
         public boolean hasNext() {
             if (index < list.size()) {
@@ -405,7 +386,7 @@ public class BST<T extends Comparable<T>> implements Iterable<T> {
             }
             return false;
         }
-
+        
         @Override
         public T next() {
             return list.get(index++);

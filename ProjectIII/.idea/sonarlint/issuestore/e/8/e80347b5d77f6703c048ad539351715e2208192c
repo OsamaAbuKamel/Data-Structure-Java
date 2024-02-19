@@ -1,8 +1,8 @@
 
 ^
-java:S2259s"CA "NullPointerException" could be thrown; "nodeN" is nullable here.(µðƒ¢üÿÿÿÿ
-^
 java:S2259n"CA "NullPointerException" could be thrown; "nodeN" is nullable here.(¯¿â€ÿÿÿÿÿ
+^
+java:S2259s"CA "NullPointerException" could be thrown; "nodeN" is nullable here.(µðƒ¢üÿÿÿÿ
 U
 java:S1161":Add the "@Override" annotation above this method signature(Ð­º¶üÿÿÿÿ
 P

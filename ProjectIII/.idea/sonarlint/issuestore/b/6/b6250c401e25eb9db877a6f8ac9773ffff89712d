@@ -1,10 +1,10 @@
 
 x
-java:S3065C"bChange these chained min/max methods invocations, as final results will always be the lower bound.(ñ©ò…
+java:S3065f"bChange these chained min/max methods invocations, as final results will always be the lower bound.(ñ©ò…
 x
 java:S3065&"bChange these chained min/max methods invocations, as final results will always be the lower bound.(ñ©ò…
 x
-java:S3065f"bChange these chained min/max methods invocations, as final results will always be the lower bound.(ñ©ò…
+java:S3065C"bChange these chained min/max methods invocations, as final results will always be the lower bound.(ñ©ò…
 h
 java:S3776
 "RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(ÍÂÒë

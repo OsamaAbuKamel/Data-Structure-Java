@@ -108,4 +108,17 @@ public class SeparateHashing<T extends Comparable<T>> implements Iterable<T> {
             return iterator.next();
         }
     }
+    public static void main(String[] args) {
+        SeparateHashing<Integer> hash = new SeparateHashing<>(10);
+        hash.insert(49);
+        hash.insert(9);
+        hash.insert(0);
+        hash.insert(16);
+        hash.insert(64);
+        hash.insert(25);
+        hash.insert(36);
+        hash.insert(81);
+        hash.insert(1);
+        System.out.println(hash);
+    }
 }

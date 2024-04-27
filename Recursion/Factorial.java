@@ -1,10 +1,7 @@
-import java.util.Scanner;
 
-public class ComputeFactorial {
+public class Factorial {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        System.out.print("Enter a nonnegative integer: ");
-        int n = input.nextInt();
+        int n = 5;
         System.out.println("Factorial of " + n + " is " + factorial(n));
         
     }

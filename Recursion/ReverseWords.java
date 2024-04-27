@@ -1,4 +1,4 @@
-public class Que4 {
+public class ReverseWords {
     public static void main(String[] args) {
         String n = "cat is running"; ;
         System.out.println(reverseWords(n));
@@ -15,10 +15,6 @@ public class Que4 {
         String lastWord = s.substring(lastSpace+1);
         //Return the last word reversed plus the reversed remaining part of the string
         return lastWord +" "+  reverseWords(s.substring(0, lastSpace));
-//            String word[] = s.split(" ");
-//            String lastWord = word[word.length - 1];
-//            return lastWord + " " + reverseWords(s.substring(0, s.length() - lastWord.length()));
-//
         }
     
 }
